@@ -32,7 +32,7 @@ export const ChainSuggestedPage: FunctionComponent = observer(() => {
     <EmptyLayout style={{ height: '100%', paddingTop: '80px' }}>
       <div className={style.container}>
         <img
-          src={require('../../../public/assets/orai_wallet_logo.png')}
+          src={require('../../../public/assets/CVMwallet_1_144.png')}
           alt="logo"
           style={{ height: '92px', maxWidth: 92, margin: '0 auto' }}
         />
@@ -44,8 +44,7 @@ export const ChainSuggestedPage: FunctionComponent = observer(() => {
             id="chain.suggested.paragraph"
             values={{
               host: chainSuggestStore.waitingSuggestedChainInfo?.data.origin,
-              chainId:
-                chainSuggestStore.waitingSuggestedChainInfo?.data.chainId,
+              chainId: chainSuggestStore.waitingSuggestedChainInfo?.data.chainId,
               // eslint-disable-next-line react/display-name
               b: (...chunks: any) => <b>{chunks}</b>
             }}
@@ -54,10 +53,7 @@ export const ChainSuggestedPage: FunctionComponent = observer(() => {
         <div style={{ flex: 1 }} />
         <Alert className={style.warning} color="warning">
           <div className={style.imgContainer}>
-            <img
-              src={require('../../../public/assets/img/icons8-test-tube.svg')}
-              alt="experiment"
-            />
+            <img src={require('../../../public/assets/img/icons8-test-tube.svg')} alt="experiment" />
           </div>
           <div className={style.content}>
             <div className={style.title}>
@@ -84,10 +80,7 @@ export const ChainSuggestedPage: FunctionComponent = observer(() => {
 
               await chainSuggestStore.reject();
 
-              if (
-                interactionInfo.interaction &&
-                !interactionInfo.interactionInternal
-              ) {
+              if (interactionInfo.interaction && !interactionInfo.interactionInternal) {
                 window.close();
               } else {
                 history.push('/');
@@ -106,10 +99,7 @@ export const ChainSuggestedPage: FunctionComponent = observer(() => {
 
               await chainSuggestStore.approve();
 
-              if (
-                interactionInfo.interaction &&
-                !interactionInfo.interactionInternal
-              ) {
+              if (interactionInfo.interaction && !interactionInfo.interactionInternal) {
                 window.close();
               } else {
                 history.push('/');

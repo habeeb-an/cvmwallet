@@ -88,8 +88,8 @@ export const LockPage: FunctionComponent = observer(() => {
         })}
       >
         <Banner
-          icon={require('../../public/assets/orai_wallet_logo.png')}
-          logo={require('../../public/assets/logo.svg')}
+          icon={require('../../public/assets/CVMwallet_1_144.png')}
+          logo={require('../../public/assets/cvm wallet.png')}
           subtitle="Wallet for CosVM Network"
         />
         <PasswordInput

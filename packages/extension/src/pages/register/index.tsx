@@ -73,10 +73,10 @@ export const RegisterPage: FunctionComponent = observer(() => {
     >
       <div className={style.logoContainer}>
         <div>
-          <img className={style.icon} src={require('../../public/assets/orai_wallet_logo.png')} alt="logo" />
+          <img className={style.icon} src={require('../../public/assets/CVMwallet_1_144.png')} alt="logo" />
         </div>
         <div className={style.logoInnerContainer}>
-          <img className={style.logo} src={require('../../public/assets/logo.svg')} alt="logo" />
+          <img className={style.logo} src={require('../../public/assets/cvm wallet.png')} alt="logo" />
           <div className={style.paragraph}>Wallet for CosVM Network</div>
         </div>
       </div>

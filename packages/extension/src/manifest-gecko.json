@@ -32,5 +32,5 @@
       "all_frames": true
     }
   ],
-  "web_accessible_resources": ["injectedScript.bundle.js", "assets/orai_wallet_logo.png"]
+  "web_accessible_resources": ["injectedScript.bundle.js", "assets/CVMwallet_1_144.png"]
 }

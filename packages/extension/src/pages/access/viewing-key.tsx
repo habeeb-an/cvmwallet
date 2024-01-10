@@ -48,7 +48,7 @@ export const Secret20ViewingKeyAccessPage: FunctionComponent = observer(() => {
     <EmptyLayout style={{ height: '100%', paddingTop: '80px' }}>
       <div className={style.container}>
         <img
-          src={require('../../public/assets/orai_wallet_logo.png')}
+          src={require('../../public/assets/CVMwallet_1_144.png')}
           alt="logo"
           style={{ height: '92px', maxWidth: 92, margin: '0 auto' }}
         />
@@ -60,9 +60,7 @@ export const Secret20ViewingKeyAccessPage: FunctionComponent = observer(() => {
             id="access.viewing-key.paragraph"
             values={{
               host,
-              contractAddress: waitingPermission
-                ? waitingPermission.data.contractAddress
-                : 'loading...',
+              contractAddress: waitingPermission ? waitingPermission.data.contractAddress : 'loading...',
               // eslint-disable-next-line react/display-name
               b: (...chunks: any) => <b>{chunks}</b>
             }}
@@ -87,14 +85,8 @@ export const Secret20ViewingKeyAccessPage: FunctionComponent = observer(() => {
 
               if (waitingPermission) {
                 await permissionStore.reject(waitingPermission.id);
-                if (
-                  permissionStore.waitingSecret20ViewingKeyAccessPermissions
-                    .length === 0
-                ) {
-                  if (
-                    ineractionInfo.interaction &&
-                    !ineractionInfo.interactionInternal
-                  ) {
+                if (permissionStore.waitingSecret20ViewingKeyAccessPermissions.length === 0) {
+                  if (ineractionInfo.interaction && !ineractionInfo.interactionInternal) {
                     window.close();
                   }
                 }
@@ -112,14 +104,8 @@ export const Secret20ViewingKeyAccessPage: FunctionComponent = observer(() => {
 
               if (waitingPermission) {
                 await permissionStore.approve(waitingPermission.id);
-                if (
-                  permissionStore.waitingSecret20ViewingKeyAccessPermissions
-                    .length === 0
-                ) {
-                  if (
-                    ineractionInfo.interaction &&
-                    !ineractionInfo.interactionInternal
-                  ) {
+                if (permissionStore.waitingSecret20ViewingKeyAccessPermissions.length === 0) {
+                  if (ineractionInfo.interaction && !ineractionInfo.interactionInternal) {
                     window.close();
                   }
                 }
@@ -128,8 +114,7 @@ export const Secret20ViewingKeyAccessPage: FunctionComponent = observer(() => {
             disabled={
               !waitingPermission ||
               ChainIdHelper.parse(chainStore.current.chainId).identifier !==
-                ChainIdHelper.parse(waitingPermission.data.chainIds[0])
-                  .identifier
+                ChainIdHelper.parse(waitingPermission.data.chainIds[0]).identifier
             }
             data-loading={permissionStore.isLoading}
           >

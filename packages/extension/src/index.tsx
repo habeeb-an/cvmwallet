@@ -100,13 +100,13 @@ window.tronLink_owallet = tronWeb;
 window.bitcoin = bitcoin;
 
 // Make sure that icon file will be included in bundle
-require('./public/assets/orai_wallet_logo.png');
+require('./public/assets/CVMwallet_1_144.png');
 require('./public/assets/icon/icon-16.png');
 require('./public/assets/icon/icon-48.png');
 require('./public/assets/icon/icon-128.png');
-// require('./public/assets/icon/icon-orai-16.png');
-// require('./public/assets/icon/icon-orai-48.png');
-// require('./public/assets/icon/icon-orai-128.png');
+// require('./public/assets/icon/icon-16.png');
+// require('./public/assets/icon/icon-48.png');
+// require('./public/assets/icon/icon-128.png');
 
 configure({
   enforceActions: 'always' // Make mobx to strict mode.
@@ -146,8 +146,8 @@ const StateRenderer: FunctionComponent = observer(() => {
     return (
       <div style={{ height: '100%' }}>
         <Banner
-          icon={require('./public/assets/orai_wallet_logo.png')}
-          logo={require('./public/assets/logo.svg')}
+          icon={require('./public/assets/CVMwallet_1_144.png')}
+          logo={require('./public/assets/cvm wallet.png')}
           subtitle="Wallet for CosVM Network"
         />
       </div>
@@ -156,8 +156,8 @@ const StateRenderer: FunctionComponent = observer(() => {
     return (
       <div style={{ height: '100%' }}>
         <Banner
-          icon={require('./public/assets/orai_wallet_logo.png')}
-          logo={require('./public/assets/logo.svg')}
+          icon={require('./public/assets/CVMwallet_1_144.png')}
+          logo={require('./public/assets/cvm wallet.png')}
           subtitle="Wallet for CosVM Network"
         />
       </div>

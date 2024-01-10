@@ -61,7 +61,7 @@ export const AccessPage: FunctionComponent = observer(() => {
     <EmptyLayout style={{ height: '100%', paddingTop: '80px' }}>
       <div className={style.container}>
         <img
-          src={require('../../public/assets/orai_wallet_logo.png')}
+          src={require('../../public/assets/CVMwallet_1_144.png')}
           alt="logo"
           style={{ height: '92px', maxWidth: 92, margin: '0 auto' }}
         />
@@ -82,7 +82,7 @@ export const AccessPage: FunctionComponent = observer(() => {
         <div className={style.permission}>
           <FormattedMessage id="access.permission.title" />
         </div>
-        <ul >
+        <ul>
           <li>
             <FormattedMessage id="access.permission.account" />
           </li>
@@ -106,13 +106,8 @@ export const AccessPage: FunctionComponent = observer(() => {
 
               if (waitingPermission) {
                 await permissionStore.reject(waitingPermission.id);
-                if (
-                  permissionStore.waitingBasicAccessPermissions.length === 0
-                ) {
-                  if (
-                    ineractionInfo.interaction &&
-                    !ineractionInfo.interactionInternal
-                  ) {
+                if (permissionStore.waitingBasicAccessPermissions.length === 0) {
+                  if (ineractionInfo.interaction && !ineractionInfo.interactionInternal) {
                     window.close();
                   }
                 }
@@ -130,13 +125,8 @@ export const AccessPage: FunctionComponent = observer(() => {
 
               if (waitingPermission) {
                 await permissionStore.approve(waitingPermission.id);
-                if (
-                  permissionStore.waitingBasicAccessPermissions.length === 0
-                ) {
-                  if (
-                    ineractionInfo.interaction &&
-                    !ineractionInfo.interactionInternal
-                  ) {
+                if (permissionStore.waitingBasicAccessPermissions.length === 0) {
+                  if (ineractionInfo.interaction && !ineractionInfo.interactionInternal) {
                     window.close();
                   }
                 }
