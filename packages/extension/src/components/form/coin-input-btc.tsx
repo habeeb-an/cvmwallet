@@ -204,13 +204,13 @@ export const CoinInputBtc: FunctionComponent<CoinInputBtcProps> = observer(
                 style={{
                   width: 50,
                   height: 28,
-                  backgroundColor: amountConfig.isMax ? '#7664E4' : '#f8fafc',
+                  backgroundColor: amountConfig.isMax ? '#ab8aff' : '#f8fafc',
                   borderRadius: 4
                 }}
               >
                 <span
                   style={{
-                    color: amountConfig.isMax ? 'white' : '#7664E4',
+                    color: amountConfig.isMax ? 'white' : '#ab8aff',
                     fontSize: 14
                   }}
                 >

@@ -1,4 +1,4 @@
-@import "../../styles/var";
+@import '../../styles/var';
 
 .menu-container {
   height: $header-height;
@@ -24,8 +24,8 @@ $menu-icon-gap: 14px;
   width: 100%;
   display: flex;
   flex-direction: row;
-  border: 1px solid #E6E8EC;
-  border-radius: 4px
+  border: 1px solid #e6e8ec;
+  border-radius: 4px;
 }
 
 .menu-tab {

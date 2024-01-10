@@ -52,7 +52,9 @@ const ChainElement: FunctionComponent<{
             if (getDevicesHID.length) {
               if (
                 await confirm.confirm({
-                  paragraph: `You are switching to ${COINTYPE_NETWORK[chainInfo.coinType ?? chainInfo.bip44.coinType]} network. Please confirm that you have ${
+                  paragraph: `You are switching to ${
+                    COINTYPE_NETWORK[chainInfo.coinType ?? chainInfo.bip44.coinType]
+                  } network. Please confirm that you have ${
                     COINTYPE_NETWORK[chainInfo.coinType ?? chainInfo.bip44.coinType]
                   } App opened before switch network`,
                   styleParagraph: {
@@ -71,7 +73,9 @@ const ChainElement: FunctionComponent<{
                   placement: 'top-center',
                   type: 'warning',
                   duration: 5,
-                  content: `You are switching to ${COINTYPE_NETWORK[chainInfo.coinType ?? chainInfo.bip44.coinType]} network. Please confirm that you have ${
+                  content: `You are switching to ${
+                    COINTYPE_NETWORK[chainInfo.coinType ?? chainInfo.bip44.coinType]
+                  } network. Please confirm that you have ${
                     COINTYPE_NETWORK[chainInfo.coinType ?? chainInfo.bip44.coinType]
                   } App opened before switch network`,
                   canDelete: true,
@@ -80,9 +84,9 @@ const ChainElement: FunctionComponent<{
                   }
                 });
                 await keyRingStore.setKeyStoreLedgerAddress(
-                  `44'/${chainInfo.bip44.coinType ?? chainInfo.coinType}'/${selected.bip44HDPath.account}'/${selected.bip44HDPath.change}/${
-                    selected.bip44HDPath.addressIndex
-                  }`,
+                  `44'/${chainInfo.bip44.coinType ?? chainInfo.coinType}'/${selected.bip44HDPath.account}'/${
+                    selected.bip44HDPath.change
+                  }/${selected.bip44HDPath.addressIndex}`,
                   chainInfo.chainId
                 );
                 await handleUpdateChain();
@@ -143,7 +147,8 @@ export const ChainList: FunctionComponent = observer(() => {
   const { chainStore } = useStore();
 
   const mainChainList = chainStore.chainInfos;
-  const betaChainList = chainStore.chainInfos.filter((chainInfo) => chainInfo.beta && chainInfo.chainId != 'Oraichain');
+  console.log({ mainChainList });
+  // const betaChainList = chainStore.chainInfos.filter((chainInfo) => chainInfo.beta && chainInfo.chainId != 'Oraichain');
 
   return (
     <div className={style.chainListContainer}>
@@ -172,7 +177,10 @@ export const ChainList: FunctionComponent = observer(() => {
           }}
         />
       </div>
-      {mainChainList.map((chainInfo) => chainInfo.networkType === 'evm' && <ChainElement key={chainInfo.chainId} chainInfo={chainInfo.raw} />)}
+      {mainChainList.map(
+        (chainInfo) =>
+          chainInfo.networkType === 'evm' && <ChainElement key={chainInfo.chainId} chainInfo={chainInfo.raw} />
+      )}
       <div style={{ display: 'flex', alignItems: 'center' }}>
         <hr
           className="my-3"
@@ -199,9 +207,11 @@ export const ChainList: FunctionComponent = observer(() => {
         />
       </div>
       {mainChainList.map(
-        (chainInfo) => chainInfo.networkType !== 'evm' && !chainInfo.beta && <ChainElement key={chainInfo.chainId} chainInfo={chainInfo.raw} />
+        (chainInfo) =>
+          chainInfo.networkType !== 'evm' &&
+          !chainInfo.beta && <ChainElement key={chainInfo.chainId} chainInfo={chainInfo.raw} />
       )}
-      <div style={{ display: 'flex', alignItems: 'center' }}>
+      {/* <div style={{ display: 'flex', alignItems: 'center' }}>
         <hr
           className="my-3"
           style={{
@@ -225,10 +235,10 @@ export const ChainList: FunctionComponent = observer(() => {
             borderTop: '1px solid rgba(255, 255, 255)'
           }}
         />
-      </div>
-      {betaChainList.map((chainInfo) => (
+      </div> */}
+      {/* {betaChainList.map((chainInfo) => (
         <ChainElement key={chainInfo.chainId} chainInfo={chainInfo.raw} />
-      ))}
+      ))} */}
     </div>
   );
 });

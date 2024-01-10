@@ -244,7 +244,7 @@ export const TokensView: FunctionComponent<{
           <div className={styleToken.tab}>
             <h1
               style={{
-                color: tab == i && '#7664E4'
+                color: tab == i && '#ab8aff'
               }}
               className={styleToken.title}
               onClick={() => {

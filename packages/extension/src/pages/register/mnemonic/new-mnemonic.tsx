@@ -3,11 +3,7 @@ import { RegisterConfig } from '@owallet/hooks';
 import { observer } from 'mobx-react-lite';
 import { FormattedMessage, useIntl } from 'react-intl';
 import useForm from 'react-hook-form';
-import {
-  AdvancedBIP44Option,
-  BIP44Option,
-  useBIP44Option
-} from '../advanced-bip44';
+import { AdvancedBIP44Option, BIP44Option, useBIP44Option } from '../advanced-bip44';
 import style from '../style.module.scss';
 import { Alert, Button, ButtonGroup, Form } from 'reactstrap';
 import { Input, PasswordInput, TextArea } from '../../../components/form';
@@ -119,14 +115,8 @@ export const GenerateMnemonicModePage: FunctionComponent<{
               color=""
               outline={newMnemonicConfig.numWords !== NumWords.WORDS12}
               style={{
-                backgroundColor:
-                  newMnemonicConfig.numWords !== NumWords.WORDS12
-                    ? 'white'
-                    : '#7664E4',
-                color:
-                  newMnemonicConfig.numWords !== NumWords.WORDS12
-                    ? 'gray'
-                    : 'white'
+                backgroundColor: newMnemonicConfig.numWords !== NumWords.WORDS12 ? 'white' : '#ab8aff',
+                color: newMnemonicConfig.numWords !== NumWords.WORDS12 ? 'gray' : 'white'
               }}
               onClick={() => {
                 newMnemonicConfig.setNumWords(NumWords.WORDS12);
@@ -138,14 +128,8 @@ export const GenerateMnemonicModePage: FunctionComponent<{
               type="button"
               color=""
               style={{
-                backgroundColor:
-                  newMnemonicConfig.numWords !== NumWords.WORDS24
-                    ? 'white'
-                    : '#7664E4',
-                color:
-                  newMnemonicConfig.numWords !== NumWords.WORDS24
-                    ? 'gray'
-                    : 'white'
+                backgroundColor: newMnemonicConfig.numWords !== NumWords.WORDS24 ? 'white' : '#ab8aff',
+                color: newMnemonicConfig.numWords !== NumWords.WORDS24 ? 'gray' : 'white'
               }}
               outline={newMnemonicConfig.numWords !== NumWords.WORDS24}
               onClick={() => {
@@ -169,7 +153,7 @@ export const GenerateMnemonicModePage: FunctionComponent<{
           className={style.mnemonic}
           style={{
             border: '1px solid rgba(8, 4, 28, 0.12)',
-            color: '#7664e4',
+            color: '#ab8aff'
           }}
           autoCapitalize="none"
           placeholder={intl.formatMessage({
@@ -318,11 +302,7 @@ export const VerifyMnemonicModePage: FunctionComponent<{
                 key={word + i.toString()}
                 onClick={() => {
                   const word = suggestedWords[i];
-                  setSuggestedWords(
-                    suggestedWords
-                      .slice(0, i)
-                      .concat(suggestedWords.slice(i + 1))
-                  );
+                  setSuggestedWords(suggestedWords.slice(0, i).concat(suggestedWords.slice(i + 1)));
                   randomizedWords.push(word);
                   setRandomizedWords(randomizedWords.slice());
                 }}
@@ -342,11 +322,7 @@ export const VerifyMnemonicModePage: FunctionComponent<{
                 key={word + i.toString()}
                 onClick={() => {
                   const word = randomizedWords[i];
-                  setRandomizedWords(
-                    randomizedWords
-                      .slice(0, i)
-                      .concat(randomizedWords.slice(i + 1))
-                  );
+                  setRandomizedWords(randomizedWords.slice(0, i).concat(randomizedWords.slice(i + 1)));
                   suggestedWords.push(word);
                   setSuggestedWords(suggestedWords.slice());
                 }}

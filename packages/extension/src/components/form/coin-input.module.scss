@@ -1,7 +1,7 @@
-@import "../../../../../node_modules/argon-dashboard-react/src/assets/scss/argon-dashboard/custom/functions";
-@import "../../../../../node_modules/argon-dashboard-react/src/assets/scss/argon-dashboard/custom/mixins";
-@import "../../../../../node_modules/argon-dashboard-react/src/assets/scss/argon-dashboard/custom/variables";
-@import "../../styles/var";
+@import '../../../../../node_modules/argon-dashboard-react/src/assets/scss/argon-dashboard/custom/functions';
+@import '../../../../../node_modules/argon-dashboard-react/src/assets/scss/argon-dashboard/custom/mixins';
+@import '../../../../../node_modules/argon-dashboard-react/src/assets/scss/argon-dashboard/custom/variables';
+@import '../../styles/var';
 
 .input {
   // box-shadow: $input-alternative-box-shadow !important;
@@ -45,7 +45,7 @@
     color: $color-neutral-2;
     &::after {
       border-radius: 2px;
-      content: " ";
+      content: ' ';
       display: block;
       height: 0.625em;
       margin-top: -0.4375em;
@@ -69,7 +69,7 @@
   }
 
   :global(.dropdown-item.active) {
-    background-color: #7664e4;
+    background-color: #ab8aff;
     color: $background-color;
   }
 

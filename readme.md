@@ -3,7 +3,7 @@
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://github.com/oraichain/owallet/blob/master/LICENSE.txt)
 [![Twitter: OWallet](https://img.shields.io/twitter/follow/oraichain.svg?style=social)](https://twitter.com/oraichain)
 
-## OWallet: Cosmos x EVM in one Wallet
+## CVM Wallet: Wallet for CosVM Network
 OWallet supports both Cosmos-based and EVM-based networks including Cosmos Hub, Oraichain, Osmosis, Juno, Ethereum, BSC, and more.
 OWallet is developed based on Keplr extension and currently maintained by Oraichain Labs.
 

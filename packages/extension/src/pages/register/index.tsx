@@ -77,7 +77,7 @@ export const RegisterPage: FunctionComponent = observer(() => {
         </div>
         <div className={style.logoInnerContainer}>
           <img className={style.logo} src={require('../../public/assets/logo.svg')} alt="logo" />
-          <div className={style.paragraph}>Cosmos x EVM in one Wallet</div>
+          <div className={style.paragraph}>Wallet for CosVM Network</div>
         </div>
       </div>
       {registerConfig.render()}

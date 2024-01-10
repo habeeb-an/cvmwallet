@@ -54,7 +54,7 @@ export const LockPage: FunctionComponent = observer(() => {
     <EmptyLayout style={{ height: '100%' }}>
       <Form
         className={style.formContainer}
-        onSubmit={handleSubmit(async data => {
+        onSubmit={handleSubmit(async (data) => {
           setLoading(true);
           try {
             await keyRingStore.unlock(data.password, true);
@@ -90,7 +90,7 @@ export const LockPage: FunctionComponent = observer(() => {
         <Banner
           icon={require('../../public/assets/orai_wallet_logo.png')}
           logo={require('../../public/assets/logo.svg')}
-          subtitle="Cosmos x EVM in one Wallet"
+          subtitle="Wallet for CosVM Network"
         />
         <PasswordInput
           label={intl.formatMessage({
@@ -101,7 +101,7 @@ export const LockPage: FunctionComponent = observer(() => {
           }}
           name="password"
           error={errors.password && errors.password.message}
-          ref={ref => {
+          ref={(ref) => {
             passwordRef.current = ref;
 
             register({

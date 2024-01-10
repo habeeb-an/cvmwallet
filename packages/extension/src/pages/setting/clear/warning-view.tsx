@@ -36,15 +36,13 @@ export const WarningView: FunctionComponent<{
             borderRadius: 20
           }}
         >
-          <div>
-            Make sure you've backed up yourmnemonic seed before proceeding.
-          </div>
+          <div>Make sure you've backed up yourmnemonic seed before proceeding.</div>
           <Button
             size="sm"
             color=""
             style={{
               color: 'white',
-              backgroundColor: '#7664E4',
+              backgroundColor: '#ab8aff',
               marginTop: 10
             }}
             onClick={onBackUpMnemonicButtonClick}
@@ -55,10 +53,7 @@ export const WarningView: FunctionComponent<{
       ) : null}
       <div style={{ height: 20 }} />
       <div className={styleWarningView.trashContainer}>
-        <img
-          src={require('../../../public/assets/img/trash-can.svg')}
-          alt="trash-can"
-        />
+        <img src={require('../../../public/assets/img/trash-can.svg')} alt="trash-can" />
       </div>
       <div className={styleWarningView.textTrash}>
         <FormattedMessage id="setting.clear.warning" />

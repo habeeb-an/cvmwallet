@@ -1,7 +1,7 @@
-@import "../../../../../node_modules/argon-dashboard-react/src/assets/scss/argon-dashboard/custom/functions";
-@import "../../../../../node_modules/argon-dashboard-react/src/assets/scss/argon-dashboard/custom/mixins";
-@import "../../../../../node_modules/argon-dashboard-react/src/assets/scss/argon-dashboard/custom/variables";
-@import "../../styles/var";
+@import '../../../../../node_modules/argon-dashboard-react/src/assets/scss/argon-dashboard/custom/functions';
+@import '../../../../../node_modules/argon-dashboard-react/src/assets/scss/argon-dashboard/custom/mixins';
+@import '../../../../../node_modules/argon-dashboard-react/src/assets/scss/argon-dashboard/custom/variables';
+@import '../../styles/var';
 
 .form-container {
   min-height: 100%;
@@ -29,7 +29,7 @@
 }
 
 .address-book-button {
-  background: #7664e4;
+  background: #ab8aff;
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
   border-width: 0;

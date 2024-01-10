@@ -24,7 +24,7 @@ export const checkFnComponent = (titleRight: TypeTextAndCustomizeComponent, Elem
   return null;
 };
 
-export const handleErrorSwap = message => {
+export const handleErrorSwap = (message) => {
   showToast({
     message:
       message && message.length < 300
@@ -118,18 +118,6 @@ export const chainIcons: ChainIcon[] = [
     chainName: 'Tron Network',
     Icon: TronIcon,
     IconLight: TronIcon
-  },
-  {
-    chainId: '0x38',
-    chainName: 'BNB Chain',
-    Icon: BnbIcon,
-    IconLight: BnbIcon
-  },
-  {
-    chainId: '0x1ae6',
-    chainName: 'Kawaiiverse EVM',
-    Icon: KwtIcon,
-    IconLight: KwtIcon
   }
 ];
 

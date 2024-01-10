@@ -175,7 +175,7 @@ export const FeeButtonsInner: FunctionComponent<
               <div
                 key={i}
                 style={{
-                  border: `1px solid ${feeConfig.feeType == fee ? '#7664E4' : '#fff'}`,
+                  border: `1px solid ${feeConfig.feeType == fee ? '#ab8aff' : '#fff'}`,
                   borderRadius: 8,
                   boxShadow: '0px 10px 35px -3px rgba(24, 39, 75, 0.12)',
                   flex: 1,

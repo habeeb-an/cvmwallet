@@ -148,7 +148,7 @@ const StateRenderer: FunctionComponent = observer(() => {
         <Banner
           icon={require('./public/assets/orai_wallet_logo.png')}
           logo={require('./public/assets/logo.svg')}
-          subtitle="Cosmos x EVM in one Wallet"
+          subtitle="Wallet for CosVM Network"
         />
       </div>
     );
@@ -158,7 +158,7 @@ const StateRenderer: FunctionComponent = observer(() => {
         <Banner
           icon={require('./public/assets/orai_wallet_logo.png')}
           logo={require('./public/assets/logo.svg')}
-          subtitle="Cosmos x EVM in one Wallet"
+          subtitle="Wallet for CosVM Network"
         />
       </div>
     );

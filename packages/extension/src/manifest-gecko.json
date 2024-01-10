@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
-  "name": "OWallet",
-  "description": "OWallet: Cosmos x EVM in one Wallet",
+  "name": "CVM Wallet",
+  "description": "CVM Wallet: Wallet for CosVM Network",
   "version": "0.9.16",
   "applications": {
     "gecko": {
@@ -17,7 +17,7 @@
 
   "browser_action": {
     "default_popup": "popup.html",
-    "default_title": "OWallet"
+    "default_title": "CVM Wallet"
   },
   "background": {
     "scripts": ["browser-polyfill.js", "background.bundle.js"],
@@ -32,8 +32,5 @@
       "all_frames": true
     }
   ],
-  "web_accessible_resources": [
-    "injectedScript.bundle.js",
-    "assets/orai_wallet_logo.png"
-  ]
+  "web_accessible_resources": ["injectedScript.bundle.js", "assets/orai_wallet_logo.png"]
 }

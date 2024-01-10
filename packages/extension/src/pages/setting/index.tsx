@@ -1,10 +1,4 @@
-import React, {
-  CSSProperties,
-  FunctionComponent,
-  ReactElement,
-  useCallback,
-  useMemo
-} from 'react';
+import React, { CSSProperties, FunctionComponent, ReactElement, useCallback, useMemo } from 'react';
 import { useHistory } from 'react-router';
 import { PageButton, PageButtonAccount } from './page-button';
 import style from './style.module.scss';
@@ -13,15 +7,7 @@ import { useIntl } from 'react-intl';
 import { observer } from 'mobx-react-lite';
 import { useStore } from '../../stores';
 import classNames from 'classnames';
-import {
-  Card,
-  CardBody,
-  Modal,
-  ModalBody,
-  Popover,
-  PopoverBody,
-  PopoverHeader
-} from 'reactstrap';
+import { Card, CardBody, Modal, ModalBody, Popover, PopoverBody, PopoverHeader } from 'reactstrap';
 import { ExportToMobilePage } from '../setting/export-to-mobile';
 import { CreditPage } from '../setting/credit';
 import { SettingConnectionsPage } from '../setting/connections';
@@ -36,17 +22,7 @@ export const PageButtonSetting: FunctionComponent<{
   isHasTabs?: number;
   setIsHasTabs?: any;
   type?: number;
-}> = ({
-  paragraph,
-  title,
-  modalBody,
-  styles,
-  classNameSetting,
-  disable,
-  isHasTabs,
-  setIsHasTabs,
-  type
-}) => {
+}> = ({ paragraph, title, modalBody, styles, classNameSetting, disable, isHasTabs, setIsHasTabs, type }) => {
   const [isDepositOpen, setIsDepositOpen] = React.useState(false);
   const intl = useIntl();
   const [tooltipId] = React.useState(() => {
@@ -88,11 +64,7 @@ export const PageButtonSetting: FunctionComponent<{
         <li>
           <div
             id={tooltipId}
-            onClick={() =>
-              setIsHasTabs
-                ? setIsHasTabs(type == isHasTabs ? 0 : type)
-                : setIsDepositOpen(true)
-            }
+            onClick={() => (setIsHasTabs ? setIsHasTabs(type == isHasTabs ? 0 : type) : setIsDepositOpen(true))}
           >
             <div>{title}</div>
             <div className={classNames(style.paragraph)}>{paragraph}</div>
@@ -109,10 +81,7 @@ export const SettingPage: FunctionComponent = observer(() => {
   const language = useLanguage();
   const history = useHistory();
   const intl = useIntl();
-  const selectedIcon = useMemo(
-    () => [<i key="selected" className="fas fa-check" />],
-    []
-  );
+  const selectedIcon = useMemo(() => [<i key="selected" className="fas fa-check" />], []);
 
   const paragraphLang = language.automatic
     ? intl.formatMessage(
@@ -176,7 +145,7 @@ export const SettingPage: FunctionComponent = observer(() => {
           //           <span
           //             className={classNames(style.textLang)}
           //             style={{
-          //               color: paragraphLang == la.text ? '#7664E4' : '#353945'
+          //               color: paragraphLang == la.text ? '#ab8aff' : '#353945'
           //             }}
           //             onClick={useCallback(() => {
           //               language.setLanguage(la.lang);
@@ -203,8 +172,7 @@ export const SettingPage: FunctionComponent = observer(() => {
             <div style={{ padding: 10, height: 250, overflow: 'auto' }}>
               {Object.keys(priceStore.supportedVsCurrencies).map((currency) => {
                 // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-                const fiatCurrency =
-                  priceStore.supportedVsCurrencies[currency]!;
+                const fiatCurrency = priceStore.supportedVsCurrencies[currency]!;
 
                 return (
                   <div
@@ -217,11 +185,7 @@ export const SettingPage: FunctionComponent = observer(() => {
                       });
                     }}
                     style={{
-                      color:
-                        paragraphFiat.toUpperCase() ==
-                        fiatCurrency.currency.toUpperCase()
-                          ? '#7664E4'
-                          : '#353945'
+                      color: paragraphFiat.toUpperCase() == fiatCurrency.currency.toUpperCase() ? '#ab8aff' : '#353945'
                     }}
                   >
                     {!language.isFiatCurrencyAutomatic
@@ -230,9 +194,7 @@ export const SettingPage: FunctionComponent = observer(() => {
                         : undefined
                       : undefined}
                     <div style={{ width: 6 }} />
-                    <span className={classNames(style.textCurrency)}>
-                      {fiatCurrency.currency.toUpperCase()}
-                    </span>
+                    <span className={classNames(style.textCurrency)}>{fiatCurrency.currency.toUpperCase()}</span>
                     <div style={{ width: 6 }} />
                     <span>{fiatCurrency.symbol}</span>
                   </div>

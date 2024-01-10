@@ -1,4 +1,4 @@
-@import "../../styles/var";
+@import '../../styles/var';
 
 .container {
   display: flex;
@@ -18,7 +18,7 @@
   .permission {
     margin-top: 30px;
     font-size: 14px;
-    color: #7664e4;
+    color: #ab8aff;
     text-align: center;
   }
 
@@ -28,10 +28,10 @@
     padding: 0;
     width: fit-content;
     margin: auto;
-    color: #7664e4;
+    color: #ab8aff;
 
     li:before {
-      content: "- ";
+      content: '- ';
     }
   }
 
