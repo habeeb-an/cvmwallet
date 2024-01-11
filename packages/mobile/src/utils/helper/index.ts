@@ -12,7 +12,7 @@ import { Linking, Platform } from 'react-native';
 const SCHEME_IOS = 'owallet://open_url?url=';
 const SCHEME_ANDROID = 'app.owallet.oauth://google/open_url?url=';
 export const ORAICHAIN_ID = 'Oraichain';
-export const KAWAII_ID = 'kawaii_6886-1';
+// export const KAWAII_ID = 'kawaii_6886-1';
 export const ETH_ID = '0x01';
 export const TRON_BIP39_PATH_PREFIX = "m/44'/195'";
 export const BIP44_PATH_PREFIX = "m/44'";
@@ -559,13 +559,12 @@ export function createTxsHelper() {
   return new TxsHelper();
 }
 
-export const LRRedactProps = (redactionTag = 'lr-hide') => (
+export const LRRedactProps = (redactionTag = 'lr-hide') =>
   Platform.OS === 'ios'
     ? {
-      testID: redactionTag,
-      accessible: false,
-    }
-    : { testID: redactionTag }
-);
+        testID: redactionTag,
+        accessible: false
+      }
+    : { testID: redactionTag };
 
 export { get };

@@ -1,32 +1,14 @@
-import {
-  action,
-  autorun,
-  computed,
-  makeObservable,
-  observable,
-  runInAction
-} from 'mobx';
-import {
-  AppCurrency,
-  Bech32Config,
-  BIP44,
-  ChainInfo,
-  Currency,
-  NetworkType
-} from '@owallet/types';
+import { action, autorun, computed, makeObservable, observable, runInAction } from 'mobx';
+import { AppCurrency, Bech32Config, BIP44, ChainInfo, Currency, NetworkType } from '@owallet/types';
 import { ChainGetter } from '../common';
 import { ChainIdHelper } from '@owallet/cosmos';
 import { DeepReadonly } from 'utility-types';
 import { AxiosRequestConfig } from 'axios';
 import { keepAlive } from 'mobx-utils';
 
-type CurrencyRegistrar = (
-  coinMinimalDenom: string
-) => AppCurrency | [AppCurrency | undefined, boolean] | undefined;
+type CurrencyRegistrar = (coinMinimalDenom: string) => AppCurrency | [AppCurrency | undefined, boolean] | undefined;
 
-export class ChainInfoInner<C extends ChainInfo = ChainInfo>
-  implements ChainInfo
-{
+export class ChainInfoInner<C extends ChainInfo = ChainInfo> implements ChainInfo {
   @observable.ref
   protected _chainInfo: C;
 
@@ -55,9 +37,7 @@ export class ChainInfoInner<C extends ChainInfo = ChainInfo>
     keepAlive(this, 'currencyMap');
   }
 
-  protected getCurrencyFromRegistrars(
-    coinMinimalDenom: string
-  ): [AppCurrency | undefined, boolean] | undefined {
+  protected getCurrencyFromRegistrars(coinMinimalDenom: string): [AppCurrency | undefined, boolean] | undefined {
     for (let i = 0; i < this.currencyRegistrars.length; i++) {
       const registrar = this.currencyRegistrars[i];
       const currency = registrar(coinMinimalDenom);
@@ -97,9 +77,7 @@ export class ChainInfoInner<C extends ChainInfo = ChainInfo>
           const [currency, committed] = registered;
           runInAction(() => {
             if (currency) {
-              const index = this.unknownDenoms.findIndex(
-                (denom) => denom === coinMinimalDenom
-              );
+              const index = this.unknownDenoms.findIndex((denom) => denom === coinMinimalDenom);
               if (index >= 0) {
                 this.unknownDenoms.splice(index, 1);
               }
@@ -170,9 +148,7 @@ export class ChainInfoInner<C extends ChainInfo = ChainInfo>
       map.set(coinMinimalDenom, true);
     }
 
-    this.registeredCurrencies = this.registeredCurrencies.filter(
-      (currency) => !map.get(currency.coinMinimalDenom)
-    );
+    this.registeredCurrencies = this.registeredCurrencies.filter((currency) => !map.get(currency.coinMinimalDenom));
   }
 
   /**
@@ -207,9 +183,7 @@ export class ChainInfoInner<C extends ChainInfo = ChainInfo>
   @action
   protected addOrReplaceCurrency(currency: AppCurrency) {
     if (this.currencyMap.has(currency.coinMinimalDenom)) {
-      const index = this.registeredCurrencies.findIndex(
-        (cur) => cur.coinMinimalDenom === currency.coinMinimalDenom
-      );
+      const index = this.registeredCurrencies.findIndex((cur) => cur.coinMinimalDenom === currency.coinMinimalDenom);
       if (index >= 0) {
         this.registeredCurrencies.splice(index, 1, currency);
       }
@@ -229,7 +203,7 @@ export class ChainInfoInner<C extends ChainInfo = ChainInfo>
   get bech32Config(): Bech32Config {
     return this.raw.bech32Config;
   }
-get beta(): boolean | undefined {
+  get beta(): boolean | undefined {
     return this.raw.beta;
   }
 
@@ -253,9 +227,7 @@ get beta(): boolean | undefined {
     return this.raw.feeCurrencies;
   }
 
-  get gasPriceStep():
-    | { low: number; average: number; high: number }
-    | undefined {
+  get gasPriceStep(): { low: number; average: number; high: number } | undefined {
     return this.raw.stakeCurrency.gasPriceStep;
   }
 
@@ -276,19 +248,13 @@ get beta(): boolean | undefined {
   }
 }
 
-export type ChainInfoOverrider<C extends ChainInfo = ChainInfo> = (
-  chainInfo: DeepReadonly<C>
-) => C;
+export type ChainInfoOverrider<C extends ChainInfo = ChainInfo> = (chainInfo: DeepReadonly<C>) => C;
 
-export class ChainStore<C extends ChainInfo = ChainInfo>
-  implements ChainGetter
-{
+export class ChainStore<C extends ChainInfo = ChainInfo> implements ChainGetter {
   @observable.ref
   protected _chainInfos!: ChainInfoInner<C>[];
 
-  protected setChainInfoHandlers: ((
-    chainInfoInner: ChainInfoInner<C>
-  ) => void)[] = [];
+  protected setChainInfoHandlers: ((chainInfoInner: ChainInfoInner<C>) => void)[] = [];
 
   protected _cachedChainInfosMap: Map<string, ChainInfoInner<C>> = new Map();
 
@@ -304,15 +270,12 @@ export class ChainStore<C extends ChainInfo = ChainInfo>
 
   getChain(chainId: string): ChainInfoInner<C> {
     if (chainId === '' || !chainId) {
-      chainId = 'Oraichain';
+      chainId = '323';
     }
     const chainIdentifier = ChainIdHelper.parse(chainId);
 
     const find = this.chainInfos.find((info) => {
-      return (
-        ChainIdHelper.parse(info.chainId).identifier ===
-        chainIdentifier.identifier
-      );
+      return ChainIdHelper.parse(info.chainId).identifier === chainIdentifier.identifier;
     });
 
     if (!find) {
@@ -326,10 +289,7 @@ export class ChainStore<C extends ChainInfo = ChainInfo>
     const chainIdentifier = ChainIdHelper.parse(chainId);
 
     const find = this.chainInfos.find((info) => {
-      return (
-        ChainIdHelper.parse(info.chainId).identifier ===
-        chainIdentifier.identifier
-      );
+      return ChainIdHelper.parse(info.chainId).identifier === chainIdentifier.identifier;
     });
 
     return find != null;

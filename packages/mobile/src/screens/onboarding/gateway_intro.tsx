@@ -41,15 +41,15 @@ const GatewayIntroScreen: FunctionComponent = () => {
       <View style={styles.boardingTitleContainer}>
         <View>
           <OWText variant="h1" typo="bold" color={colors['purple-h1']}>
-            Gateway to
+            Wallet for
           </OWText>
           <OWText variant="h2" typo="bold" color={colors['black']}>
-            Oraichain Ecosystem
+            CosVM Ecosystem
           </OWText>
         </View>
       </View>
       <OWText variant="body2" typo="regular" color={colors['gray-150']}>
-        OWallet brings the richness of Oraichain to your hand.
+        CVM Wallet brings the richness of CVM to your hand.
       </OWText>
       <Image
         source={require('../../assets/image/onboarding-gateway.png')}
@@ -57,12 +57,7 @@ const GatewayIntroScreen: FunctionComponent = () => {
         resizeMode="contain"
         style={styles.img}
       />
-      <OWButton
-        label="Get started!"
-        onPress={onGetStarted}
-        disabled={isTimedOut}
-        loading={isTimedOut}
-      />
+      <OWButton label="Get started!" onPress={onGetStarted} disabled={isTimedOut} loading={isTimedOut} />
     </View>
   );
 };

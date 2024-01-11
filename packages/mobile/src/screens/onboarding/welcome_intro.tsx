@@ -30,7 +30,7 @@ const WelcomeIntroScreen: FunctionComponent = () => {
             Welcome to
           </OWText>
           <OWText variant="h2" typo="bold" color={colors['black']}>
-            OWallet
+            CVM Wallet
           </OWText>
         </View>
         <View style={styles.boardingIcon}>
@@ -38,10 +38,15 @@ const WelcomeIntroScreen: FunctionComponent = () => {
         </View>
       </View>
       <OWText variant="body2" typo="regular" color={colors['gray-150']}>
-        OWallet is a secure wallet, routing you cross the world of blockchains: Oraichain, Cosmos, Ethereum, BNB smart chain,...
+        CVM Wallet is a secure wallet, routing you cross the world of blockchains: CosVM , Cosmos, Ethereum,...
       </OWText>
       <View style={styles.viewImg}>
-        <Image source={require('../../assets/image/onboarding-welcome.png')} fadeDuration={0} resizeMode="contain" style={styles.img} />
+        <Image
+          source={require('../../assets/image/onboarding-welcome.png')}
+          fadeDuration={0}
+          resizeMode="contain"
+          style={styles.img}
+        />
       </View>
     </View>
   );
