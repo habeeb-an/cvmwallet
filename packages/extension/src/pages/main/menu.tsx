@@ -126,7 +126,7 @@ export const Menu: FunctionComponent = observer(() => {
           <FormattedMessage id="main.menu.sign-out" />
         </div>
         <div className={styleMenu.footer}>
-          <a className={styleMenu.inner} href="https://github.com/oraichain/oraichain-wallet-v2.git" target="_blank" rel="noopener noreferrer">
+          <a className={styleMenu.inner} href="https://github.com/cosvmlabs" target="_blank" rel="noopener noreferrer">
             <i className="fab fa-github" />
             {/* <div style={{ padding: 6, backgroundColor: 'rgba(119, 126, 144, 0.12)' }}> */}
             <FormattedMessage id="main.menu.footer.github" />

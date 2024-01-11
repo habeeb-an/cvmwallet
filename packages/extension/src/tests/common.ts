@@ -1,6 +1,6 @@
 import * as cosmwasm from '@cosmjs/cosmwasm-stargate';
-import { RPC_ORAICHAIN } from '../pages/nft/types';
+import { RPC_COSVM } from '../pages/nft/types';
 
-export const getClientQuery = async (rpc = RPC_ORAICHAIN) => {
+export const getClientQuery = async (rpc = RPC_COSVM) => {
   return await cosmwasm.CosmWasmClient.connect(rpc);
 };

@@ -20,7 +20,12 @@ import {
   getTronWebFromWindow,
   getBitcoinFromWindow
 } from '@owallet/stores';
-import { ExtensionRouter, ContentScriptEnv, ContentScriptGuards, InExtensionMessageRequester } from '@owallet/router-extension';
+import {
+  ExtensionRouter,
+  ContentScriptEnv,
+  ContentScriptGuards,
+  InExtensionMessageRequester
+} from '@owallet/router-extension';
 import { APP_PORT } from '@owallet/router';
 import { ChainInfoWithEmbed } from '@owallet/background';
 import { FiatCurrency } from '@owallet/types';
@@ -80,7 +85,11 @@ export class RootStore {
     // Order is important.
     this.interactionStore = new InteractionStore(router, new InExtensionMessageRequester());
 
-    this.chainStore = new ChainStore(EmbedChainInfos, new InExtensionMessageRequester(), localStorage.getItem('initchain'));
+    this.chainStore = new ChainStore(
+      EmbedChainInfos,
+      new InExtensionMessageRequester(),
+      localStorage.getItem('initchain')
+    );
 
     this.keyRingStore = new KeyRingStore(
       {
@@ -263,7 +272,12 @@ export class RootStore {
       'usd'
     );
 
-    this.tokensStore = new TokensStore(window, this.chainStore, new InExtensionMessageRequester(), this.interactionStore);
+    this.tokensStore = new TokensStore(
+      window,
+      this.chainStore,
+      new InExtensionMessageRequester(),
+      this.interactionStore
+    );
 
     this.ibcCurrencyRegistrar = new IBCCurrencyRegsitrar<ChainInfoWithEmbed>(
       new ExtensionKVStore('store_ibc_currency_registrar'),

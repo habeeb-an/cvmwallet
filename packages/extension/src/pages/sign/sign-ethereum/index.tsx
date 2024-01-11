@@ -207,7 +207,7 @@ export const SignEthereumPage: FunctionComponent = observer(() => {
                 paddingBottom: 24
               }}
             >
-              {chainStore?.current?.raw?.chainName || 'Oraichain'}
+              {chainStore?.current?.raw?.chainName || 'CosVM'}
             </div>
             <div className={classnames(style.tabs)}>
               <ul>
