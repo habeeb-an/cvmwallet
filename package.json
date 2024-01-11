@@ -48,7 +48,7 @@
     "ci-lint": "yarn install --frozen-lockfile && yarn lint-test"
   },
   "keywords": [],
-  "author": "Oraichain",
+  "author": "cvm",
   "license": "Apache-2.0",
   "devDependencies": {
     "@octokit/core": "^3.5.1",
