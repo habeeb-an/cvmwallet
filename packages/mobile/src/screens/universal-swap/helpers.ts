@@ -84,12 +84,6 @@ export const chainIcons: ChainIcon[] = [
   //   IconLight: OraiLightIcon
   // },
   // {
-  //   chainId: 'kawaii_6886-1',
-  //   chainName: 'Kawaiiverse',
-  //   Icon: KwtIcon,
-  //   IconLight: KwtIcon
-  // },
-  // {
   //   chainId: 'osmosis-1',
   //   chainName: 'Osmosis',
   //   Icon: OsmoIcon,

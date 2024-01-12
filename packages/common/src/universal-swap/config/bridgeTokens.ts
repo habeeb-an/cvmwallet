@@ -34,8 +34,7 @@ export type TokenItemType = {
   minAmountSwap?: number;
 };
 const evmDenomsMap = {
-  kwt: [process.env.REACT_APP_KWTBSC_ORAICHAIN_DENOM],
-  milky: [process.env.REACT_APP_MILKYBSC_ORAICHAIN_DENOM]
+  //Earlier only kwt,milky process.env was here
 };
 const minAmountSwapMap = {
   trx: 10
@@ -98,7 +97,7 @@ export const evmTokens = uniqBy(
   flattenTokens.filter(
     (token) =>
       // !token.contractAddress &&
-      token.denom && !token.cosmosBased && token.coinGeckoId && token.chainId !== 'kawaii_6886-1'
+      token.denom && !token.cosmosBased && token.coinGeckoId && token.chainId !== 'cvm_323-1'
   ),
   (c) => c.denom
 );

@@ -328,33 +328,6 @@ export const EmbedChainInfos: AppChainInfo[] = [
   //         coinGeckoId: 'tron',
   //         coinImageUrl: 'https://s2.coinmarketcap.com/static/img/coins/64x64/1958.png'
   //       },
-  //       {
-  //         type: 'cw20',
-  //         coinDenom: 'INJ',
-  //         coinMinimalDenom: 'cw20:orai19rtmkk6sn4tppvjmp5d5zj6gfsdykrl5rw2euu5gwur3luheuuusesqn49:INJ',
-  //         contractAddress: 'orai19rtmkk6sn4tppvjmp5d5zj6gfsdykrl5rw2euu5gwur3luheuuusesqn49',
-  //         coinDecimals: 6,
-  //         coinGeckoId: 'injective-protocol',
-  //         coinImageUrl: 'https://s2.coinmarketcap.com/static/img/coins/64x64/7226.png'
-  //       },
-  //       {
-  //         type: 'cw20',
-  //         coinDenom: 'KWT',
-  //         coinMinimalDenom: 'cw20:orai1nd4r053e3kgedgld2ymen8l9yrw8xpjyaal7j5:Kawaii Islands',
-  //         contractAddress: 'orai1nd4r053e3kgedgld2ymen8l9yrw8xpjyaal7j5',
-  //         coinDecimals: 6,
-  //         coinGeckoId: 'kawaii-islands',
-  //         coinImageUrl: 'https://s2.coinmarketcap.com/static/img/coins/64x64/12313.png'
-  //       },
-  //       {
-  //         type: 'cw20',
-  //         coinDenom: 'MILKY',
-  //         coinMinimalDenom: 'cw20:orai1gzvndtzceqwfymu2kqhta2jn6gmzxvzqwdgvjw:Milky Token',
-  //         contractAddress: 'orai1gzvndtzceqwfymu2kqhta2jn6gmzxvzqwdgvjw',
-  //         coinDecimals: 6,
-  //         coinGeckoId: 'milky-token',
-  //         coinImageUrl: 'https://s2.coinmarketcap.com/static/img/coins/64x64/14418.png'
-  //       }
   //     ];
   //   },
   //   get feeCurrencies() {
@@ -451,13 +424,6 @@ export const EmbedChainInfos: AppChainInfo[] = [
   //         coinDecimals: 18,
   //         coinGeckoId: 'airight',
   //         coinImageUrl: 'https://i.ibb.co/m8mCyMr/airi.png'
-  //       },
-  //       {
-  //         coinDenom: 'BEP20 KWT',
-  //         coinMinimalDenom: 'oraib0x257a8d1E03D17B8535a182301f15290F11674b53',
-  //         coinDecimals: 18,
-  //         coinGeckoId: 'kawaii-islands',
-  //         coinImageUrl: 'https://s2.coinmarketcap.com/static/img/coins/64x64/12313.png'
   //       },
   //       {
   //         coinDenom: 'BEP20 MILKY',
