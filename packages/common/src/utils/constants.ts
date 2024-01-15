@@ -1,4 +1,5 @@
-export const EVMOS_NETWORKS = ['kawaii_6886-1'];
+export const EVMOS_NETWORKS = ['kawaii_6886-1', '323'];
+export const CVM_NETWORKS = ['323', 'cvm_323-1'];
 export const TRON_ID = '0x2b6653dc';
 export const TRON_BIP39_PATH_PREFIX = "m/44'/195'";
 export const BIP44_PATH_PREFIX = "m/44'";
@@ -11,9 +12,7 @@ export enum NetworkEnum {
 }
 export enum ChainIdEnum {
   CosVM = '323',
-  OraichainTestnet = 'Oraichain-testnet',
   Ethereum = '0x01',
-  CosmosHub = 'cosmoshub-4',
   BNBChainTestNet = '0x61',
   BitcoinTestnet = 'bitcoinTestnet'
 }

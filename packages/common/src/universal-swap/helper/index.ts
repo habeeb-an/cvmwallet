@@ -26,10 +26,11 @@ export const calculateTimeoutTimestamp = (timeout: number): string => {
     .toString();
 };
 
+//remvoed bnb network from here case '0x38':
+
 export function isEvmNetworkNativeSwapSupported(chainId: NetworkChainId) {
   switch (chainId) {
     case '0x01':
-    case '0x38':
       return true;
     default:
       return false;
@@ -45,12 +46,12 @@ export function getTokenOnSpecificChainId(
   coingeckoId: CoinGeckoId,
   chainId: NetworkChainId
 ): TokenItemType | undefined {
-  return flattenTokens.find(t => t.coinGeckoId === coingeckoId && t.chainId === chainId);
+  return flattenTokens.find((t) => t.coinGeckoId === coingeckoId && t.chainId === chainId);
 }
 
 export const tronToEthAddress = (base58: string) => {
   const buffer = Buffer.from(ethers.utils.base58.decode(base58)).subarray(1, -4);
-  const hexString = Array.prototype.map.call(buffer, byte => ('0' + byte.toString(16)).slice(-2)).join('');
+  const hexString = Array.prototype.map.call(buffer, (byte) => ('0' + byte.toString(16)).slice(-2)).join('');
   return '0x' + hexString;
 };
 
@@ -58,11 +59,11 @@ export const ethToTronAddress = (address: string) => {
   return getBase58Address(address);
 };
 
-export const getTokenOnOraichain = (coingeckoId: CoinGeckoId) => {
-  if (coingeckoId === 'kawaii-islands' || coingeckoId === 'milky-token') {
-    throw new Error('KWT and MILKY not supported in this function');
-  }
-  return oraichainTokens.find(token => token.coinGeckoId === coingeckoId);
+export const getTokenOnCvmchain = (coingeckoId: CoinGeckoId) => {
+  // if (coingeckoId === 'kawaii-islands' || coingeckoId === 'milky-token') {
+  //   throw new Error('KWT and MILKY not supported in this function');
+  // }
+  return oraichainTokens.find((token) => token.coinGeckoId === coingeckoId);
 };
 
 export async function fetchTaxRate(client: SigningCosmWasmClient): Promise<TaxRateResponse> {

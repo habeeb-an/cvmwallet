@@ -28,7 +28,7 @@ import { openLink } from '../../utils/helper';
 import { SwapDirection, feeEstimate, getTransferTokenFee } from '@owallet/common';
 import { handleSimulateSwap, filterNonPoolEvmTokens } from '@oraichain/oraidex-universal-swap';
 import { fetchTokenInfos, ChainIdEnum } from '@owallet/common';
-import { calculateMinReceive, getTokenOnOraichain } from '@oraichain/oraidex-common';
+import { calculateMinReceive, getTokenOnCvmchain } from '@oraichain/oraidex-common';
 import {
   isEvmNetworkNativeSwapSupported,
   isEvmSwappable,
@@ -53,7 +53,7 @@ export const UniversalSwapScreen: FunctionComponent = observer(() => {
 
   const accountEvm = accountStore.getAccount(ChainIdEnum.Ethereum);
   const accountTron = accountStore.getAccount(ChainIdEnum.TRON);
-  const accountOrai = accountStore.getAccount(ChainIdEnum.Oraichain);
+  const accountAll = accountStore.getAccount(ChainIdEnum.Oraichain);
 
   const [isSlippageModal, setIsSlippageModal] = useState(false);
   const [minimumReceive, setMininumReceive] = useState(0);
@@ -80,9 +80,9 @@ export const UniversalSwapScreen: FunctionComponent = observer(() => {
 
   const [balanceActive, setBalanceActive] = useState<BalanceType>(null);
 
-  const client = useClient(accountOrai);
-  const relayerFee = useRelayerFee(accountOrai);
-  const taxRate = useTaxRate(accountOrai);
+  const client = useClient(accountAll);
+  const relayerFee = useRelayerFee(accountAll);
+  const taxRate = useTaxRate(accountAll);
 
   const onChangeFromAmount = (amount: string | undefined) => {
     if (!amount) return setSwapAmount([0, toAmountToken]);
@@ -131,10 +131,10 @@ export const UniversalSwapScreen: FunctionComponent = observer(() => {
   // if evm swappable then no need to get token on oraichain because we can swap on evm. Otherwise, get token on oraichain. If cannot find => fallback to original token
   const fromToken = isEvmSwap
     ? tokenMap[fromTokenDenom]
-    : getTokenOnOraichain(tokenMap[fromTokenDenom].coinGeckoId) ?? tokenMap[fromTokenDenom];
+    : getTokenOnCvmchain(tokenMap[fromTokenDenom].coinGeckoId) ?? tokenMap[fromTokenDenom];
   const toToken = isEvmSwap
     ? tokenMap[toTokenDenom]
-    : getTokenOnOraichain(tokenMap[toTokenDenom].coinGeckoId) ?? tokenMap[toTokenDenom];
+    : getTokenOnCvmchain(tokenMap[toTokenDenom].coinGeckoId) ?? tokenMap[toTokenDenom];
 
   const getTokenFee = async (
     remoteTokenDenom: string,
@@ -193,14 +193,14 @@ export const UniversalSwapScreen: FunctionComponent = observer(() => {
     let loadTokenParams = {};
     try {
       const cwStargate = {
-        account: accountOrai,
+        account: accountAll,
         chainId: ChainIdEnum.Oraichain,
         rpc: oraichainNetwork.rpc
       };
 
       loadTokenParams = {
         ...loadTokenParams,
-        oraiAddress: accountOrai.bech32Address,
+        oraiAddress: accountAll.bech32Address,
         cwStargate
       };
       loadTokenParams = {
@@ -209,7 +209,7 @@ export const UniversalSwapScreen: FunctionComponent = observer(() => {
       };
       loadTokenParams = {
         ...loadTokenParams,
-        kwtAddress: accountOrai.bech32Address
+        kwtAddress: accountAll.bech32Address
       };
       if (accountTron) {
         loadTokenParams = {
@@ -299,7 +299,7 @@ export const UniversalSwapScreen: FunctionComponent = observer(() => {
     setRatio(data);
   };
 
-  const estimateSwapAmount = async fromAmountBalance => {
+  const estimateSwapAmount = async (fromAmountBalance) => {
     setAmountLoading(true);
     try {
       const data = await getSimulateSwap();
@@ -371,7 +371,7 @@ export const UniversalSwapScreen: FunctionComponent = observer(() => {
 
       const universalSwapData: UniversalSwapData = {
         sender: {
-          cosmos: accountOrai.bech32Address,
+          cosmos: accountAll.bech32Address,
           evm: accountEvm.evmosHexAddress,
           tron: getBase58Address(accountTron.evmosHexAddress)
         },
@@ -433,7 +433,7 @@ export const UniversalSwapScreen: FunctionComponent = observer(() => {
     setBalanceActive(null);
   };
 
-  const handleActiveAmount = item => {
+  const handleActiveAmount = (item) => {
     handleBalanceActive(item);
     onMaxFromAmount((fromTokenBalance * BigInt(item.value)) / BigInt(MAX), item.value);
   };
@@ -469,7 +469,7 @@ export const UniversalSwapScreen: FunctionComponent = observer(() => {
           setIsNetworkModal(true);
         }}
         selectedChainFilter={selectedChainFilter}
-        setToken={denom => {
+        setToken={(denom) => {
           setSwapTokens([denom, toTokenDenom]);
           setSwapAmount([0, 0]);
           setBalanceActive(null);
@@ -492,7 +492,7 @@ export const UniversalSwapScreen: FunctionComponent = observer(() => {
         onNetworkModal={() => {
           setIsNetworkModal(true);
         }}
-        setToken={denom => {
+        setToken={(denom) => {
           setSwapTokens([fromTokenDenom, denom]);
           setSwapAmount([0, 0]);
           setBalanceActive(null);

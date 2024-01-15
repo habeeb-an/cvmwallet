@@ -9,7 +9,7 @@ import {
   oraichainNetwork
 } from '@oraichain/oraidex-common';
 
-export type EvmDenom = 'bep20_orai' | 'bep20_airi' | 'erc20_orai' | 'kawaii_orai';
+// export type EvmDenom = 'bep20_orai' | 'bep20_airi' | 'erc20_orai' | 'kawaii_orai';
 
 export type UniversalSwapType = 'other-networks-to-cvm' | 'cvm-to-cvm' | 'cvm-to-other-networks';
 
@@ -65,9 +65,12 @@ export const getTokensFromNetwork = (network: CustomChainInfo): TokenItemType[] 
 };
 
 // other chains, oraichain
-const otherChainTokens = flatten(
-  chainInfos.filter((chainInfo) => chainInfo.chainId !== 'Oraichain').map(getTokensFromNetwork)
-);
+const otherChainTokens = flatten(chainInfos.map(getTokensFromNetwork));
+// other chains, oraichain
+// const otherChainTokens = flatten(
+//   chainInfos.filter((chainInfo) => chainInfo.chainId !== 'Oraichain').map(getTokensFromNetwork)
+// );
+
 export const oraichainTokens: TokenItemType[] = getTokensFromNetwork(oraichainNetwork);
 
 export const tokens = [otherChainTokens, oraichainTokens];

@@ -85,8 +85,8 @@ export const LanguageToFiatCurrency: TypeLanguageToFiatCurrency = {
 export const AdditonalIntlMessages: IntlMessages = {};
 
 // coingecko api for both evm and cosmos based networks
-// export const CoinGeckoAPIEndPoint = 'https://api.coingecko.com/api/v3';
-export const CoinGeckoAPIEndPoint = 'https://price.market.orai.io';
+export const CoinGeckoAPIEndPoint = 'https://api.coingecko.com/api/v3';
+// export const CoinGeckoAPIEndPoint = 'https://price.market.orai.io';
 
 export const EthereumEndpoint = 'https://mainnet.infura.io/v3/eeb00e81cdb2410098d5a270eff9b341';
 
@@ -726,48 +726,48 @@ export const EmbedChainInfos: AppChainInfo[] = [
       txUrl: 'https://testnet.bscscan.com/tx/{txHash}',
       accountUrl: 'https://testnet.bscscan.com/address/{address}'
     }
-  }
-  // {
-  //   rest: 'https://rpc.ankr.com/eth',
-  //   chainId: '0x01',
-  //   chainName: 'Ethereum',
-  //   bip44: {
-  //     coinType: 60
-  //   },
-  //   coinType: 60,
-  //   stakeCurrency: {
-  //     coinDenom: 'ETH',
-  //     coinMinimalDenom: 'eth',
-  //     coinDecimals: 18,
-  //     coinGeckoId: 'ethereum',
-  //     coinImageUrl: 'https://s2.coinmarketcap.com/static/img/coins/64x64/1027.png',
-  //     gasPriceStep: {
-  //       low: 10000000000,
-  //       average: 25000000000,
-  //       high: 40000000000
-  //     }
-  //   },
-  //   bech32Config: Bech32Address.defaultBech32Config('evmos'),
-  //   networkType: 'evm',
-  //   currencies: [
-  //     {
-  //       coinDenom: 'ETH',
-  //       coinMinimalDenom: 'eth',
-  //       coinDecimals: 18,
-  //       coinGeckoId: 'ethereum',
-  //       coinImageUrl: 'https://s2.coinmarketcap.com/static/img/coins/64x64/1027.png'
-  //     }
-  //   ],
-  //   get feeCurrencies() {
-  //     return [this.stakeCurrency];
-  //   },
+  },
+  {
+    rest: 'https://rpc.ankr.com/eth',
+    chainId: '0x01',
+    chainName: 'Ethereum',
+    bip44: {
+      coinType: 60
+    },
+    coinType: 60,
+    stakeCurrency: {
+      coinDenom: 'ETH',
+      coinMinimalDenom: 'eth',
+      coinDecimals: 18,
+      coinGeckoId: 'ethereum',
+      coinImageUrl: 'https://s2.coinmarketcap.com/static/img/coins/64x64/1027.png',
+      gasPriceStep: {
+        low: 10000000000,
+        average: 25000000000,
+        high: 40000000000
+      }
+    },
+    bech32Config: Bech32Address.defaultBech32Config('evmos'),
+    networkType: 'evm',
+    currencies: [
+      {
+        coinDenom: 'ETH',
+        coinMinimalDenom: 'eth',
+        coinDecimals: 18,
+        coinGeckoId: 'ethereum',
+        coinImageUrl: 'https://s2.coinmarketcap.com/static/img/coins/64x64/1027.png'
+      }
+    ],
+    get feeCurrencies() {
+      return [this.stakeCurrency];
+    },
 
-  //   features: ['ibc-go', 'stargate', 'isEvm']
-  // }
+    features: ['ibc-go', 'stargate', 'isEvm']
+  }
 ];
 
 // The origins that are able to pass any permission that external webpages can have.
-export const PrivilegedOrigins: string[] = ['https://app.osmosis.zone', 'https://oraidex.io'];
+export const PrivilegedOrigins: string[] = [];
 
 // tracking ads
 export const AmplitudeApiKey = '';
