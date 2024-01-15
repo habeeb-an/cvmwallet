@@ -52,7 +52,7 @@ export const UniversalSwapScreen: FunctionComponent = observer(() => {
   const chainInfo = chainStore.getChain(ChainIdEnum.Oraichain);
 
   const accountEvm = accountStore.getAccount(ChainIdEnum.Ethereum);
-  const accountTron = accountStore.getAccount(ChainIdEnum.TRON);
+  // const accountTron = accountStore.getAccount(ChainIdEnum.TRON);
   const accountAll = accountStore.getAccount(ChainIdEnum.Oraichain);
 
   const [isSlippageModal, setIsSlippageModal] = useState(false);
@@ -211,12 +211,12 @@ export const UniversalSwapScreen: FunctionComponent = observer(() => {
         ...loadTokenParams,
         kwtAddress: accountAll.bech32Address
       };
-      if (accountTron) {
-        loadTokenParams = {
-          ...loadTokenParams,
-          tronAddress: getBase58Address(accountTron.evmosHexAddress)
-        };
-      }
+      // if (accountTron) {
+      //   loadTokenParams = {
+      //     ...loadTokenParams,
+      //     tronAddress: getBase58Address(accountTron.evmosHexAddress)
+      //   };
+      // }
 
       loadTokenAmounts(loadTokenParams);
     } catch (error) {
@@ -372,8 +372,8 @@ export const UniversalSwapScreen: FunctionComponent = observer(() => {
       const universalSwapData: UniversalSwapData = {
         sender: {
           cosmos: accountAll.bech32Address,
-          evm: accountEvm.evmosHexAddress,
-          tron: getBase58Address(accountTron.evmosHexAddress)
+          evm: accountEvm.evmosHexAddress
+          // tron: getBase58Address(accountTron.evmosHexAddress)
         },
         originalFromToken: originalFromToken,
         originalToToken: originalToToken,
