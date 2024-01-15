@@ -1,15 +1,7 @@
-import {
-  MessageRequester,
-  Message,
-  JSONUint8Array,
-  OWalletError
-} from '@owallet/router';
+import { MessageRequester, Message, JSONUint8Array, WalletError } from '@owallet/router';
 
 export class InExtensionMessageRequester implements MessageRequester {
-  async sendMessage<M extends Message<unknown>>(
-    port: string,
-    msg: M
-  ): Promise<M extends Message<infer R> ? R : never> {
+  async sendMessage<M extends Message<unknown>>(port: string, msg: M): Promise<M extends Message<infer R> ? R : never> {
     return InExtensionMessageRequester.sendMessageToTab(port, msg);
   }
 
@@ -47,11 +39,7 @@ export class InExtensionMessageRequester implements MessageRequester {
       if (typeof result.error === 'string') {
         throw new Error(result.error);
       } else {
-        throw new OWalletError(
-          result.error.module,
-          result.error.code,
-          result.error.message
-        );
+        throw new WalletError(result.error.module, result.error.code, result.error.message);
       }
     }
 

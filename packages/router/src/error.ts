@@ -1,4 +1,4 @@
-export class OWalletError extends Error {
+export class WalletError extends Error {
   public readonly module: string;
   public readonly code: number;
 
@@ -7,6 +7,6 @@ export class OWalletError extends Error {
     this.module = module;
     this.code = code;
 
-    Object.setPrototypeOf(this, OWalletError.prototype);
+    Object.setPrototypeOf(this, WalletError.prototype);
   }
 }
