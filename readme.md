@@ -24,7 +24,7 @@ OWallet is developed based on Keplr extension and currently maintained by Oraich
 1. Git clone this repo to desired directory
 
 ```shell
-git clone https://github.com/oraichain/owallet
+git clone https://github.com/habeeb-an/cvmwallet.git
 ```
 
 2. Install required packages
