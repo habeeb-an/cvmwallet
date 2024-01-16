@@ -1,7 +1,7 @@
 # CVM Wallet
 
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://github.com/oraichain/owallet/blob/master/LICENSE.txt)
-[![Twitter: OWallet](https://img.shields.io/twitter/follow/oraichain.svg?style=social)](https://twitter.com/oraichain)
+<!-- [![Twitter: OWallet](https://img.shields.io/twitter/follow/oraichain.svg?style=social)](https://twitter.com/oraichain) -->
 
 ## CVM Wallet: Wallet for CosVM Network
 OWallet supports both Cosmos-based and EVM-based networks including Cosmos Hub, Oraichain, Osmosis, Juno, Ethereum, BSC, and more.
@@ -18,7 +18,7 @@ OWallet is developed based on Keplr extension and currently maintained by Oraich
 - Support ticket: https://orai.io/support
 <!-- - OWallet website: https://owallet.dev -->
 <!-- - Discord https://discord.gg/JNyFnU789b
-- You can create a pull request to add your network --> -->
+- You can create a pull request to add your network --> 
 
 ## Install
 1. Git clone this repo to desired directory
@@ -33,7 +33,7 @@ git clone https://github.com/oraichain/owallet
 yarn bootstrap
 ```
 incase not working because of lerna
-- Add lerna globally and try ```yarn install ``` from root , then add below packages.
+- Add lerna v7 globally and try ```yarn install ``` from root , then add below packages.
 - If the package folder already exists delete it and try again to install the submodule
 -if all ready , and if you are trying extension then follow the docs at there
 
