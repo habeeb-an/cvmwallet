@@ -32,6 +32,10 @@ git clone https://github.com/oraichain/owallet
 ```shell
 yarn bootstrap
 ```
+incase not working because of lerna
+- Add lerna globally and try ```yarn install ``` from root , then add below packages.
+- If the package folder already exists delete it and try again to install the submodule
+-if all ready , and if you are trying extension then follow the docs at there
 
 3. Clone packages/background
 
