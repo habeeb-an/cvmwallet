@@ -1,4 +1,4 @@
-# OWallet
+# CVM Wallet
 
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://github.com/oraichain/owallet/blob/master/LICENSE.txt)
 [![Twitter: OWallet](https://img.shields.io/twitter/follow/oraichain.svg?style=social)](https://twitter.com/oraichain)
@@ -7,18 +7,18 @@
 OWallet supports both Cosmos-based and EVM-based networks including Cosmos Hub, Oraichain, Osmosis, Juno, Ethereum, BSC, and more.
 OWallet is developed based on Keplr extension and currently maintained by Oraichain Labs.
 
-## OWallet’s key features
+## CVM Wallet’s key features
 - Support Cosmos-based and EVM-based networks
 - Enable IBC transfer
 - Improved sending and receiving of CW20 (standard fungible tokens based on Cosmwasm)
 - Compatible with Cosmwasm v1
 
-## Technical inquiries
+<!-- ## Technical inquiries
 - OWallet source code: https://github.com/oraichain/owallet
 - Support ticket: https://orai.io/support
-- OWallet website: https://owallet.dev
-- Discord https://discord.gg/JNyFnU789b
-- You can create a pull request to add your network
+<!-- - OWallet website: https://owallet.dev -->
+<!-- - Discord https://discord.gg/JNyFnU789b
+- You can create a pull request to add your network --> -->
 
 ## Install
 1. Git clone this repo to desired directory
