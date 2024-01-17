@@ -88,7 +88,11 @@ export const AdditonalIntlMessages: IntlMessages = {};
 export const CoinGeckoAPIEndPoint = 'https://api.coingecko.com/api/v3';
 // export const CoinGeckoAPIEndPoint = 'https://price.market.orai.io';
 
-export const EthereumEndpoint = 'https://mainnet.infura.io/v3/eeb00e81cdb2410098d5a270eff9b341';
+//jan172024
+// USING THIS API KEY AFTER /V3/{...} in x_api_key directly
+// we may need to change this infura api by creating account
+// export const EthereumEndpoint = 'https://mainnet.infura.io/v3/eeb00e81cdb2410098d5a270eff9b341';
+export const EthereumEndpoint = 'https://mainnet.infura.io/v3/9c77cac4af7e4dd1be3240f78cac46df';
 
 export const CoinGeckoGetPrice = '/simple/price';
 
@@ -802,7 +806,14 @@ export const EmbedChainInfos: AppChainInfo[] = [
       return [this.stakeCurrency];
     },
 
-    features: ['ibc-go', 'stargate', 'isEvm']
+    features: ['ibc-go', 'stargate', 'isEvm'],
+    chainSymbolImageUrl:
+      'https://raw.githubusercontent.com/chainapsis/keplr-chain-registry/main/images/cvm_323/acvm.png',
+    txExplorer: {
+      name: 'Cosvm explorer',
+      txUrl: 'https://explorer.cosvm.net/transactions/{txHash}',
+      accountUrl: 'https://explorer.cosvm.net/address/{address}'
+    }
   }
 ];
 
