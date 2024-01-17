@@ -41,14 +41,14 @@ async function loadNativeBalance(
 
   // reset native balances
   cosmosTokens
-    .filter(t => t.chainId === tokenInfo.chainId && !t.contractAddress)
-    .forEach(t => {
+    .filter((t) => t.chainId === tokenInfo.chainId && !t.contractAddress)
+    .forEach((t) => {
       amountDetails[t.denom] = '0';
     });
 
   Object.assign(
     amountDetails, //@ts-ignore
-    Object.fromEntries(amountAll.filter(coin => tokenMap[coin.denom]).map(coin => [coin.denom, coin.amount]))
+    Object.fromEntries(amountAll.filter((coin) => tokenMap[coin.denom]).map((coin) => [coin.denom, coin.amount]))
   );
 
   universalSwapStore.updateAmounts(amountDetails);
@@ -65,9 +65,9 @@ async function loadTokens(
     timer[oraiAddress] = setTimeout(async () => {
       await Promise.all([
         loadTokensCosmos(universalSwapStore, kwtAddress, oraiAddress),
-        loadCw20Balance(universalSwapStore, oraiAddress, cwStargate),
+        loadCw20Balance(universalSwapStore, oraiAddress, cwStargate)
         // different cointype but also require keplr connected by checking oraiAddress
-        loadKawaiiSubnetAmount(universalSwapStore, kwtAddress)
+        // loadKawaiiSubnetAmount(universalSwapStore, kwtAddress)
       ]);
     }, 1000);
   }
@@ -79,16 +79,16 @@ async function loadTokens(
     }, 1000);
   }
 
-  if (tronAddress) {
-    clearTimeout(timer[tronAddress]);
-    timer[tronAddress] = setTimeout(() => {
-      loadEvmAmounts(
-        universalSwapStore,
-        tronToEthAddress(tronAddress),
-        chainInfos.filter(c => c.chainId == '0x2b6653dc')
-      );
-    }, 2000);
-  }
+  // if (tronAddress) {
+  //   clearTimeout(timer[tronAddress]);
+  //   timer[tronAddress] = setTimeout(() => {
+  //     loadEvmAmounts(
+  //       universalSwapStore,
+  //       tronToEthAddress(tronAddress),
+  //       chainInfos.filter(c => c.chainId == '0x2b6653dc')
+  //     );
+  //   }, 2000);
+  // }
 }
 
 const getAddress = (addr, prefix: string) => {
@@ -109,7 +109,7 @@ export const genAddressCosmos = (info, address60, address118) => {
 async function loadTokensCosmos(updateAmounts: any, kwtAddress: string, oraiAddress: string) {
   if (!kwtAddress || !oraiAddress) return;
   const cosmosInfos = chainInfos.filter(
-    chainInfo => chainInfo.networkType === 'cosmos' || chainInfo.bip44.coinType === 118
+    (chainInfo) => chainInfo.networkType === 'cosmos' || chainInfo.bip44.coinType === 118
   );
   for (const chainInfo of cosmosInfos) {
     const { cosmosAddress } = genAddressCosmos(chainInfo, kwtAddress, oraiAddress);
@@ -120,7 +120,7 @@ async function loadTokensCosmos(updateAmounts: any, kwtAddress: string, oraiAddr
 async function loadCw20Balance(universalSwapStore: any, address: string, cwStargate: CWStargateType) {
   if (!address) return;
   // get all cw20 token contract
-  const cw20Tokens = oraichainTokens.filter(t => t.contractAddress);
+  const cw20Tokens = oraichainTokens.filter((t) => t.contractAddress);
 
   const data = toBinary({
     balance: { address }
@@ -132,7 +132,7 @@ async function loadCw20Balance(universalSwapStore: any, address: string, cwStarg
     const multicall = new MulticallQueryClient(client, network.multicall);
 
     const res = await multicall.aggregate({
-      queries: cw20Tokens.map(t => ({
+      queries: cw20Tokens.map((t) => ({
         address: t.contractAddress,
         data
       }))
@@ -171,9 +171,9 @@ async function loadEvmEntries(
   retryCount?: number
 ): Promise<[string, string][]> {
   try {
-    const tokens = evmTokens.filter(t => t.chainId === chain.chainId && t.contractAddress);
+    const tokens = evmTokens.filter((t) => t.chainId === chain.chainId && t.contractAddress);
     const nativeEvmToken = evmTokens.find(
-      t => !t.contractAddress && isEvmNetworkNativeSwapSupported(chain.chainId) && chain.chainId === t.chainId
+      (t) => !t.contractAddress && isEvmNetworkNativeSwapSupported(chain.chainId) && chain.chainId === t.chainId
     );
     if (!tokens.length) return [];
     const multicall = new Multicall({
@@ -181,7 +181,7 @@ async function loadEvmEntries(
       multicallCustomContractAddress,
       chainId: Number(chain.chainId)
     });
-    const input = tokens.map(token => ({
+    const input = tokens.map((token) => ({
       reference: token.denom,
       contractAddress: token.contractAddress,
       abi: ERC20__factory.abi,
@@ -196,7 +196,7 @@ async function loadEvmEntries(
 
     const results: ContractCallResults = await multicall.call(input as any);
     const nativeBalance = nativeEvmToken ? await loadNativeEvmBalance(address, chain) : 0;
-    let entries: [string, string][] = tokens.map(token => {
+    let entries: [string, string][] = tokens.map((token) => {
       const amount = results.results[token.denom].callsReturnContext[0].returnValues[0].hex;
       return [token.denom, amount];
     });
@@ -206,7 +206,7 @@ async function loadEvmEntries(
     console.log('error querying EVM balance: ', error);
     let retry = retryCount ? retryCount + 1 : 1;
     if (retry >= EVM_BALANCE_RETRY_COUNT) throw `Cannot query EVM balance with error: ${error}`;
-    await new Promise(resolve => setTimeout(resolve, 2000));
+    await new Promise((resolve) => setTimeout(resolve, 2000));
     return loadEvmEntries(address, chain, multicallCustomContractAddress, retry);
   }
 }
@@ -214,28 +214,28 @@ async function loadEvmEntries(
 async function loadEvmAmounts(universalSwapStore: any, evmAddress: string, chains: CustomChainInfo[]) {
   //@ts-ignore
   const amountDetails = Object.fromEntries(
-    flatten(await Promise.all(chains.map(chain => loadEvmEntries(evmAddress, chain))))
+    flatten(await Promise.all(chains.map((chain) => loadEvmEntries(evmAddress, chain))))
   );
 
   universalSwapStore.updateAmounts(amountDetails);
 }
 
-export async function loadKawaiiSubnetAmount(universalSwapStore: any, kwtAddress: string) {
-  if (!kwtAddress) return;
-  const kawaiiInfo = chainInfos.find(c => c.chainId === 'kawaii_6886-1');
-  try {
-    loadNativeBalance(universalSwapStore, kwtAddress, kawaiiInfo);
+// export async function loadKawaiiSubnetAmount(universalSwapStore: any, kwtAddress: string) {
+//   if (!kwtAddress) return;
+//   const kawaiiInfo = chainInfos.find((c) => c.chainId === 'kawaii_6886-1');
+//   try {
+//     loadNativeBalance(universalSwapStore, kwtAddress, kawaiiInfo);
 
-    const kwtSubnetAddress = getEvmAddress(kwtAddress);
-    const kawaiiEvmInfo = chainInfos.find(c => c.chainId === '0x1ae6');
-    //@ts-ignore
-    let amountDetails = Object.fromEntries(await loadEvmEntries(kwtSubnetAddress, kawaiiEvmInfo));
+//     const kwtSubnetAddress = getEvmAddress(kwtAddress);
+//     const kawaiiEvmInfo = chainInfos.find((c) => c.chainId === '0x1ae6');
+//     //@ts-ignore
+//     let amountDetails = Object.fromEntries(await loadEvmEntries(kwtSubnetAddress, kawaiiEvmInfo));
 
-    universalSwapStore.updateAmounts(amountDetails);
-  } catch (err) {
-    console.log('loadKawaiiSubnetAmount err', err);
-  }
-}
+//     universalSwapStore.updateAmounts(amountDetails);
+//   } catch (err) {
+//     console.log('loadKawaiiSubnetAmount err', err);
+//   }
+// }
 
 export function useLoadTokens(universalSwapStore: any): (params: LoadTokenParams) => Promise<void> {
   return loadTokens.bind(null, universalSwapStore);
