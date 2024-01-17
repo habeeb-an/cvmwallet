@@ -541,11 +541,14 @@ export class AccountSetBase<MsgOpts, Queries> {
         };
 
         const result = await this.broadcastErc20EvmMsgs(txObj, fee);
+        console.log('send evm result: ', result);
 
         txHash = result.txHash;
+        console.log('send evm broadcastErc20EvmMsgs txHash: ', txHash);
       } else {
         const result = await this.broadcastEvmMsgs(msgs, fee, signOptions);
         txHash = result.txHash;
+        console.log('send evm broadcastEvmMsgs txHash: ', txHash);
       }
     } catch (e: any) {
       runInAction(() => {
@@ -595,6 +598,7 @@ export class AccountSetBase<MsgOpts, Queries> {
         while (!transactionReceipt) {
           // Waiting expectedBlockTime until the transaction is mined
           transactionReceipt = await request(rpc, 'eth_getTransactionReceipt', [txHash]);
+          console.log('transactionReceipt: ', transactionReceipt);
 
           retryCount += 1;
           if (retryCount === 10) break;
@@ -616,6 +620,7 @@ export class AccountSetBase<MsgOpts, Queries> {
 
     waitForPendingTransaction(rpc, txHash, onFulfill);
   }
+
   async sendBtcMsgs(
     type: string | 'unknown',
     msgs: any,
