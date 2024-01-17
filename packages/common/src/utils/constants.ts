@@ -1,4 +1,4 @@
-export const EVMOS_NETWORKS = ['kawaii_6886-1', '323'];
+export const EVMOS_NETWORKS = ['323'];
 export const CVM_NETWORKS = ['323', 'cvm_323-1'];
 export const TRON_ID = '0x2b6653dc';
 export const TRON_BIP39_PATH_PREFIX = "m/44'/195'";
@@ -8,6 +8,7 @@ export const TRON_BIP39_PATH_INDEX_0 = TRON_BIP39_PATH_PREFIX + "/0'/0/0";
 export enum NetworkEnum {
   Cosmos = 'cosmos',
   Evm = 'evm',
+  CVM = 'cvm',
   Bitcoin = 'bitcoin'
 }
 export enum ChainIdEnum {

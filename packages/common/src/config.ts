@@ -149,45 +149,47 @@ export const EmbedChainInfos: AppChainInfo[] = [
   //     accountUrl: 'https://bscscan.com/address/{address}'
   //   }
   // },
+  //cosvm chain
 
-  {
-    rest: 'https://rpc.cosvm.net/',
-    chainId: '323',
-    chainName: 'CosVM',
-    bip44: {
-      coinType: 60
-    },
-    coinType: 60,
-    stakeCurrency: {
-      coinDenom: 'CVM',
-      coinMinimalDenom: 'ucvm',
-      coinDecimals: 18,
-      coinGeckoId: 'ucvm',
-      coinImageUrl: 'https://raw.githubusercontent.com/chainapsis/keplr-chain-registry/main/images/cvm_323/acvm.png',
-      gasPriceStep: {
-        low: 80000000000,
-        average: 80000000000,
-        high: 80000000000
-      }
-    },
-    networkType: 'evm',
-    bech32Config: Bech32Address.defaultBech32Config('cvm'),
+  // {
+  //   rest: 'https://rpc.cosvm.net/',
+  //   chainId: '323',
+  //   chainName: 'CosVM',
+  //   bip44: {
+  //     coinType: 60
+  //   },
+  //   coinType: 60,
+  //   stakeCurrency: {
+  //     coinDenom: 'CVM',
+  //     coinMinimalDenom: 'ucvm',
+  //     coinDecimals: 18,
+  //     coinGeckoId: 'ucvm',
+  //     coinImageUrl: 'https://raw.githubusercontent.com/chainapsis/keplr-chain-registry/main/images/cvm_323/acvm.png',
+  //     gasPriceStep: {
+  //       low: 80000000000,
+  //       average: 80000000000,
+  //       high: 80000000000
+  //     }
+  //   },
+  //   networkType: 'evm',
+  //   bech32Config: Bech32Address.defaultBech32Config('cvm'),
 
-    currencies: [
-      {
-        coinDenom: 'CVM',
-        coinMinimalDenom: 'ucvm',
-        coinDecimals: 18,
-        coinGeckoId: 'ucvm',
-        coinImageUrl: 'https://raw.githubusercontent.com/chainapsis/keplr-chain-registry/main/images/cvm_323/acvm.png'
-      }
-    ],
-    get feeCurrencies() {
-      return [this.stakeCurrency];
-    },
+  //   currencies: [
+  //     {
+  //       coinDenom: 'CVM',
+  //       coinMinimalDenom: 'ucvm',
+  //       coinDecimals: 18,
+  //       coinGeckoId: 'ucvm',
+  //       coinImageUrl: 'https://raw.githubusercontent.com/chainapsis/keplr-chain-registry/main/images/cvm_323/acvm.png'
+  //     }
+  //   ],
+  //   get feeCurrencies() {
+  //     return [this.stakeCurrency];
+  //   },
 
-    features: ['ibc-go', 'stargate', 'isEvm']
-  },
+  //   features: ['ibc-go', 'stargate', 'isEvm']
+  // },
+
   // {
   //   rest: 'https://rpc.cosvm.net/',
   //   chainId: '323',
@@ -727,35 +729,73 @@ export const EmbedChainInfos: AppChainInfo[] = [
       accountUrl: 'https://testnet.bscscan.com/address/{address}'
     }
   },
+  // {
+  //   rest: 'https://rpc.ankr.com/eth',
+  //   chainId: '0x01',
+  //   chainName: 'Ethereum',
+  //   bip44: {
+  //     coinType: 60
+  //   },
+  //   coinType: 60,
+  //   stakeCurrency: {
+  //     coinDenom: 'ETH',
+  //     coinMinimalDenom: 'eth',
+  //     coinDecimals: 18,
+  //     coinGeckoId: 'ethereum',
+  //     coinImageUrl: 'https://s2.coinmarketcap.com/static/img/coins/64x64/1027.png',
+  //     gasPriceStep: {
+  //       low: 10000000000,
+  //       average: 25000000000,
+  //       high: 40000000000
+  //     }
+  //   },
+  //   bech32Config: Bech32Address.defaultBech32Config('evmos'),
+  //   networkType: 'evm',
+  //   currencies: [
+  //     {
+  //       coinDenom: 'ETH',
+  //       coinMinimalDenom: 'eth',
+  //       coinDecimals: 18,
+  //       coinGeckoId: 'ethereum',
+  //       coinImageUrl: 'https://s2.coinmarketcap.com/static/img/coins/64x64/1027.png'
+  //     }
+  //   ],
+  //   get feeCurrencies() {
+  //     return [this.stakeCurrency];
+  //   },
+
+  //   features: ['ibc-go', 'stargate', 'isEvm']
+  // }
+
   {
-    rest: 'https://rpc.ankr.com/eth',
-    chainId: '0x01',
-    chainName: 'Ethereum',
+    rest: 'https://rpc.cosvm.net/',
+    chainId: '323',
+    chainName: 'CosVM',
     bip44: {
       coinType: 60
     },
     coinType: 60,
     stakeCurrency: {
-      coinDenom: 'ETH',
-      coinMinimalDenom: 'eth',
+      coinDenom: 'CVM',
+      coinMinimalDenom: 'ucvm',
       coinDecimals: 18,
-      coinGeckoId: 'ethereum',
-      coinImageUrl: 'https://s2.coinmarketcap.com/static/img/coins/64x64/1027.png',
+      coinGeckoId: 'ucvm',
+      coinImageUrl: 'https://raw.githubusercontent.com/chainapsis/keplr-chain-registry/main/images/cvm_323/acvm.png',
       gasPriceStep: {
-        low: 10000000000,
-        average: 25000000000,
-        high: 40000000000
+        low: 80000000000,
+        average: 80000000000,
+        high: 80000000000
       }
     },
     bech32Config: Bech32Address.defaultBech32Config('evmos'),
     networkType: 'evm',
     currencies: [
       {
-        coinDenom: 'ETH',
-        coinMinimalDenom: 'eth',
+        coinDenom: 'CVM',
+        coinMinimalDenom: 'ucvm',
         coinDecimals: 18,
-        coinGeckoId: 'ethereum',
-        coinImageUrl: 'https://s2.coinmarketcap.com/static/img/coins/64x64/1027.png'
+        coinGeckoId: 'ucvm',
+        coinImageUrl: 'https://raw.githubusercontent.com/chainapsis/keplr-chain-registry/main/images/cvm_323/acvm.png'
       }
     ],
     get feeCurrencies() {
