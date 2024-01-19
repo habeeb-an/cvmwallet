@@ -97,10 +97,9 @@ export class EthereumAccount {
             },
             signOptions,
             this.txEventsWithPreOnFulfill(onTxEvents, (tx) => {
-              
               if (tx) {
                 // After succeeding to send token, refresh the balance.
-                const queryEvmBalance = this.queries.evm.queryEvmBalance.getQueryBalance(this.base.evmosHexAddress);
+                const queryEvmBalance = this.queries.evm.queryEvmBalance.getQueryBalance(this.base.evmHexAddress);
 
                 if (queryEvmBalance) {
                   queryEvmBalance.fetch();
@@ -143,7 +142,7 @@ export class EthereumAccount {
               console.log('Tx on fullfill: ', tx);
               if (tx) {
                 // After succeeding to send token, refresh the balance.
-                const queryEvmBalance = this.queries.evm.queryEvmBalance.getQueryBalance(this.base.evmosHexAddress);
+                const queryEvmBalance = this.queries.evm.queryEvmBalance.getQueryBalance(this.base.evmHexAddress);
 
                 if (queryEvmBalance) {
                   queryEvmBalance.fetch();
