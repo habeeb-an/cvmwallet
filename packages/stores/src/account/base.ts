@@ -1062,8 +1062,7 @@ export class AccountSetBase<MsgOpts, Queries> {
 
   get evmHexAddress(): string {
     // here
-    if (!this.bech32Address) return;
-    if (!this.hasEvmOrCvmHexAddress) return;
+    if (!this.bech32Address || !this.hasEvmOrCvmHexAddress) return;
     const address = Buffer.from(fromWords(bech32.decode(this.bech32Address).words));
     return ETH.encoder(address);
   }
