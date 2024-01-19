@@ -542,12 +542,13 @@ export class AccountSetBase<MsgOpts, Queries> {
         };
 
         const result = await this.broadcastErc20EvmMsgs(txObj, fee);
-        console.log('send evm result: ', result);
+        console.log('send evm erc20 result: ', result);
 
         txHash = result.txHash;
         console.log('send evm broadcastErc20EvmMsgs txHash: ', txHash);
       } else {
         const result = await this.broadcastEvmMsgs(msgs, fee, signOptions);
+        console.log('send evm broadcastEvmMsgs result: ', { result });
         txHash = result.txHash;
         console.log('send evm broadcastEvmMsgs txHash: ', txHash);
       }
@@ -966,11 +967,16 @@ export class AccountSetBase<MsgOpts, Queries> {
 
       // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       const ethereum = (await this.getEthereum())!;
+      console.log({ signOptions });
+      console.log(`evmos network chain IDs- ${EVMOS_NETWORKS} current chain id ${signOptions.chainId}`);
 
       let toAddress = msgs.value.to_address;
       if (EVMOS_NETWORKS.includes(signOptions.chainId)) {
+        console.log(`CHAIN${signOptions.chainId} includes in EVMOS_NETWORKS`);
+
         const decoded = bech32.decode(toAddress);
         toAddress = '0x' + Buffer.from(bech32.fromWords(decoded.words)).toString('hex');
+        console.log('toAddress: ', toAddress);
       }
       const message = {
         // TODO: need to check kawaii cosmos
@@ -979,8 +985,12 @@ export class AccountSetBase<MsgOpts, Queries> {
         gas: fee.gas,
         gasPrice: fee.gasPrice
       };
+      console.log({ currentChainId: this.chainId });
+
+      console.log({ messageFromBroadcasEvmMsgs: message });
 
       const signResponse = await ethereum.signAndBroadcastEthereum(this.chainId, message);
+      console.log({ signResponse });
 
       return {
         txHash: signResponse.rawTxHex
