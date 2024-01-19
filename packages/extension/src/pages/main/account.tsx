@@ -112,6 +112,7 @@ export const AccountView: FunctionComponent = observer(() => {
               </span>
             )}
             <span className={styleAccount.addressText}>
+              hehe boi
               {keyRingStore.keyRingType !== 'ledger' ? (
                 <Address isRaw={true} tooltipAddress={evmAddress}>
                   {accountInfo.walletStatus === WalletStatus.Loaded &&

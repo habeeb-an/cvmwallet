@@ -518,6 +518,7 @@ export class AccountSetBase<MsgOpts, Queries> {
     });
 
     let txHash: string;
+    console.log('msgs type: ', msgs.type);
 
     try {
       if (msgs.type === 'erc20') {

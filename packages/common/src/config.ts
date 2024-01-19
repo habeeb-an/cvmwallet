@@ -92,7 +92,7 @@ export const CoinGeckoAPIEndPoint = 'https://api.coingecko.com/api/v3';
 // USING THIS API KEY AFTER /V3/{...} in x_api_key directly
 // we may need to change this infura api by creating account
 // export const EthereumEndpoint = 'https://mainnet.infura.io/v3/eeb00e81cdb2410098d5a270eff9b341';
-export const EthereumEndpoint = 'https://mainnet.infura.io/v3/9c77cac4af7e4dd1be3240f78cac46df';
+export const EthereumEndpoint = 'https://mainnet.infura.io/v3/9c77cac4af7e4dd1be3240f78cac46df'; //it is mine hb
 
 export const CoinGeckoGetPrice = '/simple/price';
 
@@ -791,7 +791,15 @@ export const EmbedChainInfos: AppChainInfo[] = [
         high: 80000000000
       }
     },
-    bech32Config: Bech32Address.defaultBech32Config('evmos'),
+    bech32Config: {
+      bech32PrefixAccAddr: 'evmos',
+      bech32PrefixAccPub: 'evmospub',
+      bech32PrefixValAddr: 'evmosvaloper',
+      bech32PrefixValPub: 'evmosvaloperpub',
+      bech32PrefixConsAddr: 'evmosvalcons',
+      bech32PrefixConsPub: 'evmosvalconspub'
+    },
+    // bech32Config: Bech32Address.defaultBech32Config('evmos'),
     networkType: 'evm',
     currencies: [
       {
