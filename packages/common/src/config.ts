@@ -791,15 +791,15 @@ export const EmbedChainInfos: AppChainInfo[] = [
         high: 80000000000
       }
     },
-    bech32Config: {
-      bech32PrefixAccAddr: 'evmos',
-      bech32PrefixAccPub: 'evmospub',
-      bech32PrefixValAddr: 'evmosvaloper',
-      bech32PrefixValPub: 'evmosvaloperpub',
-      bech32PrefixConsAddr: 'evmosvalcons',
-      bech32PrefixConsPub: 'evmosvalconspub'
-    },
-    // bech32Config: Bech32Address.defaultBech32Config('evmos'),
+    // bech32Config: {
+    //   bech32PrefixAccAddr: 'evmos',
+    //   bech32PrefixAccPub: 'evmospub',
+    //   bech32PrefixValAddr: 'evmosvaloper',
+    //   bech32PrefixValPub: 'evmosvaloperpub',
+    //   bech32PrefixConsAddr: 'evmosvalcons',
+    //   bech32PrefixConsPub: 'evmosvalconspub'
+    // },
+    bech32Config: Bech32Address.defaultBech32Config('cvm'),
     networkType: 'evm',
     currencies: [
       {
