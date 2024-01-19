@@ -205,7 +205,7 @@ export const UniversalSwapScreen: FunctionComponent = observer(() => {
       };
       loadTokenParams = {
         ...loadTokenParams,
-        metamaskAddress: accountEvm.evmosHexAddress
+        metamaskAddress: accountEvm.evmHexAddress
       };
       loadTokenParams = {
         ...loadTokenParams,
@@ -214,7 +214,7 @@ export const UniversalSwapScreen: FunctionComponent = observer(() => {
       // if (accountTron) {
       //   loadTokenParams = {
       //     ...loadTokenParams,
-      //     tronAddress: getBase58Address(accountTron.evmosHexAddress)
+      //     tronAddress: getBase58Address(accountTron.evmHexAddress)
       //   };
       // }
 
@@ -374,8 +374,8 @@ export const UniversalSwapScreen: FunctionComponent = observer(() => {
       const universalSwapData: UniversalSwapData = {
         sender: {
           cosmos: accountAll.bech32Address,
-          evm: accountEvm.evmosHexAddress
-          // tron: getBase58Address(accountTron.evmosHexAddress)
+          evm: accountEvm.evmHexAddress
+          // tron: getBase58Address(accountTron.evmHexAddress)
         },
         originalFromToken: originalFromToken,
         originalToToken: originalToToken,

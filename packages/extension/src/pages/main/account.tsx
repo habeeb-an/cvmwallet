@@ -28,10 +28,10 @@ export const AccountView: FunctionComponent = observer(() => {
       : '';
 
   const evmAddress =
-    (accountInfo.hasEvmosHexAddress || chainStore.current.networkType === 'evm') && accountInfo.evmosHexAddress;
+    (accountInfo.hasEvmOrCvmHexAddress || chainStore.current.networkType === 'evm') && accountInfo.evmHexAddress;
   const tronAddress =
-    (accountInfo.hasEvmosHexAddress || chainStore.current.networkType === 'evm') && checkTronNetwork
-      ? getBase58Address(accountInfo.evmosHexAddress ?? '')
+    (accountInfo.hasEvmOrCvmHexAddress || chainStore.current.networkType === 'evm') && checkTronNetwork
+      ? getBase58Address(accountInfo.evmHexAddress ?? '')
       : null;
   const notification = useNotification();
 
@@ -87,7 +87,7 @@ export const AccountView: FunctionComponent = observer(() => {
           <div style={{ flex: 1 }} />
         </div>
       )}
-      {(accountInfo.hasEvmosHexAddress || networkType === 'evm') && (
+      {(accountInfo.hasEvmOrCvmHexAddress || networkType === 'evm') && (
         <div
           className={styleAccount.containerAccount}
           style={{
@@ -116,7 +116,7 @@ export const AccountView: FunctionComponent = observer(() => {
               {keyRingStore.keyRingType !== 'ledger' ? (
                 <Address isRaw={true} tooltipAddress={evmAddress}>
                   {accountInfo.walletStatus === WalletStatus.Loaded &&
-                    accountInfo.evmosHexAddress &&
+                    accountInfo.evmHexAddress &&
                     Add.shortAddress(evmAddress)}
                 </Address>
               ) : (

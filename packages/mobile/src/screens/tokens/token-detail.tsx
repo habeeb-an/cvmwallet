@@ -148,7 +148,7 @@ export const TokenDetailScreen: FunctionComponent = observer((props) => {
       setLoadMore(true);
       fetchData(
         {
-          addressAccount: chainStore.current.networkType == 'evm' ? account?.evmosHexAddress : account?.bech32Address,
+          addressAccount: chainStore.current.networkType == 'evm' ? account?.evmHexAddress : account?.bech32Address,
           token: balanceCurrency?.contractAddress || balanceCurrency?.coinMinimalDenom
         },
         true

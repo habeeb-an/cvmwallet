@@ -324,11 +324,11 @@ export class AccountSetBase<MsgOpts, Queries> {
         return address;
       }
     }
-    if (networkType === 'evm' && !!this.hasEvmosHexAddress) {
+    if (networkType === 'evm' && !!this.hasEvmOrCvmHexAddress) {
       // if (this.chainId === ChainIdEnum.TRON && toDisplay) {
-      //   return getBase58Address(this.evmosHexAddress);
+      //   return getBase58Address(this.evmHexAddress);
       // }
-      return this.evmosHexAddress;
+      return this.evmHexAddress;
     }
     return this._bech32Address;
   }
@@ -1056,14 +1056,14 @@ export class AccountSetBase<MsgOpts, Queries> {
     return this._isSendingMsg;
   }
 
-  get hasEvmosHexAddress(): boolean {
-    return this.bech32Address?.startsWith('evmos');
+  get hasEvmOrCvmHexAddress(): boolean {
+    return this.bech32Address?.startsWith('evmos') || this.bech32Address?.startsWith('cvm');
   }
 
-  get evmosHexAddress(): string {
+  get evmHexAddress(): string {
     // here
     if (!this.bech32Address) return;
-    if (!this.hasEvmosHexAddress) return;
+    if (!this.hasEvmOrCvmHexAddress) return;
     const address = Buffer.from(fromWords(bech32.decode(this.bech32Address).words));
     return ETH.encoder(address);
   }

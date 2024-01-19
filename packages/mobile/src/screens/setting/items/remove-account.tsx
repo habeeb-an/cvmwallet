@@ -12,13 +12,7 @@ import { useTheme } from '@src/themes/theme-provider';
 export const SettingRemoveAccountItem: FunctionComponent<{
   topBorder?: boolean;
 }> = observer(({ topBorder }) => {
-  const {
-    keychainStore,
-    keyRingStore,
-    analyticsStore,
-    chainStore,
-    accountStore
-  } = useStore();
+  const { keychainStore, keyRingStore, analyticsStore, chainStore, accountStore } = useStore();
   const account = accountStore.getAccount(chainStore.current.chainId);
 
   const { colors } = useTheme();
@@ -38,13 +32,12 @@ export const SettingRemoveAccountItem: FunctionComponent<{
           topic:
             chainStore.current.networkType === 'cosmos'
               ? account.bech32Address.toString()
-              : account.evmosHexAddress.toString()
+              : account.evmHexAddress.toString()
         },
         {
           baseURL: 'https://tracking-tx.orai.io'
         }
       );
-      
     }
   }, []);
 
@@ -55,13 +48,9 @@ export const SettingRemoveAccountItem: FunctionComponent<{
         onPress={() => {
           CodePush.checkForUpdate().then((update) => {
             if (!update) {
-          
               alert('The app is up to date!');
             } else {
-          
-              alert(
-                'Getting a new update...Please keep this screen on until completion. '
-              );
+              alert('Getting a new update...Please keep this screen on until completion. ');
               CodePush.sync(
                 {
                   installMode: CodePush.InstallMode.IMMEDIATE
@@ -69,22 +58,17 @@ export const SettingRemoveAccountItem: FunctionComponent<{
                 (status) => {
                   switch (status) {
                     case CodePush.SyncStatus.UP_TO_DATE:
-                     
                       // Show "downloading" modal
                       // modal.open();
                       break;
                     case CodePush.SyncStatus.DOWNLOADING_PACKAGE:
-                     
                       // Show "downloading" modal
                       // modal.open();
                       break;
                     case CodePush.SyncStatus.INSTALLING_UPDATE:
-                      
                       // show installing
                       break;
                     case CodePush.SyncStatus.UPDATE_INSTALLED:
-                      
-
                       // Hide loading modal
                       break;
                   }
@@ -119,9 +103,7 @@ export const SettingRemoveAccountItem: FunctionComponent<{
         paragraph="Please make sure you have saved the correct mnemonic before logging out"
         textButtonRight="Remove"
         onEnterPassword={async (password) => {
-          const index = keyRingStore.multiKeyStoreInfo.findIndex(
-            (keyStore) => keyStore.selected
-          );
+          const index = keyRingStore.multiKeyStoreInfo.findIndex((keyStore) => keyStore.selected);
 
           if (index >= 0) {
             await keyRingStore.deleteKeyRing(index, password);

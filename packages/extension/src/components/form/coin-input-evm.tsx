@@ -97,12 +97,10 @@ export const CoinInputEvm: FunctionComponent<CoinInputEvmProps> = observer(
 
     useEffect(() => {
       if (chainStore?.current?.networkType === 'evm' && tokenDenom === chainStore?.current?.stakeCurrency?.coinDenom) {
-        if (!accountInfo.evmosHexAddress) return null;
+        if (!accountInfo.evmHexAddress) return null;
 
         const evmBalance = queries.evm.queryEvmBalance.getQueryBalance(
-          keyRingStore.keyRingType === 'ledger'
-            ? keyRingStore?.keyRingLedgerAddresses?.eth
-            : accountInfo.evmosHexAddress
+          keyRingStore.keyRingType === 'ledger' ? keyRingStore?.keyRingLedgerAddresses?.eth : accountInfo.evmHexAddress
         ).balance;
         setBalance(evmBalance);
       } else {

@@ -58,11 +58,11 @@ export const SendTronEvmPage: FunctionComponent<{
     chainStore,
     current.chainId,
     accountInfo.msgOpts.send,
-    accountInfo.evmosHexAddress,
+    accountInfo.evmHexAddress,
     queriesStore.get(current.chainId).queryBalances,
     EthereumEndpoint,
     chainStore.current.networkType === 'evm' && queriesStore.get(current.chainId).evm.queryEvmBalance,
-    chainStore.current.networkType === 'evm' && accountInfo.evmosHexAddress
+    chainStore.current.networkType === 'evm' && accountInfo.evmHexAddress
   );
 
   useEffect(() => {
@@ -97,7 +97,7 @@ export const SendTronEvmPage: FunctionComponent<{
   const txStateIsValid = sendConfigError == null;
   const addressTron =
     keyRingStore?.keyRingType !== 'ledger'
-      ? getBase58Address(accountInfo.evmosHexAddress)
+      ? getBase58Address(accountInfo.evmHexAddress)
       : keyRingStore?.keyRingLedgerAddresses?.trx;
   const tokenTrc20 =
     (tokensTrc20Tron && query && tokensTrc20Tron.find((token) => token.coinDenom == query.defaultDenom)) ?? undefined;
@@ -115,8 +115,6 @@ export const SendTronEvmPage: FunctionComponent<{
               addressTron,
               {
                 onFulfill: (tx) => {
-               
-                
                   notification.push({
                     placement: 'top-center',
                     type: !!tx ? 'success' : 'danger',

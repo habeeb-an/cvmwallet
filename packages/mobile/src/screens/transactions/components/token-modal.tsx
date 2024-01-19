@@ -17,9 +17,7 @@ const TokenModal = ({ onActionCoin, active }) => {
   const queryBalances = queriesStore
     .get(chainStore.current.chainId)
     .queryBalances.getQueryBech32Address(
-      chainStore.current.networkType === 'evm'
-        ? account.evmosHexAddress
-        : account.bech32Address
+      chainStore.current.networkType === 'evm' ? account.evmHexAddress : account.bech32Address
     );
 
   const tokens = queryBalances.balances.concat(
@@ -30,10 +28,7 @@ const TokenModal = ({ onActionCoin, active }) => {
   const unique = useMemo(() => {
     const uniqTokens = [];
     tokens.map((token) =>
-      uniqTokens.filter(
-        (ut) =>
-          ut.balance.currency.coinDenom == token.balance.currency.coinDenom
-      ).length > 0
+      uniqTokens.filter((ut) => ut.balance.currency.coinDenom == token.balance.currency.coinDenom).length > 0
         ? null
         : uniqTokens.push(token)
     );
@@ -76,22 +71,13 @@ const TokenModal = ({ onActionCoin, active }) => {
       />
     );
   };
-  return (
-    <ContainerModal
-      title="Transaction Coin"
-      renderItem={renderItem}
-      data={unique}
-    />
-  );
+  return <ContainerModal title="Transaction Coin" renderItem={renderItem} data={unique} />;
 };
 
 export const getCoinDenom = (item) => {
   if (!item?.label) {
     const balance = item?.balance;
-    if (
-      'originCurrency' in balance.currency &&
-      balance.currency.originCurrency
-    ) {
+    if ('originCurrency' in balance.currency && balance.currency.originCurrency) {
       return balance.currency.originCurrency.coinDenom;
     } else {
       return balance.currency.coinDenom;

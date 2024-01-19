@@ -71,7 +71,7 @@ const TransactionDetailScreen = observer(() => {
     try {
       const tx = await txs.getTxsByHash(
         txHash,
-        chainStore?.current?.networkType === 'cosmos' ? account?.bech32Address : account?.evmosHexAddress
+        chainStore?.current?.networkType === 'cosmos' ? account?.bech32Address : account?.evmHexAddress
       );
       setIsRefreshing(false);
       setData(tx);

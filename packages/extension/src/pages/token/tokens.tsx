@@ -42,7 +42,7 @@ export const TokenPage: FunctionComponent = observer(() => {
     .queryBalances.getQueryBech32Address(
       networkType === 'evm'
         ? keyRingStore.keyRingType !== 'ledger'
-          ? accountInfo.evmosHexAddress
+          ? accountInfo.evmHexAddress
           : ledgerAddress
         : accountInfo.bech32Address
     );
@@ -57,14 +57,14 @@ export const TokenPage: FunctionComponent = observer(() => {
       getTokenTron();
     }
     return () => {};
-  }, [accountInfo.evmosHexAddress]);
+  }, [accountInfo.evmHexAddress]);
 
   const getTokenTron = async () => {
     try {
       fetch(
         `${chainStore.current.rpc}/v1/accounts/${getBase58Address(
           keyRingStore.keyRingType !== 'ledger'
-            ? accountInfo.evmosHexAddress
+            ? accountInfo.evmHexAddress
             : getEvmAddress(keyRingStore?.keyRingLedgerAddresses?.trx)
         )}`
       ).then(async (res) => {

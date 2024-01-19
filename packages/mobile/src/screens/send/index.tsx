@@ -223,7 +223,7 @@ export const SendScreen: FunctionComponent = observer(() => {
                   if (sendConfigs.amountConfig.sendCurrency.coinMinimalDenom.startsWith('erc20')) {
                     sendStore.updateSendObject({
                       type: 'erc20',
-                      from: account.evmosHexAddress,
+                      from: account.evmHexAddress,
                       contract_addr: sendConfigs.amountConfig.sendCurrency.coinMinimalDenom.split(':')[1],
                       recipient: sendConfigs.recipientConfig.recipient,
                       amount: sendConfigs.amountConfig.amount
@@ -259,7 +259,7 @@ export const SendScreen: FunctionComponent = observer(() => {
                     sendConfigs.amountConfig.sendCurrency.coinMinimalDenom.startsWith('erc20')
                       ? {
                           type: 'erc20',
-                          from: account.evmosHexAddress,
+                          from: account.evmHexAddress,
                           contract_addr: sendConfigs.amountConfig.sendCurrency.coinMinimalDenom.split(':')[1],
                           recipient: sendConfigs.recipientConfig.recipient,
                           amount: sendConfigs.amountConfig.amount

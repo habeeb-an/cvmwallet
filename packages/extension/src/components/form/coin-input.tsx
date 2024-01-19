@@ -98,9 +98,9 @@ export const CoinInput: FunctionComponent<CoinInputProps> = observer(
 
     useEffect(() => {
       if (chainStore.current.networkType === 'evm') {
-        if (!accountInfo.evmosHexAddress) return null;
+        if (!accountInfo.evmHexAddress) return null;
 
-        const evmBalance = queries.evm.queryEvmBalance.getQueryBalance(accountInfo.evmosHexAddress).balance;
+        const evmBalance = queries.evm.queryEvmBalance.getQueryBalance(accountInfo.evmHexAddress).balance;
         setBalance(evmBalance);
       } else {
         const queryBalance = queryBalances.balances.find(

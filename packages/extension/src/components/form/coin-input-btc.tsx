@@ -103,10 +103,10 @@ export const CoinInputBtc: FunctionComponent<CoinInputBtcProps> = observer(
 
     // useEffect(() => {
     //   if (chainStore.current.networkType === 'evm') {
-    //     if (!accountInfo.evmosHexAddress) return null;
+    //     if (!accountInfo.evmHexAddress) return null;
 
     //     const evmBalance = queries.evm.queryEvmBalance.getQueryBalance(
-    //       accountInfo.evmosHexAddress
+    //       accountInfo.evmHexAddress
     //     ).balance;
     //     setBalance(evmBalance);
     //   } else {

@@ -72,7 +72,7 @@ export const SendEvmPage: FunctionComponent<{
   const accountInfo = accountStore.getAccount(current.chainId);
   const [gasPrice, setGasPrice] = useState('0');
   const address =
-    keyRingStore.keyRingType === 'ledger' ? keyRingStore?.keyRingLedgerAddresses?.eth : accountInfo.evmosHexAddress;
+    keyRingStore.keyRingType === 'ledger' ? keyRingStore?.keyRingLedgerAddresses?.eth : accountInfo.evmHexAddress;
   const sendConfigs = useSendTxConfig(
     chainStore,
     current.chainId,
@@ -129,7 +129,7 @@ export const SendEvmPage: FunctionComponent<{
           );
           estimate = await tokenInfo.methods
             .transfer(
-              accountInfo?.evmosHexAddress,
+              accountInfo?.evmHexAddress,
               '0x' +
                 parseFloat(new Big(sendConfigs.amountConfig.amount).mul(new Big(10).pow(decimals)).toString()).toString(
                   16
@@ -140,7 +140,7 @@ export const SendEvmPage: FunctionComponent<{
             });
         } else {
           estimate = await web3.eth.estimateGas({
-            to: accountInfo?.evmosHexAddress,
+            to: accountInfo?.evmHexAddress,
             from: query?.defaultDenom?.split(':')?.[1]
           });
         }

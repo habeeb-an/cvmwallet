@@ -214,8 +214,8 @@ export const AssetChartViewEvm: FunctionComponent = observer(() => {
 
   const accountInfo = accountStore.getAccount(current.chainId);
   // wait for account to be
-  if (!accountInfo.evmosHexAddress) return null;
-  let evmosAddress = accountInfo.evmosHexAddress;
+  if (!accountInfo.evmHexAddress) return null;
+  let evmosAddress = accountInfo.evmHexAddress;
   const isTronNetwork = chainStore.current.chainId === TRON_ID;
   if (keyRingStore.keyRingType === 'ledger' && chainStore.current.networkType === 'evm') {
     evmosAddress = keyRingStore?.keyRingLedgerAddresses?.eth;

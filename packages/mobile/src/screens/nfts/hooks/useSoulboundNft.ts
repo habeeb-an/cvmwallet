@@ -49,7 +49,7 @@ export const useSoulbound = (
       loading: true
     });
     init();
-  }, [chainId, rpc, account.bech32Address, account.evmosHexAddress]);
+  }, [chainId, rpc, account.bech32Address, account.evmHexAddress]);
 
   return {
     tokenIds: tokenIds.current,
