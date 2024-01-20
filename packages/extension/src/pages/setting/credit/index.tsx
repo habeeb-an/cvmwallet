@@ -6,7 +6,7 @@ import { PageButton } from '../page-button';
 
 import style from './style.module.scss';
 
-const styleTitle = {
+const styletitle = {
   fontWeight: '400',
   fontSize: 14
 };
@@ -28,7 +28,7 @@ export const CreditPage: FunctionComponent = () => {
               url: 'https://interchain.io'
             });
           }}
-          styleTitle={styleTitle}
+          styletitle={styletitle}
           styleparagraph={styleparagraph}
         />
         <div style={{ height: 10 }} />
@@ -41,7 +41,7 @@ export const CreditPage: FunctionComponent = () => {
               url: 'https://www.coingecko.com/'
             });
           }}
-          styleTitle={styleTitle}
+          styletitle={styletitle}
           styleparagraph={styleparagraph}
         />
         <div style={{ height: 10 }} />
@@ -54,7 +54,7 @@ export const CreditPage: FunctionComponent = () => {
               url: 'https://stake.fish'
             });
           }}
-          styleTitle={styleTitle}
+          styletitle={styletitle}
           styleparagraph={styleparagraph}
         />
       </div>

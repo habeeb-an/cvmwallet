@@ -110,7 +110,7 @@ export const SettingConnectionsPage: FunctionComponent<{
               style={{
                 padding: 10
               }}
-              styleTitle={{
+              styletitle={{
                 color: '#777e90'
               }}
               onClick={async (e) => {

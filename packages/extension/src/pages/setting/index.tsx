@@ -270,7 +270,7 @@ export const SettingPage: FunctionComponent = observer(() => {
               />
             </label>
           ]}
-          styleTitle={styleTitle}
+          styletitle={styletitle}
         /> */}
         {/* <PageButtonSetting
           title={intl.formatMessage({

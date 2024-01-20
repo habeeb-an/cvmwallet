@@ -135,7 +135,7 @@ export const ManageTokenPage: FunctionComponent = observer(() => {
                   title={cosmwasmToken.coinDenom}
                   paragraph={Bech32Address.shortenAddress(cosmwasmToken.contractAddress, 30)}
                   icons={icons}
-                  styleTitle={{
+                  styletitle={{
                     fontWeight: '400',
                     fontSize: 14
                   }}

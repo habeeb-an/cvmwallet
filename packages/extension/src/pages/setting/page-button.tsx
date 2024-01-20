@@ -10,12 +10,12 @@ export const PageButton: FunctionComponent<
     paragraph?: string;
     subParagraph?: string;
     icons?: React.ReactElement[];
-    styleTitle?: React.CSSProperties;
+    styletitle?: React.CSSProperties;
     styleparagraph?: React.CSSProperties;
     customModal?: any;
   } & React.HTMLAttributes<HTMLDivElement>
 > = (props) => {
-  const { title, paragraph, subParagraph, icons, styleTitle, styleparagraph, customModal } = props;
+  const { title, paragraph, subParagraph, icons, styletitle, styleparagraph, customModal } = props;
 
   const attributes = { ...props };
   delete attributes.paragraph;
@@ -30,7 +30,7 @@ export const PageButton: FunctionComponent<
       {...attributes}
     >
       <div className={stylePageButton.innerContainer}>
-        <h1 style={styleTitle}>{title}</h1>
+        <h1 style={styletitle}>{title}</h1>
         {paragraph ? <p style={styleparagraph}>{paragraph}</p> : null}
         {subParagraph ? <p>{subParagraph}</p> : null}
       </div>
@@ -56,12 +56,12 @@ export const PageButtonAccount: FunctionComponent<
     paragraph?: string;
     subParagraph?: string;
     icons?: React.ReactElement[];
-    styleTitle?: React.CSSProperties;
+    styletitle?: React.CSSProperties;
     styleparagraph?: React.CSSProperties;
     ind?: number;
   } & React.HTMLAttributes<HTMLDivElement>
 > = (props) => {
-  const { title, paragraph, subParagraph, icons, styleTitle, styleparagraph, ind } = props;
+  const { title, paragraph, subParagraph, icons, styletitle, styleparagraph, ind } = props;
 
   const attributes = { ...props };
   delete attributes.paragraph;
@@ -77,7 +77,7 @@ export const PageButtonAccount: FunctionComponent<
       {...attributes}
     >
       <div className={stylePageButton.innerContainer}>
-        <h1 style={styleTitle}>{title}</h1>
+        <h1 style={styletitle}>{title}</h1>
         {paragraph ? <p style={styleparagraph}>{paragraph}</p> : null}
         {subParagraph ? <p>{subParagraph}</p> : null}
       </div>

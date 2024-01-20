@@ -286,7 +286,7 @@ export const AddressBookPage: FunctionComponent<{
                     fontSize: 14,
                     color: '#777E90'
                   }}
-                  styleTitle={{
+                  styletitle={{
                     fontWeight: 600,
                     fontSize: 14,
                     color: '#353945'
