@@ -773,6 +773,7 @@ export const EmbedChainInfos: AppChainInfo[] = [
 
   {
     rest: 'https://rpc.cosvm.net/',
+    evmRpc: 'https://rpc.cosvm.net/',
     chainId: '323',
     chainName: 'CosVM',
     bip44: {
