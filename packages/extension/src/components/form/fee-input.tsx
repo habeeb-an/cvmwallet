@@ -1,10 +1,6 @@
 import React, { FunctionComponent, useEffect, useState } from 'react';
 import { FormGroup, Input, Label } from 'reactstrap';
-import {
-  IFeeConfig,
-  IFeeEthereumConfig,
-  IGasEthereumConfig
-} from '@owallet/hooks';
+import { IFeeConfig, IFeeEthereumConfig, IGasEthereumConfig } from '@owallet/hooks';
 import { observer } from 'mobx-react-lite';
 import Big from 'big.js';
 import { Input as InputEvm } from '../../components/form';
@@ -20,7 +16,7 @@ export interface GasInputProps {
   gasPrice?: number | string | Big;
 
   denom?: string | unknown | any;
-  classNameInputGroup?: string | unknown | any;
+  classnameinputgroup?: string | unknown | any;
   classNameInput?: string | unknown | any;
 }
 
@@ -35,7 +31,7 @@ export const FeeInput: FunctionComponent<GasInputProps> = observer(
     gasPrice,
     decimals,
     denom,
-    classNameInputGroup,
+    classnameinputgroup,
     classNameInput
   }) => {
     const [inputId] = useState(() => {
@@ -47,15 +43,12 @@ export const FeeInput: FunctionComponent<GasInputProps> = observer(
     useEffect(() => {
       try {
         if (gasConfig.gasRaw !== 'NaN' && gasPrice != 'NaN') {
-          feeConfig.setFee(
-            new Big(parseInt(gasConfig.gasRaw)).mul(gasPrice).toFixed(decimals)
-          );
+          feeConfig.setFee(new Big(parseInt(gasConfig.gasRaw)).mul(gasPrice).toFixed(decimals));
         } else {
           feeConfig.setFee(parseFloat(feeConfig.feeRaw).toString());
         }
       } catch (error) {
         feeConfig.setFee(parseFloat(feeConfig.feeRaw).toString());
-       
       }
     }, [gasConfig.gasRaw, gasPrice]);
 
@@ -68,7 +61,7 @@ export const FeeInput: FunctionComponent<GasInputProps> = observer(
         ) : null}
         <InputEvm
           type="number"
-          classNameInputGroup={classNameInputGroup}
+          classnameinputgroup={classnameinputgroup}
           value={parseFloat(feeConfig.feeRaw)}
           className={classNameInput}
           // style={{

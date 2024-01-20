@@ -51,14 +51,8 @@ export const AddEvmTokenPage: FunctionComponent = observer(() => {
   useEffect(() => {
     if (tokensStore.waitingSuggestedToken) {
       chainStore.selectChain(tokensStore.waitingSuggestedToken.data.chainId);
-      if (
-        contractAddress !==
-        tokensStore.waitingSuggestedToken.data.contractAddress
-      ) {
-        form.setValue(
-          'contractAddress',
-          tokensStore.waitingSuggestedToken.data.contractAddress
-        );
+      if (contractAddress !== tokensStore.waitingSuggestedToken.data.contractAddress) {
+        form.setValue('contractAddress', tokensStore.waitingSuggestedToken.data.contractAddress);
       }
     }
   }, [chainStore, contractAddress, form, tokensStore.waitingSuggestedToken]);
@@ -71,8 +65,7 @@ export const AddEvmTokenPage: FunctionComponent = observer(() => {
 
   const tokenInfo = queryContractInfo.tokenInfo;
 
-  const [isOpenSecret20ViewingKey, setIsOpenSecret20ViewingKey] =
-    useState(false);
+  const [isOpenSecret20ViewingKey, setIsOpenSecret20ViewingKey] = useState(false);
 
   const notification = useNotification();
   const loadingIndicator = useLoadingIndicator();
@@ -80,17 +73,11 @@ export const AddEvmTokenPage: FunctionComponent = observer(() => {
   const createViewingKey = async (): Promise<string> => {
     return new Promise((resolve, reject) => {
       accountInfo.secret
-        .createSecret20ViewingKey(
-          contractAddress,
-          '',
-          {},
-          {},
-          (_, viewingKey) => {
-            loadingIndicator.setIsLoading('create-veiwing-key', false);
+        .createSecret20ViewingKey(contractAddress, '', {}, {}, (_, viewingKey) => {
+          loadingIndicator.setIsLoading('create-veiwing-key', false);
 
-            resolve(viewingKey);
-          }
-        )
+          resolve(viewingKey);
+        })
         .then(() => {
           loadingIndicator.setIsLoading('create-veiwing-key', true);
         })
@@ -103,11 +90,7 @@ export const AddEvmTokenPage: FunctionComponent = observer(() => {
       <Form
         className={style.container}
         onSubmit={form.handleSubmit(async (data) => {
-          if (
-            tokenInfo?.decimals != null &&
-            tokenInfo.name &&
-            tokenInfo.symbol
-          ) {
+          if (tokenInfo?.decimals != null && tokenInfo.name && tokenInfo.symbol) {
             if (!isSecret20) {
               const currency: ERC20Currency = {
                 type: 'erc20',
@@ -117,13 +100,9 @@ export const AddEvmTokenPage: FunctionComponent = observer(() => {
                 coinDecimals: tokenInfo.decimals
               };
 
-              if (
-                interactionInfo.interaction &&
-                tokensStore.waitingSuggestedToken
-              ) {
+              if (interactionInfo.interaction && tokensStore.waitingSuggestedToken) {
                 await tokensStore.approveSuggestedToken(currency);
               } else {
-                
                 await tokensOf.addToken(currency);
               }
             } else {
@@ -143,17 +122,11 @@ export const AddEvmTokenPage: FunctionComponent = observer(() => {
                     }
                   });
 
-                  if (
-                    interactionInfo.interaction &&
-                    tokensStore.waitingSuggestedToken
-                  ) {
+                  if (interactionInfo.interaction && tokensStore.waitingSuggestedToken) {
                     await tokensStore.rejectAllSuggestedTokens();
                   }
 
-                  if (
-                    interactionInfo.interaction &&
-                    !interactionInfo.interactionInternal
-                  ) {
+                  if (interactionInfo.interaction && !interactionInfo.interactionInternal) {
                     window.close();
                   } else {
                     history.push({
@@ -186,10 +159,7 @@ export const AddEvmTokenPage: FunctionComponent = observer(() => {
                   coinDecimals: tokenInfo.decimals
                 };
 
-                if (
-                  interactionInfo.interaction &&
-                  tokensStore.waitingSuggestedToken
-                ) {
+                if (interactionInfo.interaction && tokensStore.waitingSuggestedToken) {
                   await tokensStore.approveSuggestedToken(currency);
                 } else {
                   await tokensOf.addToken(currency);
@@ -197,10 +167,7 @@ export const AddEvmTokenPage: FunctionComponent = observer(() => {
               }
             }
 
-            if (
-              interactionInfo.interaction &&
-              !interactionInfo.interactionInternal
-            ) {
+            if (interactionInfo.interaction && !interactionInfo.interactionInternal) {
               window.close();
             } else {
               history.push({
@@ -215,7 +182,7 @@ export const AddEvmTokenPage: FunctionComponent = observer(() => {
           label={intl.formatMessage({
             id: 'setting.token.add.contract-address'
           })}
-          classNameInputGroup={style.inputGroup}
+          classnameinputgroup={style.inputGroup}
           className={style.input}
           name="contractAddress"
           autoComplete="off"
@@ -224,8 +191,7 @@ export const AddEvmTokenPage: FunctionComponent = observer(() => {
             required: 'Contract address is required',
             validate: (value: string): string | undefined => {
               try {
-                if (!Web3.utils.isAddress(value))
-                  throw new Error('Invalid address');
+                if (!Web3.utils.isAddress(value)) throw new Error('Invalid address');
               } catch {
                 return 'Invalid address';
               }
@@ -235,15 +201,10 @@ export const AddEvmTokenPage: FunctionComponent = observer(() => {
             form.errors.contractAddress
               ? form.errors.contractAddress.message
               : tokenInfo == null
-              ? (queryContractInfo.error?.data as any)?.error ||
-                queryContractInfo.error?.message
+              ? (queryContractInfo.error?.data as any)?.error || queryContractInfo.error?.message
               : undefined
           }
-          text={
-            queryContractInfo.isFetching ? (
-              <i className="fas fa-spinner fa-spin" />
-            ) : undefined
-          }
+          text={queryContractInfo.isFetching ? <i className="fas fa-spinner fa-spin" /> : undefined}
         />
         <Input
           type="text"
@@ -301,11 +262,7 @@ export const AddEvmTokenPage: FunctionComponent = observer(() => {
             ref={form.register({
               required: 'Viewing key is required'
             })}
-            error={
-              form.errors.viewingKey
-                ? form.errors.viewingKey.message
-                : undefined
-            }
+            error={form.errors.viewingKey ? form.errors.viewingKey.message : undefined}
           />
         ) : null}
         <div style={{ flex: 1 }} />

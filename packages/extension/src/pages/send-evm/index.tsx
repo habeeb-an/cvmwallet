@@ -402,7 +402,7 @@ export const SendEvmPage: FunctionComponent<{
               decimals={decimals}
               denom={sendConfigs.feeConfig}
               classNameInput={style.input}
-              classNameInputGroup={style.inputGroup}
+              classnameinputgroup={style.inputGroup}
             />
             {/* <FeeButtons
               feeConfig={sendConfigs.feeConfig}

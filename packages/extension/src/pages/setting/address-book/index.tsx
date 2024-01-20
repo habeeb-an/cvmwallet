@@ -56,16 +56,10 @@ export const AddressBookPage: FunctionComponent<{
     const current = chainStore.current;
 
     const [selectedChainId, setSelectedChainId] = useState(
-      ibcChannelConfig?.channel
-        ? ibcChannelConfig.channel.counterpartyChainId
-        : current.chainId
+      ibcChannelConfig?.channel ? ibcChannelConfig.channel.counterpartyChainId : current.chainId
     );
 
-    const recipientConfig = useRecipientConfig(
-      chainStore,
-      selectedChainId,
-      EthereumEndpoint
-    );
+    const recipientConfig = useRecipientConfig(chainStore, selectedChainId, EthereumEndpoint);
     const memoConfig = useMemoConfig(chainStore, selectedChainId);
 
     const addressBookConfig = useAddressBookConfig(
@@ -83,16 +77,12 @@ export const AddressBookPage: FunctionComponent<{
             }
           }
     );
-    const [addressBookList, setAddressBookList] = useState(
-      addressBookConfig.addressBookDatas
-    );
+    const [addressBookList, setAddressBookList] = useState(addressBookConfig.addressBookDatas);
     const [search, setSearch] = useState('');
     React.useEffect(() => {
       if (search) {
         setAddressBookList(
-          addressBookConfig.addressBookDatas.filter(
-            (add) => add.name.includes(search) || add.address.includes(search)
-          )
+          addressBookConfig.addressBookDatas.filter((add) => add.name.includes(search) || add.address.includes(search))
         );
       } else {
         setAddressBookList(addressBookConfig.addressBookDatas);
@@ -170,10 +160,7 @@ export const AddressBookPage: FunctionComponent<{
               textAlign: 'right'
             }}
           >
-            <img
-              src={require('../../../public/assets/img/close.svg')}
-              alt="total-balance"
-            />
+            <img src={require('../../../public/assets/img/close.svg')} alt="total-balance" />
           </div>
         )}
         <div className={styleAddressBook.container}>
@@ -186,10 +173,7 @@ export const AddressBookPage: FunctionComponent<{
           >
             {hideChainDropdown ? null : (
               <ButtonDropdown isOpen={dropdownOpen} toggle={toggle}>
-                <DropdownToggle
-                  caret
-                  style={{ boxShadow: 'none', paddingLeft: 0 }}
-                >
+                <DropdownToggle caret style={{ boxShadow: 'none', paddingLeft: 0 }}>
                   {chainStore.getChain(selectedChainId).chainName}
                 </DropdownToggle>
                 <DropdownMenu>
@@ -224,11 +208,7 @@ export const AddressBookPage: FunctionComponent<{
                   cursor: 'pointer'
                 }}
               >
-                <img
-                  src={require('../../../public/assets/svg/add-account.svg')}
-                  alt=""
-                  style={{ marginRight: 4 }}
-                />
+                <img src={require('../../../public/assets/svg/add-account.svg')} alt="" style={{ marginRight: 4 }} />
                 <span style={{ fontSize: 12, fontWeight: 600 }}>
                   <FormattedMessage id="setting.address-book.button.add" />
                 </span>
@@ -238,7 +218,7 @@ export const AddressBookPage: FunctionComponent<{
           <div>
             <Input
               type={'text'}
-              classNameInputGroup={styleAddressBook.inputGroup}
+              classnameinputgroup={styleAddressBook.inputGroup}
               className={styleAddressBook.input}
               value={search}
               onChange={(e) => {
@@ -255,10 +235,7 @@ export const AddressBookPage: FunctionComponent<{
                     backgroundColor: 'rgba(230, 232, 236, 0.2)'
                   }}
                 >
-                  <img
-                    src={require('../../../public/assets/img/light.svg')}
-                    alt=""
-                  />
+                  <img src={require('../../../public/assets/img/light.svg')} alt="" />
                 </div>
               }
             />
@@ -298,10 +275,7 @@ export const AddressBookPage: FunctionComponent<{
                   key={i.toString()}
                   title={data.name}
                   paragraph={
-                    data.address.indexOf(
-                      chainStore.getChain(selectedChainId).bech32Config
-                        .bech32PrefixAccAddr
-                    ) === 0
+                    data.address.indexOf(chainStore.getChain(selectedChainId).bech32Config.bech32PrefixAccAddr) === 0
                       ? Bech32Address.shortenAddress(data.address, 34)
                       : data.address
                   }
@@ -405,13 +379,7 @@ const AddressBookTools: FunctionComponent<{
   setAddAddressModalIndex?: any;
   handleDelete?: (e) => void;
   setTypeAddress?: any;
-}> = ({
-  setAddAddressModalOpen,
-  handleDelete,
-  index,
-  setAddAddressModalIndex,
-  setTypeAddress
-}) => {
+}> = ({ setAddAddressModalOpen, handleDelete, index, setAddAddressModalIndex, setTypeAddress }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const toggleOpen = () => setIsOpen((isOpen) => !isOpen);
 

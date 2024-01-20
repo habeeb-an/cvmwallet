@@ -31,7 +31,7 @@ export const TokensTronView: FunctionComponent<{
           onChange={(e) => {
             setSearch(e.target.value);
           }}
-          classNameInputGroup={styleToken.inputGroup}
+          classnameinputgroup={styleToken.inputGroup}
           placeholder={'Search Chain Coin'}
           append={
             <div
@@ -55,8 +55,7 @@ export const TokensTronView: FunctionComponent<{
           const name = token?.tokenName ?? '?';
           const minimalDenom = token?.coinDenom;
           const coinImageUrl = token?.coinImageUrl;
-          const amount =
-            token.amount && `${toDisplay(token.amount, 6)} ${minimalDenom}`;
+          const amount = token.amount && `${toDisplay(token.amount, 6)} ${minimalDenom}`;
           return (
             <div
               key={token.coinDenom}
@@ -92,19 +91,14 @@ export const TokensTronView: FunctionComponent<{
                 <div className={styleToken.content}>
                   <div
                     className={classmames(styleToken.name, {
-                      activeToken:
-                        `?defaultDenom=${token.coinDenom}` == coinMinimalDenom
+                      activeToken: `?defaultDenom=${token.coinDenom}` == coinMinimalDenom
                     })}
                   >
                     {name}
                   </div>
                   <div className={styleToken.amount}>{amount}</div>
                   <div className={classmames(styleToken.price)}>
-                    {amount &&
-                      (
-                        toDisplay(token.amount, 6) *
-                        priceStore?.getPrice(coinGeckoId)
-                      ).toFixed(2)}
+                    {amount && (toDisplay(token.amount, 6) * priceStore?.getPrice(coinGeckoId)).toFixed(2)}
                     {' $'}
                   </div>
                 </div>

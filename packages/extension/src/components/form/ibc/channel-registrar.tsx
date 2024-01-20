@@ -102,7 +102,7 @@ export const IBCChannelRegistrarModal: FunctionComponent<{
             placeholder={intl.formatMessage({
               id: 'component.ibc.channel-registrar.chain-selector.add.channel.placeholder'
             })}
-            classNameInputGroup={style.inputGroup}
+            classnameinputgroup={style.inputGroup}
             onChange={(e) => {
               e.preventDefault();
               setChannelId(e.target.value);
@@ -115,9 +115,7 @@ export const IBCChannelRegistrarModal: FunctionComponent<{
             block
             color=""
             className={style.saveBtn}
-            disabled={
-              selectedChainId === '' || channelId === '' || error !== ''
-            }
+            disabled={selectedChainId === '' || channelId === '' || error !== ''}
             data-loading={isLoading}
             onClick={async (e) => {
               e.preventDefault();
@@ -126,9 +124,7 @@ export const IBCChannelRegistrarModal: FunctionComponent<{
 
               const queries = queriesStore.get(chainStore.current.chainId);
 
-              const channel = await queries.cosmos.queryIBCChannel
-                .getTransferChannel(channelId)
-                .waitFreshResponse();
+              const channel = await queries.cosmos.queryIBCChannel.getTransferChannel(channelId).waitFreshResponse();
 
               const clientState = await queries.cosmos.queryIBCClientState
                 .getClientStateOnTransferPort(channelId)
@@ -147,10 +143,7 @@ export const IBCChannelRegistrarModal: FunctionComponent<{
               }
 
               if (clientState) {
-                if (
-                  clientState.data.identified_client_state.client_state
-                    .chain_id !== selectedChainId
-                ) {
+                if (clientState.data.identified_client_state.client_state.chain_id !== selectedChainId) {
                   error = `Client is not for ${selectedChainId}`;
                 }
               }
@@ -159,13 +152,11 @@ export const IBCChannelRegistrarModal: FunctionComponent<{
               setError(error);
 
               if (channel && clientState && error === '') {
-                await ibcChannelStore
-                  .get(chainStore.current.chainId)
-                  .addChannel({
-                    portId: 'transfer',
-                    channelId,
-                    counterpartyChainId: selectedChainId
-                  });
+                await ibcChannelStore.get(chainStore.current.chainId).addChannel({
+                  portId: 'transfer',
+                  channelId,
+                  counterpartyChainId: selectedChainId
+                });
 
                 await ibcChannelStore.get(selectedChainId).addChannel({
                   portId: channel.data.channel.counterparty.port_id,

@@ -49,7 +49,7 @@ export const AddAddressModal: FunctionComponent<{
           type="text"
           label={intl.formatMessage({ id: 'setting.address-book.name' })}
           autoComplete="off"
-          classNameInputGroup={style.inputGroup}
+          classnameinputgroup={style.inputGroup}
           value={name}
           onChange={(e) => {
             setName(e.target.value);

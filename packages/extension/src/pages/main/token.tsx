@@ -273,7 +273,7 @@ export const TokensView: FunctionComponent<{
               onChange={(e) => {
                 setSearch(e.target.value);
               }}
-              classNameInputGroup={styleToken.inputGroup}
+              classnameinputgroup={styleToken.inputGroup}
               placeholder={'Search Chain Coin'}
               append={
                 <div

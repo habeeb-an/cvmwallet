@@ -34,7 +34,7 @@ export const TokensBtcView: FunctionComponent<{
       const exchange = (await getExchangeRate({
         selectedCurrency: priceStore.defaultVsCurrency
       })) as { data: number };
-      
+
       if (Number(exchange?.data)) {
         setExchangeRate(Number(exchange?.data));
       }
@@ -48,7 +48,7 @@ export const TokensBtcView: FunctionComponent<{
       balance: Number(balanceBtc?.toCoin().amount),
       cryptoUnit: 'BTC'
     };
-    
+
     const amountData = getBalanceValue(balanceValueParams);
 
     const currencyFiat = priceStore.defaultVsCurrency;
@@ -76,7 +76,7 @@ export const TokensBtcView: FunctionComponent<{
           onChange={(e) => {
             setSearch(e.target.value);
           }}
-          classNameInputGroup={styleToken.inputGroup}
+          classnameinputgroup={styleToken.inputGroup}
           placeholder={'Search Chain Coin'}
           append={
             <div
