@@ -106,7 +106,7 @@ export const SendEvmPage: FunctionComponent<{
         id: 1,
         method: 'eth_gasPrice',
         headers: {
-          'x-api-key': '9c77cac4af7e4dd1be3240f78cac46df'
+          'x-api-key': 'eD7IksZHrDc+lyte8hVCGXjPadbhT4sSZ61U9Y16BeP4eC3aSrs/CA'
         },
         params: []
       });
@@ -308,7 +308,7 @@ export const SendEvmPage: FunctionComponent<{
                       content:
                         tx?.status === '0x1'
                           ? `Transaction successful with tx: ${tx?.transactionHash}`
-                          : `Transaction failed with tx: ${tx?.transactionHash}`,
+                          : `failed to recieve transaction receipt - tx: ${tx?.result?.transactionHash}`,
                       canDelete: true,
                       transition: {
                         duration: 0.25

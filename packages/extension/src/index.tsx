@@ -73,8 +73,19 @@ const ethereum = new Ethereum(manifest.version, 'core', '', new InExtensionMessa
 const tronWeb = new TronWeb(manifest.version, 'core', '0x2b6653dc', new InExtensionMessageRequester());
 
 const bitcoin = new Bitcoin(manifest.version, 'core', 'bitcoinTestnet', new InExtensionMessageRequester());
+
+// Sentry.init({
+//   dsn: 'https://4ce54db1095b48ab8688e701d7cc8301@o1323226.ingest.sentry.io/4504615445725184',
+//   integrations: [new BrowserTracing()],
+
+//   // We recommend adjusting this value in production, or using tracesSampler
+//   // for finer control
+//   tracesSampleRate: 1.0
+// });
+
+// Edited sentry key value, Provide new key value if it using for error monitoring
 Sentry.init({
-  dsn: 'https://4ce54db1095b48ab8688e701d7cc8301@o1323226.ingest.sentry.io/4504615445725184',
+  dsn: '',
   integrations: [new BrowserTracing()],
 
   // We recommend adjusting this value in production, or using tracesSampler

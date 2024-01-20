@@ -7,8 +7,8 @@ import { useEffect, useState } from 'react';
  * @returns
  */
 export const buildCoinGeckoPricesURL = (tokens: any[]): string =>
-  // `https://api.coingecko.com/api/v3/simple/price?ids=${tokens.join('%2C')}&vs_currencies=usd`;
-  `https://price.market.orai.io/simple/price?ids=${tokens.join('%2C')}&vs_currencies=usd`;
+  `https://api.coingecko.com/api/v3/simple/price?ids=${tokens.join('%2C')}&vs_currencies=usd`;
+// `https://price.market.orai.io/simple/price?ids=${tokens.join('%2C')}&vs_currencies=usd`;
 
 /**
  * Prices of each token.
@@ -23,7 +23,7 @@ export type CoinGeckoPrices<T extends string> = {
  */
 export const useCoinGeckoPrices = () => {
   const [data, setData] = useState();
-  const tokens = [...new Set([...cosmosTokens, ...evmTokens].map(t => t.coinGeckoId))];
+  const tokens = [...new Set([...cosmosTokens, ...evmTokens].map((t) => t.coinGeckoId))];
   tokens.sort();
 
   const getCoingeckoPrices = async () => {
