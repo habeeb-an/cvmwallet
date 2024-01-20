@@ -113,7 +113,6 @@ export const AccountView: FunctionComponent = observer(() => {
             )}
             {networkType !== 'cosmos' && networkType !== 'bitcoin' && (
               <span className={styleAccount.addressText}>
-                hehe boi
                 {keyRingStore.keyRingType !== 'ledger' ? (
                   <Address isRaw={true} tooltipAddress={evmAddress}>
                     {accountInfo.walletStatus === WalletStatus.Loaded &&

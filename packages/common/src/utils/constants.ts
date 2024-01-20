@@ -1,4 +1,4 @@
-export const EVMOS_NETWORKS = ['323'];
+export const EVMOS_NETWORKS = ['323', '0x61'];
 export const CVM_NETWORKS = ['323', 'cvm_323-1'];
 export const TRON_ID = '0x2b6653dc';
 export const TRON_BIP39_PATH_PREFIX = "m/44'/195'";

@@ -140,6 +140,8 @@ export class EthereumAccount {
             signOptions,
             this.txEventsWithPreOnFulfill(onTxEvents, (tx) => {
               console.log('Tx on fullfill: ', tx);
+              console.log('Tx-transactionHash on fullfill: ', tx?.result?.transactionHash);
+
               if (tx) {
                 // After succeeding to send token, refresh the balance.
                 const queryEvmBalance = this.queries.evm.queryEvmBalance.getQueryBalance(this.base.evmHexAddress);

@@ -187,6 +187,8 @@ export class AccountSetBase<MsgOpts, Queries> {
   }
 
   getEthereum(): Promise<Ethereum | undefined> {
+    console.log('getEthereum:', this.opts.getEthereum());
+
     return this.opts.getEthereum();
   }
 

@@ -7,12 +7,7 @@ import { CoinPretty, Int } from '@owallet/unit';
 import { CancelToken } from 'axios';
 
 export class ObservableQueryEvmBalanceInner extends ObservableChainQuery<Result> {
-  constructor(
-    kvStore: KVStore,
-    chainId: string,
-    chainGetter: ChainGetter,
-    protected readonly address: string
-  ) {
+  constructor(kvStore: KVStore, chainId: string, chainGetter: ChainGetter, protected readonly address: string) {
     super(kvStore, chainId, chainGetter, '', {
       jsonrpc: '2.0',
       method: 'eth_getBalance',
@@ -25,9 +20,7 @@ export class ObservableQueryEvmBalanceInner extends ObservableChainQuery<Result>
     return this.address.length !== 0;
   }
 
-  protected async fetchResponse(
-    cancelToken: CancelToken
-  ): Promise<QueryResponse<Result>> {
+  protected async fetchResponse(cancelToken: CancelToken): Promise<QueryResponse<Result>> {
     const response = await super.fetchResponse(cancelToken);
 
     const evmResult = response.data;
@@ -52,10 +45,7 @@ export class ObservableQueryEvmBalanceInner extends ObservableChainQuery<Result>
 
     const chainInfo = this.chainGetter.getChain(this._chainId);
 
-    return new CoinPretty(
-      chainInfo.stakeCurrency,
-      new Int(new MyBigInt(this.response.data.result).toString())
-    );
+    return new CoinPretty(chainInfo.stakeCurrency, new Int(new MyBigInt(this.response.data.result).toString()));
   }
 }
 
@@ -66,12 +56,7 @@ export class ObservableQueryEvmBalance extends ObservableChainQueryMap<Result> {
     protected readonly chainGetter: ChainGetter
   ) {
     super(kvStore, chainId, chainGetter, (address: string) => {
-      return new ObservableQueryEvmBalanceInner(
-        this.kvStore,
-        this.chainId,
-        this.chainGetter,
-        address
-      );
+      return new ObservableQueryEvmBalanceInner(this.kvStore, this.chainId, this.chainGetter, address);
     });
   }
 
