@@ -57,7 +57,7 @@ const ChainElement: FunctionComponent<{
                   } network. Please confirm that you have ${
                     COINTYPE_NETWORK[chainInfo.coinType ?? chainInfo.bip44.coinType]
                   } App opened before switch network`,
-                  styleParagraph: {
+                  styleparagraph: {
                     color: '#A6A6B0'
                   },
                   yes: 'Yes',
@@ -121,7 +121,7 @@ const ChainElement: FunctionComponent<{
                       chainName: chainInfo.chainName
                     }
                   ),
-                  styleParagraph: {
+                  styleparagraph: {
                     color: '#A6A6B0'
                   },
                   yes: 'Yes',

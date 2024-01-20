@@ -11,8 +11,8 @@ const styleTitle = {
   fontSize: 14
 };
 
-const styleParagraph = {
-  color: '#A6A6B0',
+const styleparagraph = {
+  color: '#A6A6B0'
 };
 
 export const CreditPage: FunctionComponent = () => {
@@ -29,7 +29,7 @@ export const CreditPage: FunctionComponent = () => {
             });
           }}
           styleTitle={styleTitle}
-          styleParagraph={styleParagraph}
+          styleparagraph={styleparagraph}
         />
         <div style={{ height: 10 }} />
         <PageButton
@@ -42,7 +42,7 @@ export const CreditPage: FunctionComponent = () => {
             });
           }}
           styleTitle={styleTitle}
-          styleParagraph={styleParagraph}
+          styleparagraph={styleparagraph}
         />
         <div style={{ height: 10 }} />
         <PageButton
@@ -55,7 +55,7 @@ export const CreditPage: FunctionComponent = () => {
             });
           }}
           styleTitle={styleTitle}
-          styleParagraph={styleParagraph}
+          styleparagraph={styleparagraph}
         />
       </div>
     </>

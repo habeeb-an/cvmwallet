@@ -280,7 +280,7 @@ export const AddressBookPage: FunctionComponent<{
                       : data.address
                   }
                   subParagraph={data.memo}
-                  styleParagraph={{
+                  styleparagraph={{
                     maxWidth: 220,
                     fontWeight: 500,
                     fontSize: 14,

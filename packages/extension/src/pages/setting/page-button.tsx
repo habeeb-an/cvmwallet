@@ -11,19 +11,11 @@ export const PageButton: FunctionComponent<
     subParagraph?: string;
     icons?: React.ReactElement[];
     styleTitle?: React.CSSProperties;
-    styleParagraph?: React.CSSProperties;
+    styleparagraph?: React.CSSProperties;
     customModal?: any;
   } & React.HTMLAttributes<HTMLDivElement>
 > = (props) => {
-  const {
-    title,
-    paragraph,
-    subParagraph,
-    icons,
-    styleTitle,
-    styleParagraph,
-    customModal
-  } = props;
+  const { title, paragraph, subParagraph, icons, styleTitle, styleparagraph, customModal } = props;
 
   const attributes = { ...props };
   delete attributes.paragraph;
@@ -39,7 +31,7 @@ export const PageButton: FunctionComponent<
     >
       <div className={stylePageButton.innerContainer}>
         <h1 style={styleTitle}>{title}</h1>
-        {paragraph ? <p style={styleParagraph}>{paragraph}</p> : null}
+        {paragraph ? <p style={styleparagraph}>{paragraph}</p> : null}
         {subParagraph ? <p>{subParagraph}</p> : null}
       </div>
       <div style={{ flex: 1 }} />
@@ -65,19 +57,11 @@ export const PageButtonAccount: FunctionComponent<
     subParagraph?: string;
     icons?: React.ReactElement[];
     styleTitle?: React.CSSProperties;
-    styleParagraph?: React.CSSProperties;
+    styleparagraph?: React.CSSProperties;
     ind?: number;
   } & React.HTMLAttributes<HTMLDivElement>
 > = (props) => {
-  const {
-    title,
-    paragraph,
-    subParagraph,
-    icons,
-    styleTitle,
-    styleParagraph,
-    ind
-  } = props;
+  const { title, paragraph, subParagraph, icons, styleTitle, styleparagraph, ind } = props;
 
   const attributes = { ...props };
   delete attributes.paragraph;
@@ -94,7 +78,7 @@ export const PageButtonAccount: FunctionComponent<
     >
       <div className={stylePageButton.innerContainer}>
         <h1 style={styleTitle}>{title}</h1>
-        {paragraph ? <p style={styleParagraph}>{paragraph}</p> : null}
+        {paragraph ? <p style={styleparagraph}>{paragraph}</p> : null}
         {subParagraph ? <p>{subParagraph}</p> : null}
       </div>
       <div style={{ flex: 1 }} />

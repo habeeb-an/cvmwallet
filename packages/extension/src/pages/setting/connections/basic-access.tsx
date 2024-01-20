@@ -6,12 +6,7 @@ import { useHistory } from 'react-router';
 import { observer } from 'mobx-react-lite';
 import { useStore } from '../../../stores';
 import { PageButton } from '../page-button';
-import {
-  ButtonDropdown,
-  DropdownItem,
-  DropdownMenu,
-  DropdownToggle
-} from 'reactstrap';
+import { ButtonDropdown, DropdownItem, DropdownMenu, DropdownToggle } from 'reactstrap';
 
 import styleConnections from './style.module.scss';
 import { useIntl } from 'react-intl';
@@ -25,9 +20,7 @@ export const SettingConnectionsPage: FunctionComponent<{
   const intl = useIntl();
 
   const { chainStore, permissionStore } = useStore();
-  const [selectedChainId, setSelectedChainId] = useState(
-    chainStore.current.chainId
-  );
+  const [selectedChainId, setSelectedChainId] = useState(chainStore.current.chainId);
   const basicAccessInfo = permissionStore.getBasicAccessInfo(selectedChainId);
 
   const [dropdownOpen, setOpen] = useState(false);
@@ -35,10 +28,7 @@ export const SettingConnectionsPage: FunctionComponent<{
 
   const confirm = useConfirm();
 
-  const xIcon = useMemo(
-    () => [<i key="remove" className="fas fa-times" color="#777e90" />],
-    []
-  );
+  const xIcon = useMemo(() => [<i key="remove" className="fas fa-times" color="#777e90" />], []);
 
   return (
     <>
@@ -50,10 +40,7 @@ export const SettingConnectionsPage: FunctionComponent<{
             textAlign: 'right'
           }}
         >
-          <img
-            src={require('../../../public/assets/img/close.svg')}
-            alt="total-balance"
-          />
+          <img src={require('../../../public/assets/img/close.svg')} alt="total-balance" />
         </div>
         <div
           style={{
@@ -72,9 +59,7 @@ export const SettingConnectionsPage: FunctionComponent<{
           toggle={toggle}
           // disabled={amountConfig.fraction === 1}
         >
-          <DropdownToggle caret>
-            {chainStore.getChain(selectedChainId).chainName}
-          </DropdownToggle>
+          <DropdownToggle caret>{chainStore.getChain(selectedChainId).chainName}</DropdownToggle>
           <DropdownMenu>
             {chainStore.chainInfos.map((chainInfo) => {
               return (
@@ -150,7 +135,7 @@ export const SettingConnectionsPage: FunctionComponent<{
                       background: '#EF466F',
                       boxShadow: '0px 2px 4px 1px #EF466F'
                     },
-                    styleParagraph: {
+                    styleparagraph: {
                       color: '#777E90'
                     },
                     styleModalBody: {

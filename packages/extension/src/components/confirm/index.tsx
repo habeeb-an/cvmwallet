@@ -23,7 +23,7 @@ export interface ConfirmOptions {
 
   styleYesBtn?: CSSProperties;
   styleNoBtn?: CSSProperties;
-  styleParagraph?: CSSProperties;
+  styleparagraph?: CSSProperties;
   styleModalBody?: CSSProperties;
 }
 
@@ -94,29 +94,17 @@ export const ConfirmProvider: FunctionComponent = ({ children }) => {
         return { confirm };
       }, [confirm])}
     >
-      <Modal
-        isOpen={isDialogOpen}
-        centered
-        className={style.modalDialog}
-        onClosed={clearCurrentConfirm}
-      >
-        <ModalBody
-          className={style.modal}
-          style={currentConfirm?.styleModalBody}
-        >
+      <Modal isOpen={isDialogOpen} centered className={style.modalDialog} onClosed={clearCurrentConfirm}>
+        <ModalBody className={style.modal} style={currentConfirm?.styleModalBody}>
           <ConfirmDialog
             img={currentConfirm?.img}
             title={currentConfirm?.title}
-            paragraph={
-              currentConfirm?.paragraph
-                ? currentConfirm.paragraph
-                : 'Unexpected. Something is wrong.'
-            }
+            paragraph={currentConfirm?.paragraph ? currentConfirm.paragraph : 'Unexpected. Something is wrong.'}
             yes={currentConfirm?.yes}
             no={currentConfirm?.no}
             styleYesBtn={currentConfirm?.styleYesBtn}
             styleNoBtn={currentConfirm?.styleNoBtn}
-            styleParagraph={currentConfirm?.styleParagraph}
+            styleparagraph={currentConfirm?.styleparagraph}
             onConfirm={currentConfirm?.resolve}
             onReject={currentConfirm?.reject}
           />

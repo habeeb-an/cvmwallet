@@ -99,7 +99,7 @@ export const AdvancedBIP44Option: FunctionComponent<{
           paragraph: intl.formatMessage({
             id: 'register.bip44.confirm.clear'
           }),
-          styleParagraph: {
+          styleparagraph: {
             color: '#A6A6B0'
           },
           yes: 'Yes',

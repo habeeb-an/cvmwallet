@@ -20,9 +20,7 @@ export const ManageTokenPage: FunctionComponent = observer(() => {
 
   const { chainStore, tokensStore } = useStore();
 
-  const isSecretWasm =
-    chainStore.current.features &&
-    chainStore.current.features.includes('secretwasm');
+  const isSecretWasm = chainStore.current.features && chainStore.current.features.includes('secretwasm');
 
   const appCurrencies = chainStore.current.currencies.filter((currency) => {
     if (isSecretWasm) {
@@ -53,9 +51,7 @@ export const ManageTokenPage: FunctionComponent = observer(() => {
                     onClick={async (e) => {
                       e.preventDefault();
 
-                      await navigator.clipboard.writeText(
-                        cosmwasmToken.viewingKey
-                      );
+                      await navigator.clipboard.writeText(cosmwasmToken.viewingKey);
                       // TODO: Show success tooltip.
                       notification.push({
                         placement: 'top-center',
@@ -115,7 +111,7 @@ export const ManageTokenPage: FunctionComponent = observer(() => {
                           border: '1px solid #FF424F',
                           color: '#FF424F'
                         },
-                        styleParagraph: {
+                        styleparagraph: {
                           color: '#525f7f'
                         },
                         styleNoBtn: {
@@ -124,9 +120,7 @@ export const ManageTokenPage: FunctionComponent = observer(() => {
                         }
                       })
                     ) {
-                      await tokensStore
-                        .getTokensOf(chainStore.current.chainId)
-                        .removeToken(cosmwasmToken);
+                      await tokensStore.getTokensOf(chainStore.current.chainId).removeToken(cosmwasmToken);
                     }
                   }}
                 />
@@ -139,16 +133,13 @@ export const ManageTokenPage: FunctionComponent = observer(() => {
                     cursor: 'auto'
                   }}
                   title={cosmwasmToken.coinDenom}
-                  paragraph={Bech32Address.shortenAddress(
-                    cosmwasmToken.contractAddress,
-                    30
-                  )}
+                  paragraph={Bech32Address.shortenAddress(cosmwasmToken.contractAddress, 30)}
                   icons={icons}
                   styleTitle={{
                     fontWeight: '400',
                     fontSize: 14
                   }}
-                  styleParagraph={{
+                  styleparagraph={{
                     color: '#A6A6B0'
                   }}
                 />
@@ -157,9 +148,7 @@ export const ManageTokenPage: FunctionComponent = observer(() => {
           </div>
         </>
       ) : (
-        <div style={{ fontSize: 16, textAlign: 'center' }}>
-          List Tokens Empty
-        </div>
+        <div style={{ fontSize: 16, textAlign: 'center' }}>List Tokens Empty</div>
       )}
     </>
   );
