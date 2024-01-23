@@ -92,7 +92,7 @@ export const SetKeyRingPage: FunctionComponent = observer(() => {
               };
 
           return (
-            <div ref={ref}>
+            <div ref={ref} key={i}>
               <PageButtonAccount
                 ind={i}
                 key={i.toString()}
