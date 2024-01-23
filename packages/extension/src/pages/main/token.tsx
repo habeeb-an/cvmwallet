@@ -241,7 +241,7 @@ export const TokensView: FunctionComponent<{
     <div className={styleToken.tokensContainer}>
       <div className={styleToken.tabsContainer}>
         {['Tokens', 'SoulBound NFTs'].map((nft, i) => (
-          <div className={styleToken.tab}>
+          <div className={styleToken.tab} key={i}>
             <h1
               style={{
                 color: tab == i && '#ab8aff'
