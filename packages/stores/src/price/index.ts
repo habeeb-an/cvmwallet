@@ -126,8 +126,9 @@ export class CoinGeckoPriceStore extends ObservableQuery<CoinGeckoSimplePrice> {
       if (!this.vsCurrencies.includes(vsCurrency)) {
         this.vsCurrencies.push(vsCurrency);
       }
-
-      this.refetch();
+      setTimeout(() => {
+        this.refetch();
+      }, 1);
     }
 
     if (!this.response) {

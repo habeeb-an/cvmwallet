@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useCallback, useMemo, useState } from 'react';
+import React, { FunctionComponent, useCallback, useMemo, useState, useEffect } from 'react';
 
 import styleToken from './token.module.scss';
 import { observer } from 'mobx-react-lite';
@@ -18,14 +18,30 @@ import { useLanguage } from '@owallet/common';
 import { Bech32Address } from '@owallet/cosmos';
 import { NetworkType } from '@owallet/types';
 import { NftPage } from '../nft';
-
+// added for usestate token price
+// import { FiatCurrency } from '@owallet/types';
+// import { PricePretty } from '@owallet/unit';
+import { CoinPretty } from '@owallet/unit';
+import { TokensStore } from '@owallet/stores';
+import { ChainInfoWithEmbed } from '@owallet/background';
+import { PricePretty } from '@owallet/unit';
+// import { QueryError } from '../../../../stores/src/common';
+import { QueryError } from '../../../../stores/src/common';
 const TokenView: FunctionComponent<{
   balance: ObservableQueryBalanceInner;
+  balenceError?: Readonly<QueryError<unknown>> | undefined;
+  minimalDenom: string;
   active?: boolean;
+  name?: string;
+  amount: CoinPretty;
+  tokensStore: TokensStore<ChainInfoWithEmbed>;
+  tokenPrice: PricePretty | undefined;
   onClick: () => void;
-}> = observer(({ onClick, balance, active }) => {
-  const { chainStore, accountStore, tokensStore, priceStore } = useStore();
-  const language = useLanguage();
+}> = observer(({ onClick, balance, minimalDenom, name, amount, balenceError, tokensStore, tokenPrice, active }) => {
+  // priceStore,tokensStore was also in useStore
+  const { chainStore, accountStore, priceStore } = useStore();
+  // const language = useLanguage();
+  // const [error, setError] = useStore();
   const [colors] = useState([
     ['#5e72e4', '#ffffff'],
     ['#11cdef', '#ffffff'],
@@ -33,10 +49,10 @@ const TokenView: FunctionComponent<{
     ['#F6F7FB', '#0e0314']
   ]);
 
-  let name = balance.currency.coinDenom;
-  const minimalDenom = balance.currency.coinMinimalDenom;
+  // let name = name;
+  // const minimalDenom = minimalDenom;
 
-  let amount = balance.balance.trim(true).shrink(true);
+  // let amount = amount;
 
   const [backgroundColor, color] = useMemo(() => {
     const hash = Hash.sha256(Buffer.from(minimalDenom));
@@ -47,7 +63,7 @@ const TokenView: FunctionComponent<{
     }
   }, [colors, minimalDenom]);
 
-  const error = balance.error;
+  let error = balenceError;
 
   // It needs to create the id deterministically according to the currency.
   // But, it is hard to ensure that the id is valid selector because the currency can be suggested from the webpages.
@@ -84,6 +100,7 @@ const TokenView: FunctionComponent<{
   // If the currency is the IBC Currency.
   // Show the amount as slightly different with other currencies.
   // Show the actual coin denom to the top and just show the coin denom without channel info to the bottom.
+
   if ('originCurrency' in amount.currency && amount.currency.originCurrency) {
     amount = amount.setCurrency(amount.currency.originCurrency);
   } else {
@@ -93,9 +110,20 @@ const TokenView: FunctionComponent<{
     }
   }
 
-  const tokenPrice = priceStore.calculatePrice(amount, language.fiatCurrency);
+  // const usd: FiatCurrency = {
+  //   currency: 'USD',
+  //   symbol: '$',
+  //   maxDecimals: 2,
+  //   locale: 'en-US'
+  // };
+  // const [tokenPrice, setTokenPrice] = useState<PricePretty>(new PricePretty(usd, 0));
+
+  // setTimeout(() => {
+  //   setTokenPrice(priceStore.calculatePrice(amount, language.fiatCurrency));
+  // }, 0);
 
   return (
+    // <div>Hi</div>
     <div
       className={styleToken.tokenContainer}
       onClick={(e) => {
@@ -214,6 +242,9 @@ export const TokensView: FunctionComponent<{
 
   // const accountInfo = accountStore.getAccount(chainStore.current.chainId);
   const [tab, setTab] = useState(0);
+  const { tokensStore, priceStore } = useStore();
+  const language = useLanguage();
+
   const displayTokens = tokens
     .filter((v, i, obj) => {
       return (
@@ -300,10 +331,21 @@ export const TokensView: FunctionComponent<{
                 token?.currency?.coinGeckoId?.includes(search.toLowerCase())
             )
             .map((token, i) => {
+              const amount = token.balance.trim(true).shrink(true);
+              const tokenPrice = priceStore.calculatePrice(amount, language.fiatCurrency);
+              // const tokenPrice = 11;
+
               return (
+                // <div key={i}>2024</div>
                 <TokenView
                   key={i.toString()}
+                  tokenPrice={tokenPrice}
+                  tokensStore={tokensStore}
                   balance={token}
+                  balenceError={token.error}
+                  name={token.currency.coinDenom}
+                  amount={amount}
+                  minimalDenom={token.currency.coinMinimalDenom}
                   active={`?defaultDenom=${token.currency.coinMinimalDenom}` == coinMinimalDenom}
                   onClick={() => {
                     if (handleClickToken) {
