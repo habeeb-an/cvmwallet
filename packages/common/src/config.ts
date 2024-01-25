@@ -98,61 +98,48 @@ export const CoinGeckoGetPrice = '/simple/price';
 
 // default networks
 export const EmbedChainInfos: AppChainInfo[] = [
-  // {
-  //   rest: 'https://bsc-dataseed1.ninicoin.io',
-  //   chainId: '0x38',
-  //   chainName: 'BNB Chain',
-  //   bip44: {
-  //     coinType: 60
-  //   },
-  //   coinType: 60,
-  //   stakeCurrency: {
-  //     coinDenom: 'BNB',
-  //     coinMinimalDenom: 'bnb',
-  //     coinDecimals: 18,
-  //     coinGeckoId: 'binancecoin',
-  //     coinImageUrl: 'https://s2.coinmarketcap.com/static/img/coins/64x64/1839.png',
-  //     gasPriceStep: {
-  //       low: 10000000000,
-  //       average: 25000000000,
-  //       high: 40000000000
-  //     }
-  //   },
-  //   bech32Config: Bech32Address.defaultBech32Config('evmos'),
-  //   networkType: 'evm',
-  //   currencies: [
-  //     {
-  //       coinDenom: 'BNB',
-  //       coinMinimalDenom: 'bnb',
-  //       coinDecimals: 18,
-  //       coinGeckoId: 'binancecoin',
-  //       coinImageUrl: 'https://s2.coinmarketcap.com/static/img/coins/64x64/1839.png'
-  //     },
-  //     {
-  //       coinDenom: 'AIRI',
-  //       coinMinimalDenom: 'erc20:0x7e2a35c746f2f7c240b664f1da4dd100141ae71f:aiRight Token',
-  //       coinDecimals: 18,
-  //       coinGeckoId: 'airight',
-  //       coinImageUrl: 'https://s2.coinmarketcap.com/static/img/coins/64x64/11563.png'
-  //     },
-  //       coinDenom: 'USDT',
-  //       coinMinimalDenom: 'erc20:0x55d398326f99059fF775485246999027B3197955:Tether',
-  //       coinDecimals: 18,
-  //       coinGeckoId: 'tether',
-  //       coinImageUrl: 'https://s2.coinmarketcap.com/static/img/coins/64x64/825.png'
-  //     }
-  //   ],
-  //   get feeCurrencies() {
-  //     return [this.stakeCurrency];
-  //   },
+  {
+    rest: 'https://bsc-dataseed1.ninicoin.io',
+    chainId: '0x38',
+    chainName: 'BNB Chain',
+    bip44: {
+      coinType: 60
+    },
+    coinType: 60,
+    stakeCurrency: {
+      coinDenom: 'BNB',
+      coinMinimalDenom: 'bnb',
+      coinDecimals: 18,
+      coinGeckoId: 'binancecoin',
+      coinImageUrl: 'https://s2.coinmarketcap.com/static/img/coins/64x64/1839.png',
+      gasPriceStep: {
+        low: 10000000000,
+        average: 25000000000,
+        high: 40000000000
+      }
+    },
+    bech32Config: Bech32Address.defaultBech32Config('evmos'),
+    networkType: 'evm',
+    currencies: [
+      {
+        coinDenom: 'USDT',
+        coinMinimalDenom: 'erc20:0x55d398326f99059fF775485246999027B3197955:Tether',
+        coinDecimals: 18,
+        coinGeckoId: 'tether',
+        coinImageUrl: 'https://s2.coinmarketcap.com/static/img/coins/64x64/825.png'
+      }
+    ],
+    get feeCurrencies() {
+      return [this.stakeCurrency];
+    },
 
-  //   features: ['ibc-go', 'stargate', 'isEvm'],
-  //   txExplorer: {
-  //     name: 'Bsc Scan',
-  //     txUrl: 'https://bscscan.com/tx/${txHash}',
-  //     accountUrl: 'https://bscscan.com/address/{address}'
-  //   }
-  // },
+    features: ['ibc-go', 'stargate', 'isEvm'],
+    txExplorer: {
+      name: 'Bsc Scan',
+      txUrl: 'https://bscscan.com/tx/${txHash}',
+      accountUrl: 'https://bscscan.com/address/{address}'
+    }
+  },
   //cosvm chain
 
   // {
@@ -555,9 +542,9 @@ export const EmbedChainInfos: AppChainInfo[] = [
   //     coinImageUrl: 'https://i.ibb.co/X4gbpMG/download-removebg-preview-1.png'
   //   },
   //   coinType: 119,
-  //   features: ['stargate'],
-  //   beta: true
+  //   features: ['stargate']
   // },
+
   // {
   //   rpc: 'https://rpc-juno.keplr.app',
   //   rest: 'https://lcd-juno.keplr.app',
@@ -714,13 +701,6 @@ export const EmbedChainInfos: AppChainInfo[] = [
         coinDecimals: 18,
         coinGeckoId: 'binancecoin',
         coinImageUrl: 'https://s2.coinmarketcap.com/static/img/coins/64x64/1839.png'
-      },
-      {
-        coinDenom: 'AIRI',
-        coinMinimalDenom: 'erc20:0x7e2a35c746f2f7c240b664f1da4dd100141ae71f:aiRight Token',
-        coinDecimals: 18,
-        coinGeckoId: 'airight',
-        coinImageUrl: 'https://s2.coinmarketcap.com/static/img/coins/64x64/11563.png'
       }
     ],
     get feeCurrencies() {
@@ -792,14 +772,6 @@ export const EmbedChainInfos: AppChainInfo[] = [
         high: 80000000000
       }
     },
-    // bech32Config: {
-    //   bech32PrefixAccAddr: 'evmos',
-    //   bech32PrefixAccPub: 'evmospub',
-    //   bech32PrefixValAddr: 'evmosvaloper',
-    //   bech32PrefixValPub: 'evmosvaloperpub',
-    //   bech32PrefixConsAddr: 'evmosvalcons',
-    //   bech32PrefixConsPub: 'evmosvalconspub'
-    // },
     bech32Config: Bech32Address.defaultBech32Config('cvm'),
     networkType: 'evm',
     currencies: [
