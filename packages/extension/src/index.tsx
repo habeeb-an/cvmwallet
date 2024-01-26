@@ -158,7 +158,7 @@ const StateRenderer: FunctionComponent = observer(() => {
       <div style={{ height: '100%' }}>
         <Banner
           icon={require('./public/assets/CVMwallet_1_144.png')}
-          logo={require('./public/assets/cvm wallet.png')}
+          logo={require('./public/assets/cvm_wallet.png')}
           subtitle="Wallet for CosVM Network"
         />
       </div>
@@ -168,7 +168,7 @@ const StateRenderer: FunctionComponent = observer(() => {
       <div style={{ height: '100%' }}>
         <Banner
           icon={require('./public/assets/CVMwallet_1_144.png')}
-          logo={require('./public/assets/cvm wallet.png')}
+          logo={require('./public/assets/cvm_wallet.png')}
           subtitle="Wallet for CosVM Network"
         />
       </div>

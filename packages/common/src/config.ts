@@ -98,48 +98,49 @@ export const CoinGeckoGetPrice = '/simple/price';
 
 // default networks
 export const EmbedChainInfos: AppChainInfo[] = [
-  {
-    rest: 'https://bsc-dataseed1.ninicoin.io',
-    chainId: '0x38',
-    chainName: 'BNB Chain',
-    bip44: {
-      coinType: 60
-    },
-    coinType: 60,
-    stakeCurrency: {
-      coinDenom: 'BNB',
-      coinMinimalDenom: 'bnb',
-      coinDecimals: 18,
-      coinGeckoId: 'binancecoin',
-      coinImageUrl: 'https://s2.coinmarketcap.com/static/img/coins/64x64/1839.png',
-      gasPriceStep: {
-        low: 10000000000,
-        average: 25000000000,
-        high: 40000000000
-      }
-    },
-    bech32Config: Bech32Address.defaultBech32Config('evmos'),
-    networkType: 'evm',
-    currencies: [
-      {
-        coinDenom: 'USDT',
-        coinMinimalDenom: 'erc20:0x55d398326f99059fF775485246999027B3197955:Tether',
-        coinDecimals: 18,
-        coinGeckoId: 'tether',
-        coinImageUrl: 'https://s2.coinmarketcap.com/static/img/coins/64x64/825.png'
-      }
-    ],
-    get feeCurrencies() {
-      return [this.stakeCurrency];
-    },
+  // {
+  //   rest: 'https://bsc-dataseed1.ninicoin.io',
+  //   chainId: '0x38',
+  //   chainName: 'BNB Chain',
+  //   bip44: {
+  //     coinType: 60
+  //   },
+  //   coinType: 60,
+  //   stakeCurrency: {
+  //     coinDenom: 'BNB',
+  //     coinMinimalDenom: 'bnb',
+  //     coinDecimals: 18,
+  //     coinGeckoId: 'binancecoin',
+  //     coinImageUrl: 'https://s2.coinmarketcap.com/static/img/coins/64x64/1839.png',
+  //     gasPriceStep: {
+  //       low: 10000000000,
+  //       average: 25000000000,
+  //       high: 40000000000
+  //     }
+  //   },
+  //   bech32Config: Bech32Address.defaultBech32Config('evmos'),
+  //   networkType: 'evm',
+  //   currencies: [
+  //     {
+  //       coinDenom: 'USDT',
+  //       coinMinimalDenom: 'erc20:0x55d398326f99059fF775485246999027B3197955:Tether',
+  //       coinDecimals: 18,
+  //       coinGeckoId: 'tether',
+  //       coinImageUrl: 'https://s2.coinmarketcap.com/static/img/coins/64x64/825.png'
+  //     }
+  //   ],
+  //   get feeCurrencies() {
+  //     return [this.stakeCurrency];
+  //   },
 
-    features: ['ibc-go', 'stargate', 'isEvm'],
-    txExplorer: {
-      name: 'Bsc Scan',
-      txUrl: 'https://bscscan.com/tx/${txHash}',
-      accountUrl: 'https://bscscan.com/address/{address}'
-    }
-  },
+  //   features: ['ibc-go', 'stargate', 'isEvm'],
+  //   txExplorer: {
+  //     name: 'Bsc Scan',
+  //     txUrl: 'https://bscscan.com/tx/${txHash}',
+  //     accountUrl: 'https://bscscan.com/address/{address}'
+  //   }
+  // },
+
   //cosvm chain
 
   // {
@@ -224,7 +225,7 @@ export const EmbedChainInfos: AppChainInfo[] = [
     rest: 'https://api.cosvm.net/',
     chainId: 'cvm_323-1',
     coinType: 60,
-    chainName: 'CosVM',
+    chainName: 'CosVM Cosmos Chain',
     networkType: 'cosmos',
     stakeCurrency: {
       coinDenom: 'CVM',
@@ -587,47 +588,47 @@ export const EmbedChainInfos: AppChainInfo[] = [
   //   }
   // },
 
-  {
-    rest: 'https://api.blockcypher.com/v1/btc/test3',
-    chainId: 'bitcoinTestnet',
-    chainName: 'Bitcoin-Segwit Testnet',
-    bip44: {
-      coinType: 1
-    },
-    coinType: 1,
-    stakeCurrency: {
-      coinDenom: 'BTC',
-      coinMinimalDenom: 'btc',
-      coinDecimals: 8,
-      coinGeckoId: 'bitcoin',
-      coinImageUrl: 'https://assets.coingecko.com/coins/images/1/small/bitcoin.png',
-      gasPriceStep: {
-        low: 1,
-        average: 15,
-        high: 22
-      }
-    },
-    bech32Config: Bech32Address.defaultBech32Config('tb'),
-    networkType: 'bitcoin',
-    currencies: [
-      {
-        coinDenom: 'BTC',
-        coinMinimalDenom: 'btc',
-        coinDecimals: 8,
-        coinGeckoId: 'bitcoin',
-        coinImageUrl: 'https://assets.coingecko.com/coins/images/1/small/bitcoin.png'
-      }
-    ],
-    get feeCurrencies() {
-      return this.currencies;
-    },
-    features: ['isBtc'],
-    txExplorer: {
-      name: 'Blockcypher',
-      txUrl: 'https://live.blockcypher.com/btc-testnet/tx/{txHash}',
-      accountUrl: 'https://live.blockcypher.com/btc-testnet/address/{address}'
-    }
-  },
+  // {
+  //   rest: 'https://api.blockcypher.com/v1/btc/test3',
+  //   chainId: 'bitcoinTestnet',
+  //   chainName: 'Bitcoin-Segwit Testnet',
+  //   bip44: {
+  //     coinType: 1
+  //   },
+  //   coinType: 1,
+  //   stakeCurrency: {
+  //     coinDenom: 'BTC',
+  //     coinMinimalDenom: 'btc',
+  //     coinDecimals: 8,
+  //     coinGeckoId: 'bitcoin',
+  //     coinImageUrl: 'https://assets.coingecko.com/coins/images/1/small/bitcoin.png',
+  //     gasPriceStep: {
+  //       low: 1,
+  //       average: 15,
+  //       high: 22
+  //     }
+  //   },
+  //   bech32Config: Bech32Address.defaultBech32Config('tb'),
+  //   networkType: 'bitcoin',
+  //   currencies: [
+  //     {
+  //       coinDenom: 'BTC',
+  //       coinMinimalDenom: 'btc',
+  //       coinDecimals: 8,
+  //       coinGeckoId: 'bitcoin',
+  //       coinImageUrl: 'https://assets.coingecko.com/coins/images/1/small/bitcoin.png'
+  //     }
+  //   ],
+  //   get feeCurrencies() {
+  //     return this.currencies;
+  //   },
+  //   features: ['isBtc'],
+  //   txExplorer: {
+  //     name: 'Blockcypher',
+  //     txUrl: 'https://live.blockcypher.com/btc-testnet/tx/{txHash}',
+  //     accountUrl: 'https://live.blockcypher.com/btc-testnet/address/{address}'
+  //   }
+  // },
   // {
   //   rest: 'https://api.blockcypher.com/v1/btc/main',
   //   chainId: 'bitcoin',
@@ -671,48 +672,48 @@ export const EmbedChainInfos: AppChainInfo[] = [
   //   }
   // },
 
-  {
-    rest: 'https://data-seed-prebsc-1-s1.binance.org:8545/',
-    evmRpc: 'https://data-seed-prebsc-1-s1.binance.org:8545/',
-    chainId: '0x61',
-    chainName: 'BNB Chain Testnet',
-    bip44: {
-      coinType: 60
-    },
-    coinType: 60,
-    stakeCurrency: {
-      coinDenom: 'BNB',
-      coinMinimalDenom: 'bnb',
-      coinDecimals: 18,
-      coinGeckoId: 'binancecoin',
-      coinImageUrl: 'https://s2.coinmarketcap.com/static/img/coins/64x64/1839.png',
-      gasPriceStep: {
-        low: 10000000000,
-        average: 25000000000,
-        high: 40000000000
-      }
-    },
-    bech32Config: Bech32Address.defaultBech32Config('evmos'),
-    networkType: 'evm',
-    currencies: [
-      {
-        coinDenom: 'BNB',
-        coinMinimalDenom: 'bnb',
-        coinDecimals: 18,
-        coinGeckoId: 'binancecoin',
-        coinImageUrl: 'https://s2.coinmarketcap.com/static/img/coins/64x64/1839.png'
-      }
-    ],
-    get feeCurrencies() {
-      return [this.stakeCurrency];
-    },
-    features: ['isEvm'],
-    txExplorer: {
-      name: 'Bsc Scan Testnet',
-      txUrl: 'https://testnet.bscscan.com/tx/{txHash}',
-      accountUrl: 'https://testnet.bscscan.com/address/{address}'
-    }
-  },
+  // {
+  //   rest: 'https://data-seed-prebsc-1-s1.binance.org:8545/',
+  //   evmRpc: 'https://data-seed-prebsc-1-s1.binance.org:8545/',
+  //   chainId: '0x61',
+  //   chainName: 'BNB Chain Testnet',
+  //   bip44: {
+  //     coinType: 60
+  //   },
+  //   coinType: 60,
+  //   stakeCurrency: {
+  //     coinDenom: 'BNB',
+  //     coinMinimalDenom: 'bnb',
+  //     coinDecimals: 18,
+  //     coinGeckoId: 'binancecoin',
+  //     coinImageUrl: 'https://s2.coinmarketcap.com/static/img/coins/64x64/1839.png',
+  //     gasPriceStep: {
+  //       low: 10000000000,
+  //       average: 25000000000,
+  //       high: 40000000000
+  //     }
+  //   },
+  //   bech32Config: Bech32Address.defaultBech32Config('evmos'),
+  //   networkType: 'evm',
+  //   currencies: [
+  //     {
+  //       coinDenom: 'BNB',
+  //       coinMinimalDenom: 'bnb',
+  //       coinDecimals: 18,
+  //       coinGeckoId: 'binancecoin',
+  //       coinImageUrl: 'https://s2.coinmarketcap.com/static/img/coins/64x64/1839.png'
+  //     }
+  //   ],
+  //   get feeCurrencies() {
+  //     return [this.stakeCurrency];
+  //   },
+  //   features: ['isEvm'],
+  //   txExplorer: {
+  //     name: 'Bsc Scan Testnet',
+  //     txUrl: 'https://testnet.bscscan.com/tx/{txHash}',
+  //     accountUrl: 'https://testnet.bscscan.com/address/{address}'
+  //   }
+  // },
   // {
   //   rest: 'https://rpc.ankr.com/eth',
   //   chainId: '0x01',
@@ -755,7 +756,7 @@ export const EmbedChainInfos: AppChainInfo[] = [
     rest: 'https://rpc.cosvm.net/',
     evmRpc: 'https://rpc.cosvm.net/',
     chainId: '323',
-    chainName: 'CosVM',
+    chainName: 'CosVM EVM Chain',
     bip44: {
       coinType: 60
     },

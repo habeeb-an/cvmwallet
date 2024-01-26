@@ -103,7 +103,7 @@ export const ConfirmLedgerPage: FunctionComponent = observer(() => {
           <img className={style.icon} src={require('../../../public/assets/CVMwallet_1_144.png')} alt="logo" />
         </div>
         <div className={style.logoInnerContainer}>
-          <img className={style.logo} src={require('../../../public/assets/cvm wallet.png')} alt="logo" />
+          <img className={style.logo} src={require('../../../public/assets/cvm_wallet.png')} alt="logo" />
           <div className={style.paragraph}>Wallet for CosVM Network</div>
         </div>
       </div>

@@ -167,7 +167,7 @@ export const ChainList: FunctionComponent = observer(() => {
             margin: '0 8px'
           }}
         >
-          EVM
+          Select
         </div>
         <hr
           className="my-3"
@@ -177,11 +177,11 @@ export const ChainList: FunctionComponent = observer(() => {
           }}
         />
       </div>
-      {mainChainList.map(
-        (chainInfo) =>
-          chainInfo.networkType === 'evm' && <ChainElement key={chainInfo.chainId} chainInfo={chainInfo.raw} />
-      )}
-      <div style={{ display: 'flex', alignItems: 'center' }}>
+      {mainChainList.map((chainInfo) => (
+        // chainInfo.networkType === 'evm' && <ChainElement key={chainInfo.chainId} chainInfo={chainInfo.raw} />
+        <ChainElement key={chainInfo.chainId} chainInfo={chainInfo.raw} />
+      ))}
+      {/* <div style={{ display: 'flex', alignItems: 'center' }}>
         <hr
           className="my-3"
           style={{
@@ -210,7 +210,7 @@ export const ChainList: FunctionComponent = observer(() => {
         (chainInfo) =>
           chainInfo.networkType !== 'evm' &&
           !chainInfo.beta && <ChainElement key={chainInfo.chainId} chainInfo={chainInfo.raw} />
-      )}
+      )} */}
       {/* <div style={{ display: 'flex', alignItems: 'center' }}>
         <hr
           className="my-3"
