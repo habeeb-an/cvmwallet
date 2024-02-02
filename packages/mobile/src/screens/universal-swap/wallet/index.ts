@@ -13,13 +13,13 @@ import {
 } from '@oraichain/oraidex-common';
 import { OfflineSigner } from '@cosmjs/proto-signing';
 import { SigningCosmWasmClient } from '@cosmjs/cosmwasm-stargate';
-import { OWallet, Ethereum, TronWeb } from '@owallet/types';
+import { CVMWallet, Ethereum, TronWeb } from '@owallet/types';
 import { SigningStargateClient, SigningStargateClientOptions } from '@cosmjs/stargate';
 import { ethers } from 'ethers';
 
 export class SwapCosmosWallet extends CosmosWallet {
   private client: SigningCosmWasmClient;
-  private owallet: OWallet;
+  private owallet: CVMWallet;
   constructor(client: SigningCosmWasmClient) {
     super();
     this.client = client;
@@ -38,7 +38,7 @@ export class SwapCosmosWallet extends CosmosWallet {
 
   async createCosmosSigner(chainId: string): Promise<OfflineSigner> {
     if (!this.owallet) {
-      throw new Error('You have to have OWallet first if you do not use a mnemonic to sign transactions');
+      throw new Error('You have to have CVMWallet first if you do not use a mnemonic to sign transactions');
     }
     return await this.owallet.getOfflineSignerAuto(chainId);
   }

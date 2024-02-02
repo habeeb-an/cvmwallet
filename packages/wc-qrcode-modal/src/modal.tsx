@@ -59,7 +59,7 @@ export const Modal: FunctionComponent<{
       if (checkAndroid) {
         // Save the mobile link.
         saveMobileLinkInfo({
-          name: 'OWallet',
+          name: 'CVMWallet',
           href: 'intent://wcV1#Intent;package=com.io.owallet;scheme=owallet;end;'
         });
 
@@ -67,7 +67,7 @@ export const Modal: FunctionComponent<{
       } else {
         // Save the mobile link.
         saveMobileLinkInfo({
-          name: 'OWallet',
+          name: 'CVMWallet',
           href: 'owallet://wcV1'
         });
 

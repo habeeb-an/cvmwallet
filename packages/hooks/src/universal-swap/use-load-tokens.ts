@@ -1,7 +1,7 @@
 import { fromBinary, toBinary } from '@cosmjs/cosmwasm-stargate';
 import { StargateClient } from '@cosmjs/stargate';
 import { MulticallQueryClient } from '@oraichain/common-contracts-sdk';
-import { OraiswapTokenTypes } from '@oraichain/oraidex-contracts-sdk';
+import { SwapTokenTypes } from '@oraichain/oraidex-contracts-sdk';
 import { JsonRpcProvider } from '@ethersproject/providers';
 import { fromBech32, toBech32 } from '@cosmjs/encoding';
 import { CustomChainInfo, EVM_BALANCE_RETRY_COUNT, ERC20__factory, evmChains } from '@oraichain/oraidex-common';
@@ -9,7 +9,7 @@ import flatten from 'lodash/flatten';
 import { ContractCallResults, Multicall } from '@oraichain/ethereum-multicall';
 import { evmTokens, isEvmNetworkNativeSwapSupported, getEvmAddress, tronToEthAddress } from '@owallet/common';
 import { chainInfos, network } from '@oraichain/oraidex-common';
-import { cosmosTokens, oraichainTokens, tokenMap } from '@oraichain/oraidex-common';
+import { cosmosTokens, walletChainTokens, tokenMap } from '@oraichain/oraidex-common';
 import { CWStargate } from '@owallet/common';
 import { AccountWithAll } from '@owallet/stores';
 
@@ -22,7 +22,7 @@ export type CWStargateType = {
 export type LoadTokenParams = {
   refresh?: boolean;
   metamaskAddress?: string;
-  oraiAddress?: string;
+  oAddress?: string;
   tronAddress?: string;
   kwtAddress?: string;
   cwStargate?: CWStargateType;
@@ -57,16 +57,16 @@ async function loadNativeBalance(
 const timer = {};
 async function loadTokens(
   universalSwapStore: any,
-  { oraiAddress, metamaskAddress, tronAddress, kwtAddress, cwStargate }: LoadTokenParams
+  { oAddress, metamaskAddress, tronAddress, kwtAddress, cwStargate }: LoadTokenParams
 ) {
-  if (oraiAddress) {
-    clearTimeout(timer[oraiAddress]);
+  if (oAddress) {
+    clearTimeout(timer[oAddress]);
     // case get address when keplr ledger not support kawaii
-    timer[oraiAddress] = setTimeout(async () => {
+    timer[oAddress] = setTimeout(async () => {
       await Promise.all([
-        loadTokensCosmos(universalSwapStore, kwtAddress, oraiAddress),
-        loadCw20Balance(universalSwapStore, oraiAddress, cwStargate)
-        // different cointype but also require keplr connected by checking oraiAddress
+        loadTokensCosmos(universalSwapStore, kwtAddress, oAddress),
+        loadCw20Balance(universalSwapStore, oAddress, cwStargate)
+        // different cointype but also require keplr connected by checking oAddress
         // loadKawaiiSubnetAmount(universalSwapStore, kwtAddress)
       ]);
     }, 1000);
@@ -106,13 +106,13 @@ export const genAddressCosmos = (info, address60, address118) => {
   return { cosmosAddress };
 };
 
-async function loadTokensCosmos(updateAmounts: any, kwtAddress: string, oraiAddress: string) {
-  if (!kwtAddress || !oraiAddress) return;
+async function loadTokensCosmos(updateAmounts: any, kwtAddress: string, oAddress: string) {
+  if (!kwtAddress || !oAddress) return;
   const cosmosInfos = chainInfos.filter(
     (chainInfo) => chainInfo.networkType === 'cosmos' || chainInfo.bip44.coinType === 118
   );
   for (const chainInfo of cosmosInfos) {
-    const { cosmosAddress } = genAddressCosmos(chainInfo, kwtAddress, oraiAddress);
+    const { cosmosAddress } = genAddressCosmos(chainInfo, kwtAddress, oAddress);
     loadNativeBalance(updateAmounts, cosmosAddress, chainInfo);
   }
 }
@@ -120,7 +120,7 @@ async function loadTokensCosmos(updateAmounts: any, kwtAddress: string, oraiAddr
 async function loadCw20Balance(universalSwapStore: any, address: string, cwStargate: CWStargateType) {
   if (!address) return;
   // get all cw20 token contract
-  const cw20Tokens = oraichainTokens.filter((t) => t.contractAddress);
+  const cw20Tokens = walletChainTokens.filter((t) => t.contractAddress);
 
   const data = toBinary({
     balance: { address }
@@ -144,7 +144,7 @@ async function loadCw20Balance(universalSwapStore: any, address: string, cwStarg
         if (!res.return_data[ind].success) {
           return [t.denom, 0];
         }
-        const balanceRes = fromBinary(res.return_data[ind].data) as OraiswapTokenTypes.BalanceResponse;
+        const balanceRes = fromBinary(res.return_data[ind].data) as SwapTokenTypes.BalanceResponse;
         const amount = balanceRes.balance;
         return [t.denom, amount];
       })

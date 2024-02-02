@@ -112,23 +112,27 @@ export const AccountView: FunctionComponent = observer(() => {
               </span>
             )}
             {networkType !== 'cosmos' && networkType !== 'bitcoin' && (
-              <span className={styleAccount.addressText}>
-                {keyRingStore.keyRingType !== 'ledger' ? (
-                  <Address isRaw={true} tooltipAddress={evmAddress}>
-                    {accountInfo.walletStatus === WalletStatus.Loaded &&
-                      accountInfo.evmHexAddress &&
-                      Add.shortAddress(evmAddress)}
-                  </Address>
-                ) : (
-                  <Address isRaw={true} tooltipAddress={ledgerAddress}>
-                    {Add.shortAddress(ledgerAddress)}
-                  </Address>
-                )}
-              </span>
+              <div style={{ display: 'flex', alignItems: 'center' }}>
+                <span className={styleAccount.addressText}>
+                  {keyRingStore.keyRingType !== 'ledger' ? (
+                    <Address isRaw={true} tooltipAddress={evmAddress}>
+                      {accountInfo.walletStatus === WalletStatus.Loaded &&
+                        accountInfo.evmHexAddress &&
+                        Add.shortAddress(evmAddress)}
+                    </Address>
+                  ) : (
+                    <Address isRaw={true} tooltipAddress={ledgerAddress}>
+                      {Add.shortAddress(ledgerAddress)}
+                    </Address>
+                  )}
+                </span>
+
+                <div style={{ width: 6 }} />
+                <img src={require('../../public/assets/img/filled.svg')} alt="filled" width={16} height={16} />
+              </div>
             )}
-            <div style={{ width: 6 }} />
-            <img src={require('../../public/assets/img/filled.svg')} alt="filled" width={16} height={16} />
           </div>
+
           {checkTronNetwork && !accountInfo.isNanoLedger && tronAddress && (
             <div
               className={styleAccount.address}

@@ -1,13 +1,13 @@
 import { MulticallQueryClient } from '@oraichain/common-contracts-sdk';
 import { fromBinary, toBinary } from '@cosmjs/cosmwasm-stargate';
 import { TokenItemType, TokenInfo, toTokenInfo, network } from '@oraichain/oraidex-common';
-import { OraiswapTokenQueryClient, OraiswapTokenTypes } from '@oraichain/oraidex-contracts-sdk';
+import { SwapTokenQueryClient, SwapTokenTypes } from '@oraichain/oraidex-contracts-sdk';
 import { swapEvmRoutes } from '../config/constants';
 
 async function fetchTokenInfo(token: TokenItemType, client): Promise<TokenInfo> {
-  let data: OraiswapTokenTypes.TokenInfoResponse;
+  let data: SwapTokenTypes.TokenInfoResponse;
   if (token.contractAddress) {
-    const tokenContract = new OraiswapTokenQueryClient(client, token.contractAddress);
+    const tokenContract = new SwapTokenQueryClient(client, token.contractAddress);
     data = await tokenContract.tokenInfo();
   }
   return toTokenInfo(token, data);
@@ -20,7 +20,7 @@ async function fetchTokenInfos(tokens: TokenItemType[], client): Promise<TokenIn
     address: t.contractAddress,
     data: toBinary({
       token_info: {}
-    } as OraiswapTokenTypes.QueryMsg)
+    } as SwapTokenTypes.QueryMsg)
   }));
   const multicall = new MulticallQueryClient(client, network.multicall);
   let tokenInfos = tokens.map((t) => toTokenInfo(t));
@@ -97,7 +97,7 @@ export enum Type {
   'WITHDRAW_LIQUIDITY_MINING' = 'Withdraw Liquidity Mining Rewards',
   'UNBOND_LIQUIDITY' = 'Unbond Liquidity Tokens',
   'CONVERT_TOKEN' = 'Convert IBC or CW20 Tokens',
-  'CLAIM_ORAIX' = 'Claim ORAIX tokens',
+  // 'CLAIM_ORAIX' = 'Claim ORAIX tokens',
   'CONVERT_TOKEN_REVERSE' = 'Convert reverse IBC or CW20 Tokens'
 }
 export type Uint128 = string;

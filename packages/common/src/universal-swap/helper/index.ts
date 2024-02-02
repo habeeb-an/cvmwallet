@@ -2,13 +2,13 @@ import Long from 'long';
 import { TokenItemType, network } from '@oraichain/oraidex-common';
 import {
   flattenTokens,
-  oraichainTokens,
+  walletChainTokens,
   CoinGeckoId,
   NetworkChainId,
   IBC_WASM_CONTRACT
 } from '@oraichain/oraidex-common';
 import { HIGH_GAS_PRICE, MULTIPLIER } from '../config/constants';
-import { OraiswapOracleQueryClient } from '@oraichain/oraidex-contracts-sdk';
+import { SwapOracleQueryClient } from '@oraichain/oraidex-contracts-sdk';
 import { CwIcs20LatestQueryClient, SigningCosmWasmClient } from '@oraichain/common-contracts-sdk';
 import { Ratio } from '@oraichain/common-contracts-sdk/build/CwIcs20Latest.types';
 import { getBase58Address } from '../../utils';
@@ -30,8 +30,8 @@ export const calculateTimeoutTimestamp = (timeout: number): string => {
 
 export function isEvmNetworkNativeSwapSupported(chainId: NetworkChainId) {
   switch (chainId) {
-    case '0x01':
-      return true;
+    // case '0x01':
+    //   return true;
     default:
       return false;
   }
@@ -63,11 +63,11 @@ export const getTokenOnCvmchain = (coingeckoId: CoinGeckoId) => {
   // if (coingeckoId === 'kawaii-islands' || coingeckoId === 'milky-token') {
   //   throw new Error('KWT and MILKY not supported in this function');
   // }
-  return oraichainTokens.find((token) => token.coinGeckoId === coingeckoId);
+  return walletChainTokens.find((token) => token.coinGeckoId === coingeckoId);
 };
 
 export async function fetchTaxRate(client: SigningCosmWasmClient): Promise<TaxRateResponse> {
-  const oracleContract = new OraiswapOracleQueryClient(client, network.oracle);
+  const oracleContract = new SwapOracleQueryClient(client, network.oracle);
   try {
     const data = await oracleContract.treasury({ tax_rate: {} });
     return data as TaxRateResponse;

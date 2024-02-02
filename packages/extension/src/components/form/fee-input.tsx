@@ -80,7 +80,8 @@ export const FeeInput: FunctionComponent<GasInputProps> = observer(
                 textTransform: 'uppercase'
               }}
             >
-              {denom?.feeCurrency?.coinDenom ?? denom ?? 'ORAI'}
+              {/* {denom?.feeCurrency?.coinDenom ?? denom ?? 'ORAI'} */}
+              {denom?.feeCurrency?.coinDenom ?? denom ?? 'CVM'}
             </span>
           }
         />

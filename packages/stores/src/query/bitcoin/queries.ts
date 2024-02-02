@@ -3,7 +3,7 @@ import { QueriesSetBase } from '../queries';
 import { ChainGetter } from '../../common';
 import { KVStore } from '@owallet/common';
 import { DeepReadonly } from 'utility-types';
-import { OWallet } from '@owallet/types';
+import { CVMWallet } from '@owallet/types';
 import { ObservableQueryBitcoinBalanceRegistry } from './bitcoin-balance';
 import { ObservableQueryBitcoinBalance } from './bitcoin-query';
 
@@ -21,7 +21,7 @@ export class QueriesWithCosmosAndSecretAndCosmwasmAndEvmAndBitcoin
     kvStore: KVStore,
     chainId: string,
     chainGetter: ChainGetter,
-    apiGetter: () => Promise<OWallet | undefined>
+    apiGetter: () => Promise<CVMWallet | undefined>
   ) {
     super(kvStore, chainId, chainGetter, apiGetter);
 

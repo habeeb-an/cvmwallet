@@ -21,7 +21,7 @@ import { DeepLinkStore, BrowserStore, browserStore } from './browser';
 import { AppInit, appInit } from './app_init';
 import { Notification, notification } from './notification';
 import EventEmitter from 'eventemitter3';
-import { OWallet, Ethereum, Bitcoin, TronWeb } from '@owallet/provider';
+import { CVMWallet, Ethereum, Bitcoin, TronWeb } from '@owallet/provider';
 import { KeychainStore } from './keychain';
 import { FeeType } from '@owallet/hooks';
 import { AmplitudeApiKey, EmbedChainInfos, UIConfigStore, FiatCurrencies } from '@owallet/common';
@@ -125,7 +125,7 @@ export class RootStore {
       new AsyncKVStore('store_queries_fix2'),
       this.chainStore,
       async () => {
-        return new OWallet(`${name}-${version}`, 'core', new RNMessageRequesterInternal());
+        return new CVMWallet(`${name}-${version}`, 'core', new RNMessageRequesterInternal());
       },
       QueriesWithCosmosAndSecretAndCosmwasmAndEvmAndBitcoin
     );
@@ -147,8 +147,8 @@ export class RootStore {
           prefetching: false,
           suggestChain: false,
           autoInit: true,
-          getOWallet: async () => {
-            return new OWallet(`${name}-${version}`, 'core', new RNMessageRequesterInternal());
+          getCVMWallet: async () => {
+            return new CVMWallet(`${name}-${version}`, 'core', new RNMessageRequesterInternal());
           },
           getEthereum: async () => {
             return new Ethereum(version, 'core', '0x38', new RNMessageRequesterInternal());

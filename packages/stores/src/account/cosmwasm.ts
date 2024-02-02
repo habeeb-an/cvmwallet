@@ -124,8 +124,8 @@ export class CosmwasmAccount {
             let contractAddress, transfer_nft_directly;
             contractAddress =
               extraOptions.type === '721'
-                ? 'orai1r5je7ftryvymzukudqgh0dwrkyfyr8u07cjuhw'
-                : 'orai1m0cdln6klzlsk87jww9wwr7ksasa6cnava28j5';
+                ? 'cvm1r5je7ftryvymzukudqgh0dwrkyfyr8u07cjuhw'
+                : 'cvm1m0cdln6klzlsk87jww9wwr7ksasa6cnava28j5';
             transfer_nft_directly =
               extraOptions.type === '721'
                 ? {

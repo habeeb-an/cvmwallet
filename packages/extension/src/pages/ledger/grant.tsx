@@ -115,7 +115,7 @@ export const LedgerGrantPage: FunctionComponent = observer(() => {
             pass={initTryCount > 0 && initErrorOn === LedgerInitErrorOn.App}
           />
           <Instruction
-            icon={<img src={require('../../public/assets/img/atom-o.svg')} style={{ height: '34px' }} alt="atom" />}
+            icon={<img src={require('../../public/assets/img/cosmos-atom-logo.svg')} style={{ height: '34px' }} alt="atom" />}
             title={intl.formatMessage({ id: 'ledger.step2' })}
             paragraph={intl.formatMessage({ id: 'ledger.step2.paragraph' })}
             pass={initTryCount > 0 && initErrorOn == null}

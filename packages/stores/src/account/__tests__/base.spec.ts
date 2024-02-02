@@ -49,7 +49,7 @@ describe('AccountSetBase', () => {
     refetching: false,
     suggestChain: false,
     autoInit: false,
-    getOWallet: jest.fn()
+    getCVMWallet: jest.fn()
   } as any);
   // beforeEach(() => {
   //   jest.clearAllMocks();

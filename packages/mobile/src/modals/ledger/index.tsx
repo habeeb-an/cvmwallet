@@ -279,7 +279,7 @@ export const LedgerGranterModal: FunctionComponent<{
             })}
           </React.Fragment>
         ) : permissionStatus === BLEPermissionGrantStatus.Failed || BLEPermissionGrantStatus.FailedAndRetry ? (
-          <LedgerErrorView text="OWallet doesn't have permission to use bluetooth">
+          <LedgerErrorView text="CVMWallet doesn't have permission to use bluetooth">
             <Button
               containerStyle={style.flatten(['margin-top-16'])}
               textStyle={style.flatten(['margin-x-8', 'normal-case'])}

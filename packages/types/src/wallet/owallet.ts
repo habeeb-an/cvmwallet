@@ -40,12 +40,12 @@ export interface OWalletSignOptions {
   readonly chainId?: string;
 }
 
-export interface OWallet {
+export interface CVMWallet {
   readonly version: string;
   /**
-   * mode means that how OWallet is connected.
-   * If the connected OWallet is browser's extension, the mode should be "extension".
-   * If the connected OWallet is on the mobile app with the embeded web browser, the mode should be "mobile-web".
+   * mode means that how CVMWallet is connected.
+   * If the connected CVMWallet is browser's extension, the mode should be "extension".
+   * If the connected CVMWallet is on the mobile app with the embeded web browser, the mode should be "mobile-web".
    */
   readonly mode: OWalletMode;
   defaultOptions: OWalletIntereactionOptions;

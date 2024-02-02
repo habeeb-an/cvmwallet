@@ -25,7 +25,7 @@ import OWIcon from '@src/components/ow-icon/ow-icon';
 import images from '@src/assets/images';
 
 const ORAI = 'oraichain-token';
-const AIRI = 'airight';
+// const AIRI = 'airight';
 
 const commonDenom = { ORAI, AIRI };
 

@@ -53,7 +53,7 @@ export const RegisterIntroScreen: FunctionComponent = observer(() => {
           <OWalletUnion />
         </View>
         <OWText typo="bold" variant="h3">
-          Sign in to OWallet
+          Sign in to CVMWallet
         </OWText>
       </View>
       <OWButton

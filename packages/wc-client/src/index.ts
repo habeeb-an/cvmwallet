@@ -1,5 +1,5 @@
 import { IConnector, IJsonRpcRequest, IRequestOptions } from '@walletconnect/types';
-import { ChainInfo, OWallet, OWalletIntereactionOptions, OWalletMode, OWalletSignOptions, Key, ChainInfoWithoutEndpoints } from '@owallet/types';
+import { ChainInfo, CVMWallet, OWalletIntereactionOptions, OWalletMode, OWalletSignOptions, Key, ChainInfoWithoutEndpoints } from '@owallet/types';
 import { DirectSignResponse, OfflineDirectSigner } from '@cosmjs/proto-signing';
 import { AminoSignResponse, BroadcastMode, OfflineSigner, StdSignature, StdSignDoc, StdTx } from '@cosmjs/launchpad';
 import { CosmJSOfflineSigner, CosmJSOfflineSignerOnlyAmino } from '@owallet/provider';
@@ -49,12 +49,12 @@ export type OWalletKeystoreMayChangedEventParam = {
   }[];
 };
 
-export class OWalletConnectV1 implements OWallet {
+export class OWalletConnectV1 implements CVMWallet {
   constructor(
     public readonly connector: IConnector,
     public readonly options: {
       kvStore?: KVStore;
-      sendTx?: OWallet['sendTx'];
+      sendTx?: CVMWallet['sendTx'];
       onBeforeSendRequest?: (request: Partial<IJsonRpcRequest>, options?: IRequestOptions) => Promise<void> | void;
       onAfterSendRequest?: (response: any, request: Partial<IJsonRpcRequest>, options?: IRequestOptions) => Promise<void> | void;
     } = {}

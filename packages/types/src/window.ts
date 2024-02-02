@@ -1,9 +1,9 @@
-import { OWallet, Ethereum, TronWeb, Bitcoin } from './wallet';
+import { CVMWallet, Ethereum, TronWeb, Bitcoin } from './wallet';
 import { OfflineSigner } from '@cosmjs/launchpad';
 import { SecretUtils } from 'secretjs/types/enigmautils';
 import { OfflineDirectSigner } from '@cosmjs/proto-signing';
 export interface Window {
-  owallet?: OWallet;
+  owallet?: CVMWallet;
   bitcoin?: Bitcoin;
   ethereum?: Ethereum;
   eth_owallet?: Ethereum;

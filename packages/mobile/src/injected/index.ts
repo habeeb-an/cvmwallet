@@ -6,7 +6,7 @@ import {
 } from './injected-provider';
 import { init } from './init';
 
-// TODO: Set the OWallet version properly
+// TODO: Set the CVMWallet version properly
 const owallet = new RNInjectedOWallet('0.9.21', 'mobile-web');
 const ethereum = new RNInjectedEthereum('0.9.21', 'mobile-web');
 const tronWeb = new RNInjectedTronWeb('0.9.21', 'mobile-web');

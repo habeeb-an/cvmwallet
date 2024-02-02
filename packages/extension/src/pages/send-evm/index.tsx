@@ -303,12 +303,12 @@ export const SendEvmPage: FunctionComponent<{
                   onFulfill: (tx) => {
                     notification.push({
                       placement: 'top-center',
-                      type: tx?.status === '0x1' ? 'success' : 'danger',
+                      type: tx ? 'success' : 'danger',
                       duration: 5,
-                      content:
-                        tx?.status === '0x1'
-                          ? `Transaction successful with tx: ${tx?.transactionHash}`
-                          : `failed to recieve transaction receipt - tx: ${tx?.result?.transactionHash}`,
+                      content: tx ? `Transaction successful` : `failed to recieve transaction receipt `,
+                      // ? `Transaction successful with tx: ${tx?.transactionHash}`
+                      // : `failed to recieve transaction receipt - tx: ${tx?.result?.transactionHash}`,
+
                       canDelete: true,
                       transition: {
                         duration: 0.25

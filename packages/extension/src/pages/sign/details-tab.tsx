@@ -144,7 +144,7 @@ export const DetailsTab: FunctionComponent<{
             {
               /*
                 Even if the "preferNoSetFee" option is turned on, it provides the way to edit the fee to users.
-                However, if the interaction is internal, you can be sure that the fee is set well inside OWallet.
+                However, if the interaction is internal, you can be sure that the fee is set well inside CVMWallet.
                 Therefore, the button is not shown in this case.
               */
               !isInternal ? (

@@ -196,7 +196,8 @@ export const LinkStakeView: FunctionComponent = observer(() => {
           const pttrn = /^(https?:\/\/)?(www\.)?([^\/]+)/gm;
           const urlInfo = pttrn.exec(chainInfo.raw.txExplorer.txUrl);
           window.open(
-            urlInfo && urlInfo[0] ? urlInfo[0] : 'https://scan.orai.io/'
+            urlInfo && urlInfo[0] ? urlInfo[0] : 'https://scan.cosvm.net/'
+            // urlInfo && urlInfo[0] ? urlInfo[0] : 'https://scan.orai.io/'
           );
           // if (!isStakableExist) {
           //   e.preventDefault();

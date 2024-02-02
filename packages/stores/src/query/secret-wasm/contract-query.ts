@@ -3,7 +3,7 @@ import { KVStore, toGenerator } from '@owallet/common';
 import { ChainGetter } from '../../common';
 import { ObservableQuerySecretContractCodeHash } from './contract-hash';
 import { autorun, computed, flow, makeObservable, observable } from 'mobx';
-import { OWallet } from '@owallet/types';
+import { CVMWallet } from '@owallet/types';
 import Axios, { CancelToken } from 'axios';
 import { QueryResponse } from '../../common';
 
@@ -13,7 +13,7 @@ export class ObservableSecretContractChainQuery<
   T
 > extends ObservableChainQuery<T> {
   @observable.ref
-  protected owallet?: OWallet = undefined;
+  protected owallet?: CVMWallet = undefined;
 
   protected nonce?: Uint8Array;
 
@@ -24,7 +24,7 @@ export class ObservableSecretContractChainQuery<
     kvStore: KVStore,
     chainId: string,
     chainGetter: ChainGetter,
-    protected readonly apiGetter: () => Promise<OWallet | undefined>,
+    protected readonly apiGetter: () => Promise<CVMWallet | undefined>,
     protected readonly contractAddress: string,
     // eslint-disable-next-line @typescript-eslint/ban-types
     protected obj: object,
@@ -35,7 +35,7 @@ export class ObservableSecretContractChainQuery<
     makeObservable(this);
 
     // Try to get the owallet API.
-    this.initOWallet();
+    this.initCVMWallet();
 
     const disposer = autorun(() => {
       // If the owallet API is ready and the contract code hash is fetched, try to init.
@@ -74,7 +74,7 @@ export class ObservableSecretContractChainQuery<
   }
 
   @flow
-  protected *initOWallet() {
+  protected *initCVMWallet() {
     this.owallet = yield* toGenerator(this.apiGetter());
   }
 
@@ -144,7 +144,7 @@ export class ObservableSecretContractChainQuery<
       | undefined;
 
     if (!this.owallet) {
-      throw new Error('OWallet API not initialized');
+      throw new Error('CVMWallet API not initialized');
     }
 
     if (!this.nonce) {

@@ -108,7 +108,7 @@ export const SettingSelectAccountScreen: FunctionComponent = observer(() => {
                 <KeyStoreItem
                   key={i.toString()}
                   colors={colors}
-                  label={keyStore.meta?.name || 'OWallet Account'}
+                  label={keyStore.meta?.name || 'CVMWallet Account'}
                   paragraph={getKeyStoreParagraph(keyStore)}
                   topBorder={i === 0}
                   bottomBorder={keyStores.length - 1 !== i}

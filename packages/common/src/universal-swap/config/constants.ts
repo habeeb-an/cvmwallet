@@ -1,6 +1,6 @@
 import { ethers } from 'ethers';
 /* oraiswap:unit */
-export const ORAI = 'orai';
+// export const ORAI = 'orai';
 // export const UAIRI = 'uAIRI';
 // export const AIRI = 'AIRI';
 // export const ATOM = 'ATOM';
@@ -61,9 +61,9 @@ export const WEBSOCKET_RECONNECT_ATTEMPTS = 5;
 export const WEBSOCKET_RECONNECT_INTERVAL = 20000;
 
 // asset info token
-export const ORAI_INFO = {
+export const O_INFO = {
   native_token: {
-    denom: ORAI
+    denom: 'ucvm'
   }
 };
 

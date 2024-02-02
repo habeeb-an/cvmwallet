@@ -1,4 +1,4 @@
-import { InjectedOWallet, InjectedEthereum, InjectedTronWebOWallet, InjectedBitcoin } from '@owallet/provider';
+import { InjectedCVMWallet, InjectedEthereum, InjectedTronWebOWallet, InjectedBitcoin } from '@owallet/provider';
 import { OWalletMode, EthereumMode, BitcoinMode, TronWeb } from '@owallet/types';
 
 export class RNInjectedEthereum extends InjectedEthereum {
@@ -80,7 +80,7 @@ export class RNInjectedBitcoin extends InjectedBitcoin {
   }
 }
 
-export class RNInjectedOWallet extends InjectedOWallet {
+export class RNInjectedOWallet extends InjectedCVMWallet {
   static parseWebviewMessage(message: any): any {
     if (message && typeof message === 'string') {
       try {

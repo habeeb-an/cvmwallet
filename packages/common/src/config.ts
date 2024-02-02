@@ -232,7 +232,12 @@ export const EmbedChainInfos: AppChainInfo[] = [
       coinMinimalDenom: 'ucvm',
       coinDecimals: 18,
       coinGeckoId: 'ucvm',
-      coinImageUrl: 'https://raw.githubusercontent.com/chainapsis/keplr-chain-registry/main/images/cvm_323/chain.png'
+      coinImageUrl: 'https://raw.githubusercontent.com/chainapsis/keplr-chain-registry/main/images/cvm_323/chain.png',
+      gasPriceStep: {
+        low: 80000000000,
+        average: 80000000000,
+        high: 80000000000
+      }
     },
     bip44: {
       coinType: 60
@@ -775,15 +780,9 @@ export const EmbedChainInfos: AppChainInfo[] = [
     },
     bech32Config: Bech32Address.defaultBech32Config('cvm'),
     networkType: 'evm',
-    currencies: [
-      {
-        coinDenom: 'CVM',
-        coinMinimalDenom: 'ucvm',
-        coinDecimals: 18,
-        coinGeckoId: 'ucvm',
-        coinImageUrl: 'https://raw.githubusercontent.com/chainapsis/keplr-chain-registry/main/images/cvm_323/acvm.png'
-      }
-    ],
+    get currencies() {
+      return [this.stakeCurrency];
+    },
     get feeCurrencies() {
       return [this.stakeCurrency];
     },

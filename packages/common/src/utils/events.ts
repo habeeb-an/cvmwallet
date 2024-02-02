@@ -1,8 +1,8 @@
 import EventEmitter from 'eventemitter3';
-export class OwalletEvent {
+export class CVMwalletEvent {
   protected static eventListener = new EventEmitter();
   public static txHashEmit = (txHash: string, infoTx: any) =>
-    OwalletEvent.eventListener.emit(txHash, infoTx);
+    CVMwalletEvent.eventListener.emit(txHash, infoTx);
   public static txHashListener = (txHash: string, callback: any) =>
-    OwalletEvent.eventListener.addListener(txHash, callback);
+    CVMwalletEvent.eventListener.addListener(txHash, callback);
 }

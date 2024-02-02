@@ -721,8 +721,8 @@ export const WasmExecutionMsgView: FunctionComponent<{
   useEffect(() => {
     // If msg is string, it will be the message for secret-wasm.
     // So, try to decrypt.
-    // But, if this msg is not encrypted via OWallet, OWallet cannot decrypt it.
-    // TODO: Handle the error case. If an error occurs, rather than rejecting the signing, it informs the user that OWallet cannot decrypt it and allows the user to choose.
+    // But, if this msg is not encrypted via CVMWallet, CVMWallet cannot decrypt it.
+    // TODO: Handle the error case. If an error occurs, rather than rejecting the signing, it informs the user that CVMWallet cannot decrypt it and allows the user to choose.
     if (typeof msg === 'string') {
       (async () => {
         try {
@@ -733,9 +733,9 @@ export const WasmExecutionMsgView: FunctionComponent<{
 
           const owallet = await accountStore
             .getAccount(chainStore.current.chainId)
-            .getOWallet();
+            .getCVMWallet();
           if (!owallet) {
-            throw new Error("Can't get the owallet API");
+            throw new Error("Can't get the cvmwallet API");
           }
 
           const enigmaUtils = owallet.getEnigmaUtils(
@@ -753,7 +753,7 @@ export const WasmExecutionMsgView: FunctionComponent<{
           setWarningMsg('');
         } catch {
           setWarningMsg(
-            'Failed to decrypt Secret message. This may be due to OWallet viewing key not matching the transaction viewing key.'
+            'Failed to decrypt Secret message. This may be due to CVMWallet viewing key not matching the transaction viewing key.'
           );
         }
       })();

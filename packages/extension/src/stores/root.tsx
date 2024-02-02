@@ -15,7 +15,7 @@ import {
   IBCCurrencyRegsitrar,
   QueriesWithCosmosAndSecretAndCosmwasmAndEvmAndBitcoin,
   AccountWithAll,
-  getOWalletFromWindow,
+  getCVMWalletFromWindow,
   getEthereumFromWindow,
   getTronWebFromWindow,
   getBitcoinFromWindow
@@ -113,7 +113,7 @@ export class RootStore {
     this.queriesStore = new QueriesStore(
       new ExtensionKVStore('store_queries'),
       this.chainStore,
-      getOWalletFromWindow,
+      getCVMWalletFromWindow,
       QueriesWithCosmosAndSecretAndCosmwasmAndEvmAndBitcoin
     );
 
@@ -229,7 +229,7 @@ export class RootStore {
         prefetching: !window.location.href.includes('#/unlock'),
         suggestChain: false,
         autoInit: true,
-        getOWallet: getOWalletFromWindow,
+        getCVMWallet: getCVMWalletFromWindow,
         getEthereum: getEthereumFromWindow,
         getTronWeb: getTronWebFromWindow,
         getBitcoin: getBitcoinFromWindow
@@ -254,7 +254,7 @@ export class RootStore {
     //       prefetching: !window.location.href.includes('#/unlock'),
     //       suggestChain: false,
     //       autoInit: true,
-    //       getOWallet: getOWalletFromWindow,
+    //       getCVMWallet: getCVMWalletFromWindow,
     //       getEthereum: getEthereumFromWindow,
     //     },
     //     chainOpts

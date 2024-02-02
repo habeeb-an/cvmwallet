@@ -150,6 +150,13 @@ export class EthereumAccount {
                   queryEvmBalance.fetch();
                 }
               }
+
+              // After succeeding to send token, refresh the balance.
+              //   const queryEvmBalance = this.queries.evm.queryEvmBalance.getQueryBalance(this.base.evmHexAddress);
+
+              //   if (queryEvmBalance) {
+              //     queryEvmBalance.fetch();
+              //   }
             })
           );
           return true;

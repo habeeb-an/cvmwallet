@@ -6,8 +6,8 @@ import {
   InExtensionMessageRequester
 } from '@owallet/router-extension';
 import {
-  OWallet,
-  InjectedOWallet,
+  CVMWallet,
+  InjectedCVMWallet,
   Ethereum,
   InjectedEthereum,
   InjectedTronWebOWallet,
@@ -19,7 +19,7 @@ import { initEvents } from './events';
 
 import manifest from '../manifest.json';
 
-InjectedOWallet.startProxy(new OWallet(manifest.version, 'core', new InExtensionMessageRequester()));
+InjectedCVMWallet.startProxy(new CVMWallet(manifest.version, 'core', new InExtensionMessageRequester()));
 
 InjectedEthereum.startProxy(new Ethereum(manifest.version, 'core', '0x38', new InExtensionMessageRequester()));
 InjectedBitcoin.startProxy(new Bitcoin(manifest.version, 'core', 'bitcoin', new InExtensionMessageRequester()));

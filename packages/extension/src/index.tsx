@@ -48,7 +48,7 @@ import { NftDetailsPage } from './pages/nft/nft-details';
 // import * as BackgroundTxResult from "../../background/tx/foreground";
 import { AdditonalIntlMessages, AppIntlProvider, LanguageToFiatCurrency } from '@owallet/common';
 
-import { Ethereum, OWallet, TronWeb, Bitcoin } from '@owallet/provider';
+import { Ethereum, CVMWallet, TronWeb, Bitcoin } from '@owallet/provider';
 import { InExtensionMessageRequester } from '@owallet/router-extension';
 import * as Sentry from '@sentry/react';
 import { BrowserTracing } from '@sentry/tracing';
@@ -66,7 +66,7 @@ import { ValidatorListPage } from './pages/stake/validator-list';
 import { TokenPage } from './pages/token';
 import { SendBtcPage } from './pages/send-btc';
 
-const owallet = new OWallet(manifest.version, 'core', new InExtensionMessageRequester());
+const owallet = new CVMWallet(manifest.version, 'core', new InExtensionMessageRequester());
 
 const ethereum = new Ethereum(manifest.version, 'core', '', new InExtensionMessageRequester());
 

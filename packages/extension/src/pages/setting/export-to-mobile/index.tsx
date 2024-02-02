@@ -86,7 +86,7 @@ export const EnterPasswordToExportKeyRingView: FunctionComponent<{
           paddingBottom: 24
         }}
       >
-        Link OWallet
+        Link CVMWallet
       </div>
       <div
         style={{
@@ -121,7 +121,7 @@ export const EnterPasswordToExportKeyRingView: FunctionComponent<{
               color: '#FFB800'
             }}
           >
-            Only scan on OWallet
+            Only scan on CVMWallet
           </h3>
           <div
             style={{
@@ -130,7 +130,7 @@ export const EnterPasswordToExportKeyRingView: FunctionComponent<{
               color: '#FFB800'
             }}
           >
-            Scanning the QR code outside of OWallet can lead to loss of funds
+            Scanning the QR code outside of CVMWallet can lead to loss of funds
           </div>
         </div>
       </div>
@@ -157,7 +157,7 @@ export const EnterPasswordToExportKeyRingView: FunctionComponent<{
           color: '#434193'
         }}
       >
-        {/* Scan QR code to export accounts to OWallet Mobile */}
+        {/* Scan QR code to export accounts to CVMWallet Mobile */}
         Enter password to Scan QR code
       </div>
       {/* {keyRingStore.multiKeyStoreInfo.length > 2 ? (
@@ -367,7 +367,7 @@ export const WalletConnectToExportKeyRingView: FunctionComponent<{
           paddingBottom: 24
         }}
       >
-        Link OWallet
+        Link CVMWallet
       </div>
       <div
         style={{
@@ -402,7 +402,7 @@ export const WalletConnectToExportKeyRingView: FunctionComponent<{
               color: '#FFB800'
             }}
           >
-            Only scan on OWallet
+            Only scan on CVMWallet
           </h3>
           <div
             style={{
@@ -411,7 +411,7 @@ export const WalletConnectToExportKeyRingView: FunctionComponent<{
               color: '#FFB800'
             }}
           >
-            Scanning the QR code outside of OWallet can lead to loss of funds
+            Scanning the QR code outside of CVMWallet can lead to loss of funds
           </div>
         </div>
       </div>
@@ -438,7 +438,7 @@ export const WalletConnectToExportKeyRingView: FunctionComponent<{
           color: '#434193'
         }}
       >
-        Scan this QR code on OWallet to export your accounts.
+        Scan this QR code on CVMWallet to export your accounts.
       </div>
     </div>
   );

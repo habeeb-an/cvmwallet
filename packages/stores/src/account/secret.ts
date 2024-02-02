@@ -168,10 +168,10 @@ export class SecretAccount {
             throw new Error('Empty data');
           }
 
-          const owallet = await this.base.getOWallet();
+          const owallet = await this.base.getCVMWallet();
 
           if (!owallet) {
-            throw new Error("Can't get the OWallet API");
+            throw new Error("Can't get the CVMWallet API");
           }
 
           const enigmaUtils = owallet.getEnigmaUtils(this.chainId);
@@ -260,9 +260,9 @@ export class SecretAccount {
 
     const contractCodeHash = queryContractCodeHashResponse.data.result;
 
-    const owallet = await this.base.getOWallet();
+    const owallet = await this.base.getCVMWallet();
     if (!owallet) {
-      throw new Error("Can't get the OWallet API");
+      throw new Error("Can't get the CVMWallet API");
     }
 
     const enigmaUtils = owallet.getEnigmaUtils(this.chainId);

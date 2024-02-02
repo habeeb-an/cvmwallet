@@ -1,10 +1,10 @@
 import { OfflineSigner } from '@cosmjs/launchpad';
-import { OWallet, AminoSignResponse, AccountData, StdSignDoc } from '@owallet/types';
+import { CVMWallet, AminoSignResponse, AccountData, StdSignDoc } from '@owallet/types';
 import { OfflineDirectSigner, DirectSignResponse } from '@cosmjs/proto-signing';
 
 import { SignDoc } from '@owallet/proto-types/cosmos/tx/v1beta1/tx';
 export class CosmJSOfflineSignerOnlyAmino implements OfflineSigner {
-  constructor(protected readonly chainId: string, protected readonly owallet: OWallet) {}
+  constructor(protected readonly chainId: string, protected readonly owallet: CVMWallet) {}
 
   async getAccounts(): Promise<AccountData[]> {
     const key = await this.owallet.getKey(this.chainId);
@@ -38,7 +38,7 @@ export class CosmJSOfflineSignerOnlyAmino implements OfflineSigner {
 }
 
 export class CosmJSOfflineSigner extends CosmJSOfflineSignerOnlyAmino implements OfflineSigner, OfflineDirectSigner {
-  constructor(protected readonly chainId: string, protected readonly owallet: OWallet) {
+  constructor(protected readonly chainId: string, protected readonly owallet: CVMWallet) {
     super(chainId, owallet);
   }
 

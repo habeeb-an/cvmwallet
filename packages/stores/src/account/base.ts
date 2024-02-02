@@ -4,7 +4,7 @@ import 'reflect-metadata';
 import { action, computed, flow, makeObservable, observable, runInAction } from 'mobx';
 import {
   AppCurrency,
-  OWallet,
+  CVMWallet,
   OWalletSignOptions,
   Ethereum,
   TronWeb,
@@ -21,7 +21,7 @@ import {
   fetchAdapter,
   EVMOS_NETWORKS,
   TxRestCosmosClient,
-  OwalletEvent,
+  CVMwalletEvent,
   sortObjectByKey,
   escapeHTML,
   findLedgerAddressWithChainId,
@@ -102,14 +102,14 @@ export type AminoMsgsOrWithProtoMsgs = {
 export interface AccountSetOpts<MsgOpts> {
   readonly prefetching: boolean;
   readonly suggestChain: boolean;
-  readonly suggestChainFn?: (owallet: OWallet, chainInfo: ReturnType<ChainGetter['getChain']>) => Promise<void>;
+  readonly suggestChainFn?: (owallet: CVMWallet, chainInfo: ReturnType<ChainGetter['getChain']>) => Promise<void>;
   readonly autoInit: boolean;
   readonly preTxEvents?: {
     onBroadcastFailed?: (e?: Error) => void;
     onBroadcasted?: (txHash: Uint8Array) => void;
     onFulfill?: (tx: any) => void;
   };
-  readonly getOWallet: () => Promise<OWallet | undefined>;
+  readonly getCVMWallet: () => Promise<CVMWallet | undefined>;
   readonly getBitcoin: () => Promise<Bitcoin | undefined>;
   readonly getEthereum: () => Promise<Ethereum | undefined>;
   readonly getTronWeb: () => Promise<TronWeb | undefined>;
@@ -182,8 +182,8 @@ export class AccountSetBase<MsgOpts, Queries> {
     }
   }
 
-  getOWallet(): Promise<OWallet | undefined> {
-    return this.opts.getOWallet();
+  getCVMWallet(): Promise<CVMWallet | undefined> {
+    return this.opts.getCVMWallet();
   }
 
   getEthereum(): Promise<Ethereum | undefined> {
@@ -223,7 +223,7 @@ export class AccountSetBase<MsgOpts, Queries> {
     this.sendTokenFns.push(fn);
   }
 
-  protected async enable(owallet: OWallet, chainId: string): Promise<void> {
+  protected async enable(owallet: CVMWallet, chainId: string): Promise<void> {
     const chainInfo = this.chainGetter.getChain(chainId);
 
     if (this.opts.suggestChain) {
@@ -236,7 +236,7 @@ export class AccountSetBase<MsgOpts, Queries> {
     await owallet.enable(chainId);
   }
 
-  protected async suggestChain(owallet: OWallet, chainInfo: ReturnType<ChainGetter['getChain']>): Promise<void> {
+  protected async suggestChain(owallet: CVMWallet, chainInfo: ReturnType<ChainGetter['getChain']>): Promise<void> {
     await owallet.experimentalSuggestChain(chainInfo.raw);
   }
 
@@ -264,7 +264,7 @@ export class AccountSetBase<MsgOpts, Queries> {
     // Set wallet status as loading whenever try to init.
     this._walletStatus = WalletStatus.Loading;
 
-    const owallet = yield* toGenerator(this.getOWallet());
+    const owallet = yield* toGenerator(this.getCVMWallet());
     if (!owallet) {
       this._walletStatus = WalletStatus.NotExist;
       return;
@@ -423,9 +423,9 @@ export class AccountSetBase<MsgOpts, Queries> {
             bal.fetch();
           }
         }
-        OwalletEvent.txHashEmit(txHashRoot, res);
+        CVMwalletEvent.txHashEmit(txHashRoot, res);
       } catch (error) {
-        OwalletEvent.txHashEmit(txHashRoot, null);
+        CVMwalletEvent.txHashEmit(txHashRoot, null);
       } finally {
         runInAction(() => {
           this._isSendingMsg = false;
@@ -885,7 +885,7 @@ export class AccountSetBase<MsgOpts, Queries> {
     };
 
     const signedTx = TxRaw.encode({
-      bodyBytes: signDoc.bodyBytes, // has to collect body bytes & auth info bytes since OWallet overrides data when signing
+      bodyBytes: signDoc.bodyBytes, // has to collect body bytes & auth info bytes since CVMWallet overrides data when signing
       authInfoBytes: signDoc.authInfoBytes,
       signatures:
         !eip712Signing || chainIsInjective
@@ -909,7 +909,7 @@ export class AccountSetBase<MsgOpts, Queries> {
       throw new Error(`Wallet is not loaded: ${this.walletStatus}`);
     }
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    const owallet = (await this.getOWallet())!;
+    const owallet = (await this.getCVMWallet())!;
 
     let sendTx = owallet.sendTx.bind(owallet);
     const signedTx = await this.processSignedTxCosmos(msgs, fee, memo, owallet, signOptions);

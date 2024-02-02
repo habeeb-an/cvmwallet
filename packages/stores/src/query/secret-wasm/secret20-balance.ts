@@ -12,7 +12,7 @@ import {
 import { ObservableSecretContractChainQuery } from './contract-query';
 import { CancelToken } from 'axios';
 import { WrongViewingKeyError } from './errors';
-import { OWallet } from '@owallet/types';
+import { CVMWallet } from '@owallet/types';
 
 export class ObservableQuerySecret20Balance extends ObservableSecretContractChainQuery<{
   balance: { amount: string };
@@ -24,7 +24,7 @@ export class ObservableQuerySecret20Balance extends ObservableSecretContractChai
     kvStore: KVStore,
     chainId: string,
     chainGetter: ChainGetter,
-    protected readonly apiGetter: () => Promise<OWallet | undefined>,
+    protected readonly apiGetter: () => Promise<CVMWallet | undefined>,
     protected readonly contractAddress: string,
     protected readonly bech32Address: string,
     protected readonly parent: ObservableQuerySecret20BalanceInner,
@@ -90,7 +90,7 @@ export class ObservableQuerySecret20BalanceInner extends ObservableQueryBalanceI
     kvStore: KVStore,
     chainId: string,
     chainGetter: ChainGetter,
-    protected readonly apiGetter: () => Promise<OWallet | undefined>,
+    protected readonly apiGetter: () => Promise<CVMWallet | undefined>,
     denomHelper: DenomHelper,
     protected readonly bech32Address: string,
     protected readonly querySecretContractCodeHash: ObservableQuerySecretContractCodeHash
@@ -175,7 +175,7 @@ export class ObservableQuerySecret20BalanceRegistry implements BalanceRegistry {
 
   constructor(
     protected readonly kvStore: KVStore,
-    protected readonly apiGetter: () => Promise<OWallet | undefined>,
+    protected readonly apiGetter: () => Promise<CVMWallet | undefined>,
     protected readonly querySecretContractCodeHash: ObservableQuerySecretContractCodeHash
   ) {}
 

@@ -376,7 +376,7 @@ export const UnlockScreen: FunctionComponent = observer(() => {
           style={{
             marginTop: 0
           }}
-          title={'Sign in to OWallet'}
+          title={'Sign in to CVMWallet'}
         />
         <View
           style={{

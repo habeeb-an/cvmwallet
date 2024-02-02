@@ -1,4 +1,4 @@
-import { Ethereum, OWallet, TronWeb } from '@owallet/provider';
+import { Ethereum, CVMWallet, TronWeb } from '@owallet/provider';
 import { useIsFocused, useNavigation } from '@react-navigation/native';
 import EventEmitter from 'eventemitter3';
 import { observer } from 'mobx-react-lite';
@@ -65,7 +65,7 @@ export const WebpageScreen: FunctionComponent<
 
   const [owallet] = useState(
     () =>
-      new OWallet(
+      new CVMWallet(
         `${name}-${version}`,
         'core',
         new RNMessageRequesterExternal(() => {

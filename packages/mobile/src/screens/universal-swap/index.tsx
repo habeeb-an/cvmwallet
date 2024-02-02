@@ -15,7 +15,7 @@ import { DEFAULT_SLIPPAGE, GAS_ESTIMATION_SWAP_DEFAULT, ORAI, toDisplay, getBase
 import {
   TokenItemType,
   NetworkChainId,
-  oraichainNetwork,
+  walletChainNetwork,
   tokenMap,
   toAmount,
   network,
@@ -39,7 +39,7 @@ import {
 import { SwapCosmosWallet, SwapEvmWallet } from './wallet';
 import { styling } from './styles';
 import { BalanceType, MAX, balances } from './types';
-import { OraiswapRouterQueryClient } from '@oraichain/oraidex-contracts-sdk';
+import { SwapRouterQueryClient } from '@oraichain/oraidex-contracts-sdk';
 import { useLoadTokens, useCoinGeckoPrices, useClient, useRelayerFee, useTaxRate } from '@owallet/hooks';
 import { getTransactionUrl, handleErrorSwap } from './helpers';
 const RELAYER_DECIMAL = 6; // TODO: hardcode decimal relayerFee
@@ -49,11 +49,11 @@ export const UniversalSwapScreen: FunctionComponent = observer(() => {
   const { colors } = useTheme();
   const { data: prices } = useCoinGeckoPrices();
 
-  const chainInfo = chainStore.getChain(ChainIdEnum.Oraichain);
+  const chainInfo = chainStore.getChain(ChainIdEnum.CosVM);
 
   const accountEvm = accountStore.getAccount(ChainIdEnum.Ethereum);
   // const accountTron = accountStore.getAccount(ChainIdEnum.TRON);
-  const accountAll = accountStore.getAccount(ChainIdEnum.Oraichain);
+  const accountAll = accountStore.getAccount(ChainIdEnum.CosVM);
 
   const [isSlippageModal, setIsSlippageModal] = useState(false);
   const [minimumReceive, setMininumReceive] = useState(0);
@@ -194,13 +194,13 @@ export const UniversalSwapScreen: FunctionComponent = observer(() => {
     try {
       const cwStargate = {
         account: accountAll,
-        chainId: ChainIdEnum.Oraichain,
-        rpc: oraichainNetwork.rpc
+        chainId: ChainIdEnum.CosVM,
+        rpc: walletChainNetwork.rpc
       };
 
       loadTokenParams = {
         ...loadTokenParams,
-        oraiAddress: accountAll.bech32Address,
+        oAddress: accountAll.bech32Address,
         cwStargate
       };
       loadTokenParams = {
@@ -277,7 +277,7 @@ export const UniversalSwapScreen: FunctionComponent = observer(() => {
 
   const getSimulateSwap = async (initAmount?) => {
     if (client) {
-      const routerClient = new OraiswapRouterQueryClient(client, network.router);
+      const routerClient = new SwapRouterQueryClient(client, network.router);
       let simulateAmount = INIT_AMOUNT;
       if (fromAmountToken > 0) {
         simulateAmount = fromAmountToken;

@@ -14,7 +14,7 @@ describe('CWStargate', () => {
 
   beforeEach(() => {
     mockAccount = {
-      getOWallet: jest.fn().mockResolvedValue({
+      getCVMWallet: jest.fn().mockResolvedValue({
         getOfflineSigner: jest.fn().mockReturnValue('mockOfflineSigner'),
       }),
     };
@@ -28,7 +28,7 @@ describe('CWStargate', () => {
 
     expect(result).toBe('mockClient');
 
-    expect(mockAccount.getOWallet).toHaveBeenCalled();
+    expect(mockAccount.getCVMWallet).toHaveBeenCalled();
     expect(cosmwasm.SigningCosmWasmClient.connectWithSigner).toHaveBeenCalledWith(
       mockRpc,
       'mockOfflineSigner'
@@ -36,12 +36,12 @@ describe('CWStargate', () => {
   });
 
   it("should throw an error if owallet API can't be obtained", async () => {
-    mockAccount.getOWallet.mockResolvedValueOnce(null);
+    mockAccount.getCVMWallet.mockResolvedValueOnce(null);
     await expect(
       CWStargate.init(mockAccount, mockChainId, mockRpc)
-    ).rejects.toThrowError("Can't get the owallet API");
+    ).rejects.toThrowError("Can't get the cvmwallet API");
 
-    expect(mockAccount.getOWallet).toHaveBeenCalled();
+    expect(mockAccount.getCVMWallet).toHaveBeenCalled();
     expect(cosmwasm.SigningCosmWasmClient.connectWithSigner).not.toHaveBeenCalled();
   });
 });

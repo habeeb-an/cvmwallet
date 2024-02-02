@@ -1,13 +1,13 @@
 import { SecretUtils } from 'secretjs/types/enigmautils';
-import { OWallet } from '@owallet/types';
+import { CVMWallet } from '@owallet/types';
 
 /**
- * OWalletEnigmaUtils duplicates the public methods that are supported on secretjs's EnigmaUtils class.
+ * CVMWalletEnigmaUtils duplicates the public methods that are supported on secretjs's EnigmaUtils class.
  */
-export class OWalletEnigmaUtils implements SecretUtils {
+export class CVMWalletEnigmaUtils implements SecretUtils {
   constructor(
     protected readonly chainId: string,
-    protected readonly owallet: OWallet
+    protected readonly owallet: CVMWallet
   ) {}
 
   async getPubkey(): Promise<Uint8Array> {

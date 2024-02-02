@@ -1,6 +1,6 @@
 import {
   ChainInfo,
-  OWallet as IOWallet,
+  CVMWallet as IOWallet,
   Ethereum as IEthereum,
   TronWeb as ITronWeb,
   Bitcoin as IBitcoin,
@@ -40,7 +40,7 @@ import {
 } from '@owallet/background';
 import { SecretUtils } from 'secretjs/types/enigmautils';
 
-import { OWalletEnigmaUtils } from './enigma';
+import { CVMWalletEnigmaUtils } from './enigma';
 import { DirectSignResponse, OfflineDirectSigner } from '@cosmjs/proto-signing';
 
 import { CosmJSOfflineSigner, CosmJSOfflineSignerOnlyAmino } from './cosmjs';
@@ -59,7 +59,7 @@ import {
 } from './msgs';
 import { ChainIdEnum } from '@owallet/common';
 
-export class OWallet implements IOWallet {
+export class CVMWallet implements IOWallet {
   protected enigmaUtils: Map<string, SecretUtils> = new Map();
 
   public defaultOptions: OWalletIntereactionOptions = {};
@@ -285,7 +285,7 @@ export class OWallet implements IOWallet {
       return this.enigmaUtils.get(chainId)!;
     }
 
-    const enigmaUtils = new OWalletEnigmaUtils(chainId, this);
+    const enigmaUtils = new CVMWalletEnigmaUtils(chainId, this);
     this.enigmaUtils.set(chainId, enigmaUtils);
     return enigmaUtils;
   }

@@ -107,7 +107,7 @@ export const SettingScreen: FunctionComponent = observer(() => {
                 }}
               >
                 {selected
-                  ? selected.meta?.name || 'OWallet Account'
+                  ? selected.meta?.name || 'CVMWallet Account'
                   : 'No Account'}
               </Text>
             </View>
@@ -183,7 +183,7 @@ export const SettingScreen: FunctionComponent = observer(() => {
         {/* <SettingSectionTitle title="Others" /> */}
         <SettingSwitchModeItem />
         <SettingItem
-          label="About OWallet"
+          label="About CVMWallet"
           onPress={() => {
             smartNavigation.navigateSmart('Setting.Version', {});
           }}

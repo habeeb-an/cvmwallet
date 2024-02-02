@@ -3,9 +3,9 @@ import { GasPrice } from '@cosmjs/stargate';
 import { network } from '@oraichain/oraidex-common';
 export class CWStargate {
   static async init(account: any, chainId: string, rpc: string, options?: cosmwasm.SigningCosmWasmClientOptions) {
-    const owallet = await account.getOWallet();
+    const owallet = await account.getCVMWallet();
     if (!owallet) {
-      throw new Error("Can't get the owallet API");
+      throw new Error("Can't get the cvmwallet API");
     }
     const wallet = owallet.getOfflineSigner(chainId);
 

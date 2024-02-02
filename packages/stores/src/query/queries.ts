@@ -3,7 +3,7 @@ import { KVStore } from '@owallet/common';
 import { DeepReadonly } from 'utility-types';
 import { ObservableQueryBalances } from './balances';
 import { ChainGetter } from '../common';
-import { OWallet } from '@owallet/types';
+import { CVMWallet } from '@owallet/types';
 import { ObservableQueryEvmBalance } from './evm';
 
 export class QueriesSetBase {
@@ -31,12 +31,12 @@ export class QueriesStore<QueriesSet extends QueriesSetBase> {
   constructor(
     protected readonly kvStore: KVStore,
     protected readonly chainGetter: ChainGetter,
-    protected readonly apiGetter: () => Promise<OWallet | undefined>,
+    protected readonly apiGetter: () => Promise<CVMWallet | undefined>,
     protected readonly queriesCreator: new (
       kvStore: KVStore,
       chainId: string,
       chainGetter: ChainGetter,
-      apiGetter: () => Promise<OWallet | undefined>
+      apiGetter: () => Promise<CVMWallet | undefined>
     ) => QueriesSet
   ) {
     makeObservable(this);

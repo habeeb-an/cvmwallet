@@ -1,7 +1,7 @@
 import {
   ChainInfo,
-  OWallet,
-  OWallet as IOWallet,
+  CVMWallet,
+  CVMWallet as IOWallet,
   Ethereum,
   Ethereum as IEthereum,
   TronWeb as ITronWeb,
@@ -19,7 +19,7 @@ import {
 import { Result, JSONUint8Array } from '@owallet/router';
 import { BroadcastMode, AminoSignResponse, StdSignDoc, StdTx, OfflineSigner, StdSignature } from '@cosmjs/launchpad';
 import { SecretUtils } from 'secretjs/types/enigmautils';
-import { OWalletEnigmaUtils } from './enigma';
+import { CVMWalletEnigmaUtils } from './enigma';
 import { DirectSignResponse, OfflineDirectSigner } from '@cosmjs/proto-signing';
 import { CosmJSOfflineSigner, CosmJSOfflineSignerOnlyAmino } from './cosmjs';
 import deepmerge from 'deepmerge';
@@ -33,7 +33,7 @@ export interface ProxyRequest {
   type: 'proxy-request' | 'owallet-proxy-request';
   id: string;
   namespace: string;
-  method: keyof OWallet | Ethereum | string;
+  method: keyof CVMWallet | Ethereum | string;
   args: any[];
 }
 
@@ -45,13 +45,13 @@ export interface ProxyRequestResponse {
 }
 
 /**
- * InjectedOWallet would be injected to the webpage.
+ * InjectedCVMWallet would be injected to the webpage.
  * In the webpage, it can't request any messages to the extension because it doesn't have any API related to the extension.
  * So, to request some methods of the extension, this will proxy the request to the content script that is injected to webpage on the extension level.
  * This will use `window.postMessage` to interact with the content script.
  */
 
-export class InjectedOWallet implements IOWallet {
+export class InjectedCVMWallet implements IOWallet {
   static startProxy(
     owallet: IOWallet,
     eventListener: {
@@ -93,8 +93,8 @@ export class InjectedOWallet implements IOWallet {
         }
 
         if (
-          !owallet[message.method as keyof OWallet] ||
-          typeof owallet[message.method as keyof OWallet] !== 'function'
+          !owallet[message.method as keyof CVMWallet] ||
+          typeof owallet[message.method as keyof CVMWallet] !== 'function'
         ) {
           throw new Error(`Invalid method: ${message.method}`);
         }
@@ -233,7 +233,7 @@ export class InjectedOWallet implements IOWallet {
   protected enigmaUtils: Map<string, SecretUtils> = new Map();
 
   public defaultOptions: OWalletIntereactionOptions = {};
-  public isOwallet: boolean = true;
+  public isCVMwallet: boolean = true;
 
   constructor(
     public readonly version: string,
@@ -411,7 +411,7 @@ export class InjectedOWallet implements IOWallet {
       return this.enigmaUtils.get(chainId)!;
     }
 
-    const enigmaUtils = new OWalletEnigmaUtils(chainId, this);
+    const enigmaUtils = new CVMWalletEnigmaUtils(chainId, this);
     this.enigmaUtils.set(chainId, enigmaUtils);
     return enigmaUtils;
   }
@@ -615,7 +615,7 @@ export class InjectedEthereum implements Ethereum {
   }
 
   public initChainId: string;
-  public isOwallet: boolean = true;
+  public isCVMwallet: boolean = true;
 
   constructor(
     public readonly version: string,
@@ -801,7 +801,7 @@ export class InjectedBitcoin implements Bitcoin {
   }
 
   public initChainId: string;
-  public isOwallet: boolean = true;
+  public isCVMwallet: boolean = true;
 
   constructor(
     public readonly version: string,
@@ -1001,7 +1001,7 @@ export class InjectedTronWebOWallet implements ITronWeb {
   }
 
   public initChainId: string;
-  public isOwallet: boolean = true;
+  public isCVMwallet: boolean = true;
 
   constructor(
     public readonly version: string,

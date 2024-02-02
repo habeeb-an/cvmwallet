@@ -65,7 +65,7 @@ export default {
   'setting.address-book.confirm.delete-address.paragraph': 'Are you sure want to delete this address?',
   'setting.address-book.button.save': 'Save',
 
-  'setting.export-to-mobile': 'Link OWallet Mobile',
+  'setting.export-to-mobile': 'Link CVMWallet Mobile',
   'setting.export-to-mobile.input.password': 'Password',
   'setting.export-to-mobile.input.password.error.required': 'Password is required',
   'setting.export-to-mobile.input.password.error.invalid': 'Invalid password',
@@ -75,7 +75,7 @@ export default {
 
   'setting.keyring': 'Select Account',
   'setting.keyring.button.add': 'Add Account',
-  'setting.keyring.unnamed-account': 'OWallet Account',
+  'setting.keyring.unnamed-account': 'CVMWallet Account',
   'setting.keyring.selected-account': '(Selected)',
 
   'setting.keyring.change.password': 'Reset Password',
@@ -102,7 +102,7 @@ export default {
   'setting.clear': 'Delete Account',
   'setting.clear.alert': 'Make sure you’ve backed up your mnemonic seed before proceeding.',
   'setting.clear.button.back-up': 'Back-up',
-  'setting.clear.warning-old': 'By deleting your account, you will no longer have access to your account on OWallet.',
+  'setting.clear.warning-old': 'By deleting your account, you will no longer have access to your account on CVMWallet.',
   'setting.clear.warning': 'If deleting account, you will no longer have access to your account CVM.',
   'setting.clear.input.password': 'Password',
   'setting.clear.input.password.error.required': 'Password is required',
@@ -177,7 +177,7 @@ export default {
   'register.welcome.button.done': 'Got it!',
 
   'chain.suggested.title': 'Chain Add Request',
-  'chain.suggested.paragraph': '<b>{host}</b> would like to add blockchain <b>{chainId}</b> to OWallet.',
+  'chain.suggested.paragraph': '<b>{host}</b> would like to add blockchain <b>{chainId}</b> to CVMWallet.',
   'chain.suggested.waring.experiment.title': 'Experimental Feature',
   'chain.suggested.waring.experiment.paragraph': 'For the brave-hearted cosmonauts',
   'chain.suggested.button.approve': 'Approve',
@@ -186,7 +186,7 @@ export default {
   'chain.remove.confirm.paragraph': 'Are you sure to remove the {chainName}?',
 
   'access.title': 'Requesting Connection',
-  'access.paragraph': '<b>{host}</b> is requesting to connect to your OWallet account on <b>{chainId}</b>.',
+  'access.paragraph': '<b>{host}</b> is requesting to connect to your CVMWallet account on <b>{chainId}</b>.',
   'access.permission.title': 'By approving this request, the website will:',
   'access.permission.account': 'Know your wallet address',
   'access.permission.tx-request': 'Be able to request signatures for txs',
@@ -271,7 +271,7 @@ export default {
     'Execute contract <b>{address}</b><only-sent-exist> by sending <b>{sent}</b></only-sent-exist>',
   'sign.list.message.wasm/MsgExecuteContract.content.badge.secret-wasm': 'Encrypted',
   'sign.list.message.wasm/MsgExecuteContract.content.warning.secret-wasm.failed-decryption':
-    'Failed to decrypt Secret message. This may be due to OWallet viewing key not matching the transaction viewing key.',
+    'Failed to decrypt Secret message. This may be due to CVMWallet viewing key not matching the transaction viewing key.',
 
   'sign.list.message.cyber/Link.title': 'Cyberlink',
   'sign.list.message.cyber/Link.content': '<b>{neuron}</b> create link {br}<b>{link}</b>',

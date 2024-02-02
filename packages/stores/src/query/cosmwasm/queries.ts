@@ -5,7 +5,7 @@ import { ObservableQueryCw20ContractInfo } from './cw20-contract-info';
 import { DeepReadonly } from 'utility-types';
 import { ObservableQueryCw20BalanceRegistry } from './cw20-balance';
 import { QueriesWithCosmosAndSecret } from '../secret-wasm';
-import { OWallet } from '@owallet/types';
+import { CVMWallet } from '@owallet/types';
 
 export interface HasCosmwasmQueries {
   cosmwasm: CosmwasmQueries;
@@ -21,7 +21,7 @@ export class QueriesWithCosmosAndSecretAndCosmwasm
     kvStore: KVStore,
     chainId: string,
     chainGetter: ChainGetter,
-    apiGetter: () => Promise<OWallet | undefined>
+    apiGetter: () => Promise<CVMWallet | undefined>
   ) {
     super(kvStore, chainId, chainGetter, apiGetter);
 

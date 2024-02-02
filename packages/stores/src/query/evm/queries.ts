@@ -5,7 +5,7 @@ import { ObservableQueryErc20ContractInfo } from './erc20-contract-info';
 import { DeepReadonly } from 'utility-types';
 import { ObservableQueryErc20BalanceRegistry } from './erc20-balance';
 import { QueriesWithCosmosAndSecretAndCosmwasm } from '../cosmwasm';
-import { OWallet } from '@owallet/types';
+import { CVMWallet } from '@owallet/types';
 import { ObservableQueryEvmBalance } from './evm-balance';
 
 export interface HasEvmQueries {
@@ -22,7 +22,7 @@ export class QueriesWithCosmosAndSecretAndCosmwasmAndEvm
     kvStore: KVStore,
     chainId: string,
     chainGetter: ChainGetter,
-    apiGetter: () => Promise<OWallet | undefined>
+    apiGetter: () => Promise<CVMWallet | undefined>
   ) {
     super(kvStore, chainId, chainGetter, apiGetter);
 

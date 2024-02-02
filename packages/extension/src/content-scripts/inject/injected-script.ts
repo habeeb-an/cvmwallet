@@ -1,9 +1,9 @@
-import { InjectedOWallet, InjectedEthereum, InjectedTronWebOWallet, InjectedBitcoin } from '@owallet/provider';
+import { InjectedCVMWallet, InjectedEthereum, InjectedTronWebOWallet, InjectedBitcoin } from '@owallet/provider';
 import { init } from './init';
 
 import manifest from '../../manifest.json';
 
-const owallet = new InjectedOWallet(manifest.version, 'extension');
+const owallet = new InjectedCVMWallet(manifest.version, 'extension');
 const ethereum = new InjectedEthereum(manifest.version, 'extension');
 const tronweb = new InjectedTronWebOWallet(manifest.version, 'extension');
 const bitcoin = new InjectedBitcoin(manifest.version, 'extension');

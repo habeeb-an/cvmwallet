@@ -18,7 +18,7 @@ import { useTheme } from '@src/themes/theme-provider';
 import { SUCCESS } from '../../utils/helper';
 import { ChainIdEnum } from '@owallet/common';
 import { API } from '@src/common/api';
-import { OwalletEvent, TxRestCosmosClient, TRON_ID } from '@owallet/common';
+import { CVMwalletEvent, TxRestCosmosClient, TRON_ID } from '@owallet/common';
 export const TxPendingResultScreen: FunctionComponent = observer(() => {
   const { chainStore } = useStore();
   const [retry, setRetry] = useState(3);
@@ -102,7 +102,7 @@ export const TxPendingResultScreen: FunctionComponent = observer(() => {
           })
           .catch((err) => console.log(err, 'err data'));
       } else if (chainId.startsWith('injective')) {
-        OwalletEvent.txHashListener(txHash, (txInfo) => {
+        CVMwalletEvent.txHashListener(txHash, (txInfo) => {
           
           if (txInfo?.code === 0) {
             smartNavigation.replaceSmart('TxSuccessResult', {

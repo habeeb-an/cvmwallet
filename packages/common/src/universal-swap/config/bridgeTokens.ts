@@ -6,10 +6,10 @@ import {
   chainInfos,
   NetworkChainId,
   NetworkName,
-  oraichainNetwork
+  walletChainNetwork
 } from '@oraichain/oraidex-common';
 
-// export type EvmDenom = 'bep20_orai' | 'bep20_airi' | 'erc20_orai' | 'kawaii_orai';
+// export type EvmDenom = 'bep20_o' | 'bep20_airi' | 'erc20_orai' | 'kawaii_orai';
 
 export type UniversalSwapType = 'other-networks-to-cvm' | 'cvm-to-cvm' | 'cvm-to-other-networks';
 
@@ -71,9 +71,9 @@ const otherChainTokens = flatten(chainInfos.map(getTokensFromNetwork));
 //   chainInfos.filter((chainInfo) => chainInfo.chainId !== 'Oraichain').map(getTokensFromNetwork)
 // );
 
-export const oraichainTokens: TokenItemType[] = getTokensFromNetwork(oraichainNetwork);
+export const walletChainTokens: TokenItemType[] = getTokensFromNetwork(walletChainNetwork);
 
-export const tokens = [otherChainTokens, oraichainTokens];
+export const tokens = [otherChainTokens, walletChainTokens];
 export const flattenTokens = flatten(tokens);
 export const tokenMap = Object.fromEntries(flattenTokens.map((c) => [c.denom, c]));
 export const assetInfoMap = Object.fromEntries(flattenTokens.map((c) => [c.contractAddress || c.denom, c]));
