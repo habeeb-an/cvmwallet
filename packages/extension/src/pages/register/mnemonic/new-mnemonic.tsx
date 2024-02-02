@@ -6,11 +6,11 @@ import useForm from 'react-hook-form';
 import { AdvancedBIP44Option, BIP44Option, useBIP44Option } from '../advanced-bip44';
 import style from '../style.module.scss';
 import { Alert, Button, ButtonGroup, Form } from 'reactstrap';
-import { Input, PasswordInput, TextArea } from '../../../components/form';
+import { Input, PasswordInput } from '../../../components/form';
 import { BackButton } from '../index';
 import { NewMnemonicConfig, useNewMnemonicConfig, NumWords } from './hook';
 import { useStore } from '../../../stores';
-import classNames from 'classnames';
+// import classNames from 'classnames';
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const bip39 = require('bip39');
@@ -88,6 +88,16 @@ export const GenerateMnemonicModePage: FunctionComponent<{
       confirmPassword: ''
     }
   });
+  const [copySuccess, setCopySuccess] = useState('Copy to clipboard');
+
+  const copyToClipboard = () => {
+    if (newMnemonicConfig && newMnemonicConfig.mnemonic) {
+      navigator.clipboard.writeText(newMnemonicConfig.mnemonic);
+      setCopySuccess('Copied!');
+    } else {
+      console.error('newMnemonicConfig.mnemonic is not defined');
+    }
+  };
 
   return (
     <div>
@@ -149,7 +159,7 @@ export const GenerateMnemonicModePage: FunctionComponent<{
           newMnemonicConfig.setMode('verify');
         })}
       >
-        <TextArea
+        {/* <TextArea
           className={style.mnemonic}
           style={{
             border: '1px solid rgba(8, 4, 28, 0.12)',
@@ -180,7 +190,58 @@ export const GenerateMnemonicModePage: FunctionComponent<{
             }
           })}
           error={errors.words && errors.words.message}
-        />
+        /> */}
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end' }}>
+          <div
+            className={style.mnemonic}
+            style={{
+              border: '1px solid rgba(8, 4, 28, 0.12)',
+              display: 'grid',
+              gridTemplateColumns: 'repeat(3, 3fr)',
+              gap: '10px',
+              borderRadius: '6px',
+              // flexDirection: 'row',
+              // flexWrap: 'wrap',
+              justifyContent: 'center',
+              padding: '20px',
+              width: '100%'
+            }}
+          >
+            {newMnemonicConfig.mnemonic.split(' ').map((word, index) => (
+              <div
+                key={index}
+                style={{
+                  // flexGrow: 1,
+                  justifyContent: 'center',
+                  // alignItems: 'center',
+                  border: '1px solid rgba(8, 4, 28, 0.12)',
+                  borderRadius: '13px',
+                  color: '#ab8aff',
+                  padding: '10px',
+                  textAlign: 'center',
+                  margin: '0px',
+                  minWidth: '0'
+                }}
+              >
+                {word}
+              </div>
+            ))}
+          </div>
+          <button
+            type="button"
+            onClick={() => copyToClipboard()}
+            style={{ background: 'none', border: 'none', marginTop: '10px', fontFamily: 'IBM Plex Sans' }}
+          >
+            <img
+              src={require('../../../public/assets/img/filled.svg')}
+              alt="Copy to clipboard"
+              width={16}
+              height={16}
+            />
+            <span style={{ color: '#ab8aff', marginRight: '5px' }}>{copySuccess}</span>
+          </button>
+        </div>
+        {errors.words && <div className="error-message">{errors.words.message}</div>}
         <Input
           label={intl.formatMessage({
             id: 'register.name'
