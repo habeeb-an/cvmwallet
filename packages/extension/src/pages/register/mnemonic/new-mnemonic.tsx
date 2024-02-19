@@ -17,9 +17,11 @@ const bip39 = require('bip39');
 
 export const TypeNewMnemonic = 'new-mnemonic';
 
-interface FormData {
-  name: string;
+interface SeedData {
   words: string;
+}
+interface AccountData {
+  name: string;
   password: string;
   confirmPassword: string;
 }
@@ -55,6 +57,9 @@ export const NewMnemonicPage: FunctionComponent<{
 
   return (
     <React.Fragment>
+      {newMnemonicConfig.mode === 'account' ? (
+        <AccountCreationPage registerConfig={registerConfig} newMnemonicConfig={newMnemonicConfig} />
+      ) : null}
       {newMnemonicConfig.mode === 'generate' ? (
         <GenerateMnemonicModePage
           registerConfig={registerConfig}
@@ -72,7 +77,108 @@ export const NewMnemonicPage: FunctionComponent<{
     </React.Fragment>
   );
 });
+//acount creation
+export const AccountCreationPage: FunctionComponent<{
+  registerConfig: RegisterConfig;
+  newMnemonicConfig: NewMnemonicConfig;
+}> = observer(({ registerConfig, newMnemonicConfig }) => {
+  const intl = useIntl();
+  // const [walletData, setWalletData] = useState({ name: '', password: '' }); // State for wallet data
 
+  const { register, handleSubmit, getValues, errors } = useForm<AccountData>({
+    defaultValues: {
+      name: newMnemonicConfig.name,
+      password: '',
+      confirmPassword: ''
+    }
+  });
+  return (
+    <div>
+      <Form
+        className={style.formContainer}
+        onSubmit={handleSubmit(async (data: AccountData) => {
+          newMnemonicConfig.setName(data.name);
+          newMnemonicConfig.setPassword(data.password);
+          newMnemonicConfig.setMode('generate');
+        })}
+      >
+        <Input
+          label={intl.formatMessage({
+            id: 'register.name'
+          })}
+          styleInputGroup={{
+            border: '1px solid rgba(8, 4, 28, 0.12)'
+          }}
+          type="text"
+          name="name"
+          ref={register({
+            required: intl.formatMessage({
+              id: 'register.name.error.required'
+            })
+          })}
+          error={errors.name && errors.name.message}
+        />
+        {registerConfig.mode === 'create' && (
+          <>
+            <PasswordInput
+              label={intl.formatMessage({
+                id: 'register.create.input.password'
+              })}
+              styleInputGroup={{
+                border: '1px solid rgba(8, 4, 28, 0.12)'
+              }}
+              name="password"
+              ref={register({
+                required: intl.formatMessage({
+                  id: 'register.create.input.password.error.required'
+                }),
+                validate: (password: string): string | undefined => {
+                  if (password.length < 8) {
+                    return intl.formatMessage({
+                      id: 'register.create.input.password.error.too-short'
+                    });
+                  }
+                }
+              })}
+              error={errors.password && errors.password.message}
+            />
+            <PasswordInput
+              label={intl.formatMessage({
+                id: 'register.create.input.confirm-password'
+              })}
+              styleInputGroup={{
+                border: '1px solid rgba(8, 4, 28, 0.12)'
+              }}
+              name="confirmPassword"
+              ref={register({
+                required: intl.formatMessage({
+                  id: 'register.create.input.confirm-password.error.required'
+                }),
+                validate: (confirmPassword: string): string | undefined => {
+                  if (confirmPassword !== getValues()['password']) {
+                    return intl.formatMessage({
+                      id: 'register.create.input.confirm-password.error.unmatched'
+                    });
+                  }
+                }
+              })}
+              error={errors.confirmPassword && errors.confirmPassword.message}
+            />
+          </>
+        )}
+        <Button color="" type="submit" block className={style.nextBtn}>
+          <FormattedMessage id="register.create.button.next" />
+        </Button>
+      </Form>
+      <BackButton
+        onClick={() => {
+          registerConfig.clear();
+        }}
+      />
+    </div>
+  );
+});
+//seed creation
 export const GenerateMnemonicModePage: FunctionComponent<{
   registerConfig: RegisterConfig;
   newMnemonicConfig: NewMnemonicConfig;
@@ -80,12 +186,12 @@ export const GenerateMnemonicModePage: FunctionComponent<{
 }> = observer(({ registerConfig, newMnemonicConfig, bip44Option }) => {
   const intl = useIntl();
 
-  const { register, handleSubmit, getValues, errors } = useForm<FormData>({
+  const { register, handleSubmit, getValues, errors } = useForm<SeedData>({
     defaultValues: {
-      name: newMnemonicConfig.name,
-      words: newMnemonicConfig.mnemonic,
-      password: '',
-      confirmPassword: ''
+      // name: newMnemonicConfig.name,
+      words: newMnemonicConfig.mnemonic
+      // password: '',
+      // confirmPassword: ''
     }
   });
   const [copySuccess, setCopySuccess] = useState('Copy to clipboard');
@@ -153,9 +259,7 @@ export const GenerateMnemonicModePage: FunctionComponent<{
       </div>
       <Form
         className={style.formContainer}
-        onSubmit={handleSubmit(async (data: FormData) => {
-          newMnemonicConfig.setName(data.name);
-          newMnemonicConfig.setPassword(data.password);
+        onSubmit={handleSubmit(async (data: SeedData) => {
           newMnemonicConfig.setMode('verify');
         })}
       >
@@ -230,7 +334,13 @@ export const GenerateMnemonicModePage: FunctionComponent<{
           <button
             type="button"
             onClick={() => copyToClipboard()}
-            style={{ background: 'none', border: 'none', marginTop: '10px', fontFamily: 'IBM Plex Sans' }}
+            style={{
+              background: 'none',
+              border: 'none',
+              marginTop: '10px',
+              fontFamily: 'IBM Plex Sans',
+              padding: '20px 0'
+            }}
           >
             <img
               src={require('../../../public/assets/img/filled.svg')}
@@ -242,7 +352,7 @@ export const GenerateMnemonicModePage: FunctionComponent<{
           </button>
         </div>
         {errors.words && <div className="error-message">{errors.words.message}</div>}
-        <Input
+        {/* <Input
           label={intl.formatMessage({
             id: 'register.name'
           })}
@@ -305,7 +415,7 @@ export const GenerateMnemonicModePage: FunctionComponent<{
               error={errors.confirmPassword && errors.confirmPassword.message}
             />
           </React.Fragment>
-        ) : null}
+        ) : null} */}
         <AdvancedBIP44Option bip44Option={bip44Option} />
         <Button color="" type="submit" block className={style.nextBtn}>
           <FormattedMessage id="register.create.button.next" />
@@ -313,7 +423,7 @@ export const GenerateMnemonicModePage: FunctionComponent<{
       </Form>
       <BackButton
         onClick={() => {
-          registerConfig.clear();
+          newMnemonicConfig.setMode('account');
         }}
       />
     </div>

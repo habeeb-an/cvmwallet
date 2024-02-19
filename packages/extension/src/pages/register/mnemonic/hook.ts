@@ -3,7 +3,7 @@ import { RegisterConfig } from '@owallet/hooks';
 import { useState } from 'react';
 import { toGenerator } from '@owallet/common';
 
-export type NewMnemonicMode = 'generate' | 'verify';
+export type NewMnemonicMode = 'generate' | 'verify' | 'account';
 
 export enum NumWords {
   WORDS12,
@@ -12,7 +12,7 @@ export enum NumWords {
 
 export class NewMnemonicConfig {
   @observable
-  protected _mode: NewMnemonicMode = 'generate';
+  protected _mode: NewMnemonicMode = 'account';
 
   @observable
   protected _numWords: NumWords = NumWords.WORDS12;
@@ -49,13 +49,9 @@ export class NewMnemonicConfig {
   *setNumWords(numWords: NumWords) {
     this._numWords = numWords;
     if (numWords === NumWords.WORDS12) {
-      this._mnemonic = yield* toGenerator(
-        this.registerConfig.generateMnemonic(128)
-      );
+      this._mnemonic = yield* toGenerator(this.registerConfig.generateMnemonic(128));
     } else if (numWords === NumWords.WORDS24) {
-      this._mnemonic = yield* toGenerator(
-        this.registerConfig.generateMnemonic(256)
-      );
+      this._mnemonic = yield* toGenerator(this.registerConfig.generateMnemonic(256));
     }
   }
 
@@ -88,9 +84,7 @@ export class NewMnemonicConfig {
 }
 
 export const useNewMnemonicConfig = (registerConfig: RegisterConfig) => {
-  const [newMnemonicConfig] = useState(
-    () => new NewMnemonicConfig(registerConfig)
-  );
+  const [newMnemonicConfig] = useState(() => new NewMnemonicConfig(registerConfig));
 
   return newMnemonicConfig;
 };
